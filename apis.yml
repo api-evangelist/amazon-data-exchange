@@ -10,10 +10,10 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Data Marketplace
-  - Data Exchange
-  - Third-Party Data
   - AWS
+  - Data Exchange
+  - Data Marketplace
+  - Third-Party Data
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-data-exchange/refs/heads/main/apis.yml
 created: '2026-03-16'
