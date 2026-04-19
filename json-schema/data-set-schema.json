@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/data-set-schema.json",
+  "title": "Data Set",
+  "description": "An AWS Data Exchange data set containing a collection of data available for subscription.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "description": "The unique identifier of the data set"
+    },
+    "Arn": {
+      "type": "string",
+      "description": "The ARN of the data set"
+    },
+    "Name": {
+      "type": "string",
+      "description": "The name of the data set"
+    },
+    "Description": {
+      "type": "string",
+      "description": "The description of the data set"
+    },
+    "AssetType": {
+      "type": "string",
+      "enum": [
+        "S3_SNAPSHOT",
+        "REDSHIFT_DATA_SHARE",
+        "API_GATEWAY_API",
+        "LAKE_FORMATION_DATA_PERMISSION",
+        "S3_DATA_ACCESS"
+      ]
+    },
+    "Origin": {
+      "type": "string",
+      "enum": [
+        "OWNED",
+        "ENTITLED"
+      ]
+    },
+    "Tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "CreatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "UpdatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

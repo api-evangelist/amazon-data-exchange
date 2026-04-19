@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/job-schema.json",
+  "title": "Job",
+  "description": "A Data Exchange job for importing or exporting assets.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "Arn": {
+      "type": "string"
+    },
+    "Type": {
+      "type": "string"
+    },
+    "State": {
+      "type": "string",
+      "enum": [
+        "WAITING",
+        "IN_PROGRESS",
+        "ERROR",
+        "COMPLETED",
+        "CANCELLED",
+        "TIMED_OUT"
+      ]
+    },
+    "Details": {
+      "type": "object"
+    },
+    "Errors": {
+      "type": "array"
+    },
+    "CreatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "UpdatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

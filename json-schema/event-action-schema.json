@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/event-action-schema.json",
+  "title": "Event Action",
+  "description": "An event action that automates responses to Data Exchange events.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "Arn": {
+      "type": "string"
+    },
+    "Event": {
+      "type": "object"
+    },
+    "Action": {
+      "type": "object"
+    },
+    "CreatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "UpdatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

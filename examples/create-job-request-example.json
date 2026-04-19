@@ -1,0 +1,9 @@
+{
+  "Type": "EXPORT_ASSETS_TO_S3",
+  "Details": {
+    "ExportAssetsToS3": {
+      "DataSetId": "ds-abc123",
+      "RevisionId": "rev-001abc"
+    }
+  }
+}

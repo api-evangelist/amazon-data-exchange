@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/asset-schema.json",
+  "title": "Asset",
+  "description": "An asset within a data set revision, representing an individual piece of data.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "Arn": {
+      "type": "string"
+    },
+    "DataSetId": {
+      "type": "string"
+    },
+    "RevisionId": {
+      "type": "string"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "AssetType": {
+      "type": "string"
+    },
+    "AssetDetails": {
+      "type": "object"
+    },
+    "CreatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "UpdatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

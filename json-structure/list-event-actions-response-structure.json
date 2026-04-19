@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/list-event-actions-response-structure.json",
+  "title": "List Event Actions Response",
+  "description": "Response containing a list of event actions.",
+  "type": "typedMap",
+  "fields": {
+    "EventActions": {
+      "type": "list",
+      "description": "The EventActions field"
+    },
+    "NextToken": {
+      "type": "str",
+      "description": "The NextToken field"
+    }
+  }
+}

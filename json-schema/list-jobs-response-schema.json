@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/list-jobs-response-schema.json",
+  "title": "List Jobs Response",
+  "description": "Response containing a list of jobs.",
+  "type": "object",
+  "properties": {
+    "Jobs": {
+      "type": "array",
+      "items": {
+        "$ref": "job-schema.json"
+      }
+    },
+    "NextToken": {
+      "type": "string"
+    }
+  }
+}

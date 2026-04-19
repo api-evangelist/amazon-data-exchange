@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/list-data-set-revisions-response-structure.json",
+  "title": "List Data Set Revisions Response",
+  "description": "Response containing a list of revisions.",
+  "type": "typedMap",
+  "fields": {
+    "Revisions": {
+      "type": "list",
+      "description": "The Revisions field"
+    },
+    "NextToken": {
+      "type": "str",
+      "description": "The NextToken field"
+    }
+  }
+}

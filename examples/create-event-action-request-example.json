@@ -1,0 +1,14 @@
+{
+  "Event": {
+    "RevisionPublished": {
+      "DataSetId": "ds-abc123"
+    }
+  },
+  "Action": {
+    "ExportRevisionToS3": {
+      "RevisionDestination": {
+        "Bucket": "my-bucket"
+      }
+    }
+  }
+}

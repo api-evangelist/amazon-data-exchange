@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/update-revision-request-schema.json",
+  "title": "Update Revision Request",
+  "description": "Request body for updating a revision.",
+  "type": "object",
+  "properties": {
+    "Comment": {
+      "type": "string"
+    },
+    "Finalized": {
+      "type": "boolean"
+    }
+  }
+}

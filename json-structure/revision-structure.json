@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/revision-structure.json",
+  "title": "Revision",
+  "description": "A revision of a data set, representing a snapshot of data at a point in time.",
+  "type": "typedMap",
+  "fields": {
+    "Id": {
+      "type": "str",
+      "description": "The Id field"
+    },
+    "Arn": {
+      "type": "str",
+      "description": "The Arn field"
+    },
+    "DataSetId": {
+      "type": "str",
+      "description": "The DataSetId field"
+    },
+    "Comment": {
+      "type": "str",
+      "description": "The Comment field"
+    },
+    "Finalized": {
+      "type": "bool",
+      "description": "The Finalized field"
+    },
+    "Tags": {
+      "type": "map",
+      "description": "The Tags field"
+    },
+    "CreatedAt": {
+      "type": "str",
+      "description": "The CreatedAt field",
+      "format": "date-time"
+    },
+    "UpdatedAt": {
+      "type": "str",
+      "description": "The UpdatedAt field",
+      "format": "date-time"
+    }
+  }
+}

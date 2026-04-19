@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/create-job-request-structure.json",
+  "title": "Create Job Request",
+  "description": "Request body for creating a new job.",
+  "type": "typedMap",
+  "fields": {
+    "Type": {
+      "type": "str",
+      "description": "The Type field"
+    },
+    "Details": {
+      "type": "map",
+      "description": "The Details field"
+    }
+  }
+}

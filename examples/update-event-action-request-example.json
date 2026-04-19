@@ -1,0 +1,9 @@
+{
+  "Action": {
+    "ExportRevisionToS3": {
+      "RevisionDestination": {
+        "Bucket": "updated-bucket"
+      }
+    }
+  }
+}

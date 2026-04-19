@@ -1,0 +1,9 @@
+{
+  "Assets": [
+    {
+      "Id": "asset-001",
+      "Name": "market-data-q1.csv",
+      "AssetType": "S3_SNAPSHOT"
+    }
+  ]
+}

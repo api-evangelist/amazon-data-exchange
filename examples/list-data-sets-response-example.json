@@ -1,0 +1,10 @@
+{
+  "DataSets": [
+    {
+      "Id": "ds-abc123",
+      "Name": "Market Research Dataset 2024",
+      "AssetType": "S3_SNAPSHOT",
+      "Origin": "OWNED"
+    }
+  ]
+}

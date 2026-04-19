@@ -1,0 +1,8 @@
+{
+  "Id": "asset-001",
+  "Arn": "arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc/assets/asset-001",
+  "DataSetId": "ds-abc123",
+  "RevisionId": "rev-001abc",
+  "Name": "market-data-q1.csv",
+  "AssetType": "S3_SNAPSHOT"
+}

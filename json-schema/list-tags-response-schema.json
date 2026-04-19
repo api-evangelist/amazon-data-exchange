@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/list-tags-response-schema.json",
+  "title": "List Tags Response",
+  "description": "Response containing tags for a resource.",
+  "type": "object",
+  "properties": {
+    "Tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "EventActions": [
+    {
+      "Id": "ea-001abc",
+      "Event": {
+        "RevisionPublished": {
+          "DataSetId": "ds-abc123"
+        }
+      }
+    }
+  ]
+}

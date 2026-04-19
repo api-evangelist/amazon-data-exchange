@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/tag-resource-request-schema.json",
+  "title": "Tag Resource Request",
+  "description": "Request body for adding tags to a resource.",
+  "type": "object",
+  "required": [
+    "Tags"
+  ],
+  "properties": {
+    "Tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

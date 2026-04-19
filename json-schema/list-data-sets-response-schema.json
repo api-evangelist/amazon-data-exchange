@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/list-data-sets-response-schema.json",
+  "title": "List Data Sets Response",
+  "description": "Response containing a list of data sets.",
+  "type": "object",
+  "properties": {
+    "DataSets": {
+      "type": "array",
+      "items": {
+        "$ref": "data-set-schema.json"
+      }
+    },
+    "NextToken": {
+      "type": "string"
+    }
+  }
+}

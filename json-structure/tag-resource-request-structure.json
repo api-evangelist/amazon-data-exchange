@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/tag-resource-request-structure.json",
+  "title": "Tag Resource Request",
+  "description": "Request body for adding tags to a resource.",
+  "type": "typedMap",
+  "fields": {
+    "Tags": {
+      "type": "map",
+      "description": "The Tags field"
+    }
+  }
+}

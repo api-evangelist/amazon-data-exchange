@@ -1,0 +1,156 @@
+id: https://api-evangelist.github.io/amazon-data-exchange/vocabulary/amazon-data-exchange-vocabulary.yaml
+name: AWS Data Exchange Vocabulary
+description: Controlled vocabulary and taxonomy for AWS Data Exchange API covering data products, subscriptions, revisions, assets, and job-based data transfer workflows.
+version: 1.0.0
+specificationVersion: 1.0.0
+
+tags:
+  - AWS
+  - Data Exchange
+  - Data Marketplace
+  - Analytics
+
+operational:
+  resources:
+    - term: DataSet
+      definition: A collection of data organized for distribution through the AWS Data Exchange marketplace
+      aliases:
+        - Data Product
+        - data-set
+    - term: Revision
+      definition: A versioned snapshot of data within a data set, published to subscribers at a point in time
+      aliases:
+        - DataSetRevision
+        - data-revision
+    - term: Asset
+      definition: An individual piece of data within a revision, such as an S3 object or Redshift data share
+      aliases:
+        - DataAsset
+    - term: Job
+      definition: An asynchronous operation that imports assets into or exports assets out of Data Exchange
+      aliases:
+        - DataJob
+        - ExportJob
+        - ImportJob
+    - term: EventAction
+      definition: An automated action triggered by a Data Exchange event, such as a published revision
+      aliases:
+        - AutomationRule
+    - term: Subscription
+      definition: An agreement allowing a subscriber to access a provider's data products
+    - term: DataProduct
+      definition: A curated offering in the Data Exchange marketplace consisting of one or more data sets
+
+  actions:
+    - term: CreateDataSet
+      definition: Create a new data set for organizing and distributing data
+    - term: DeleteDataSet
+      definition: Remove a data set and all its revisions
+    - term: CreateRevision
+      definition: Create a new versioned snapshot of data within a data set
+    - term: FinalizeRevision
+      definition: Mark a revision as complete, making it available to subscribers
+    - term: ImportAssets
+      definition: Transfer assets into a revision from an external source (S3, Redshift, API Gateway)
+    - term: ExportAssets
+      definition: Transfer assets out of a revision to an external destination (S3, signed URL)
+    - term: StartJob
+      definition: Initiate execution of a waiting import or export job
+    - term: CancelJob
+      definition: Terminate a waiting or in-progress job before completion
+    - term: CreateEventAction
+      definition: Configure automated delivery when a revision is published
+
+  assetTypes:
+    - term: S3_SNAPSHOT
+      definition: Data assets stored as snapshots of Amazon S3 objects
+    - term: REDSHIFT_DATA_SHARE
+      definition: Data assets shared from Amazon Redshift databases
+    - term: API_GATEWAY_API
+      definition: Data assets exposed through Amazon API Gateway APIs
+    - term: LAKE_FORMATION_DATA_PERMISSION
+      definition: Data assets governed by AWS Lake Formation permissions
+    - term: S3_DATA_ACCESS
+      definition: Data assets providing direct S3 access without copying
+
+  jobTypes:
+    - term: IMPORT_ASSETS_FROM_S3
+      definition: Import multiple assets from Amazon S3 into a revision
+    - term: EXPORT_ASSETS_TO_S3
+      definition: Export assets from a revision to Amazon S3
+    - term: EXPORT_REVISIONS_TO_S3
+      definition: Export all assets in one or more revisions to Amazon S3
+    - term: IMPORT_ASSET_FROM_SIGNED_URL
+      definition: Import a single asset using a pre-signed URL
+    - term: EXPORT_ASSET_TO_SIGNED_URL
+      definition: Export a single asset to a pre-signed URL for download
+
+  jobStates:
+    - term: WAITING
+      definition: Job has been created but not yet started
+    - term: IN_PROGRESS
+      definition: Job is currently executing
+    - term: COMPLETED
+      definition: Job finished successfully
+    - term: ERROR
+      definition: Job encountered an error during execution
+    - term: CANCELLED
+      definition: Job was cancelled before completion
+    - term: TIMED_OUT
+      definition: Job exceeded the maximum allowed execution time
+
+capability:
+  personas:
+    - term: Data Provider
+      definition: An organization or individual publishing data products to the AWS Data Exchange marketplace
+    - term: Data Subscriber
+      definition: An organization subscribing to and consuming third-party data products from the marketplace
+    - term: Data Engineer
+      definition: An engineer automating data ingestion, transformation, and delivery pipelines
+
+  workflows:
+    - term: Publish Data Product
+      definition: The end-to-end process of creating a data set, adding revisions with assets, and finalizing for marketplace publication
+      steps:
+        - CreateDataSet
+        - CreateRevision
+        - ImportAssets
+        - StartJob
+        - FinalizeRevision
+    - term: Export Subscribed Data
+      definition: Accessing and exporting data from entitled (subscribed) data sets to Amazon S3
+      steps:
+        - ListDataSets
+        - ListRevisions
+        - CreateExportJob
+        - StartJob
+        - PollJobCompletion
+    - term: Automate Data Delivery
+      definition: Configuring event actions to automatically deliver new revision data to S3 on publish
+      steps:
+        - CreateEventAction
+        - MonitorRevisionPublished
+
+crossReference:
+  awsServices:
+    - term: Amazon S3
+      definition: Primary storage for Data Exchange assets — used for both import sources and export destinations
+      url: https://aws.amazon.com/s3/
+    - term: Amazon Redshift
+      definition: Source for Redshift data share assets distributed through Data Exchange
+      url: https://aws.amazon.com/redshift/
+    - term: AWS Lake Formation
+      definition: Governs Lake Formation data permission assets shared through Data Exchange
+      url: https://aws.amazon.com/lake-formation/
+    - term: Amazon API Gateway
+      definition: Exposes API Gateway API assets distributed through Data Exchange
+      url: https://aws.amazon.com/api-gateway/
+    - term: AWS Glue
+      definition: Used to catalog and transform Data Exchange data for analytics
+      url: https://aws.amazon.com/glue/
+    - term: Amazon Athena
+      definition: Query Data Exchange S3 assets directly using SQL
+      url: https://aws.amazon.com/athena/
+    - term: Amazon SageMaker
+      definition: Use Data Exchange third-party datasets for machine learning model training
+      url: https://aws.amazon.com/sagemaker/

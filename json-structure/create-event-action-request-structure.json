@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/create-event-action-request-structure.json",
+  "title": "Create Event Action Request",
+  "description": "Request body for creating a new event action.",
+  "type": "typedMap",
+  "fields": {
+    "Event": {
+      "type": "map",
+      "description": "The Event field"
+    },
+    "Action": {
+      "type": "map",
+      "description": "The Action field"
+    }
+  }
+}

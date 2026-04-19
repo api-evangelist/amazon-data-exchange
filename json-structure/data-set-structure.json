@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/data-set-structure.json",
+  "title": "Data Set",
+  "description": "An AWS Data Exchange data set containing a collection of data available for subscription.",
+  "type": "typedMap",
+  "fields": {
+    "Id": {
+      "type": "str",
+      "description": "The unique identifier of the data set"
+    },
+    "Arn": {
+      "type": "str",
+      "description": "The ARN of the data set"
+    },
+    "Name": {
+      "type": "str",
+      "description": "The name of the data set"
+    },
+    "Description": {
+      "type": "str",
+      "description": "The description of the data set"
+    },
+    "AssetType": {
+      "type": "str",
+      "description": "The AssetType field",
+      "enum": [
+        "S3_SNAPSHOT",
+        "REDSHIFT_DATA_SHARE",
+        "API_GATEWAY_API",
+        "LAKE_FORMATION_DATA_PERMISSION",
+        "S3_DATA_ACCESS"
+      ]
+    },
+    "Origin": {
+      "type": "str",
+      "description": "The Origin field",
+      "enum": [
+        "OWNED",
+        "ENTITLED"
+      ]
+    },
+    "Tags": {
+      "type": "map",
+      "description": "The Tags field"
+    },
+    "CreatedAt": {
+      "type": "str",
+      "description": "The CreatedAt field",
+      "format": "date-time"
+    },
+    "UpdatedAt": {
+      "type": "str",
+      "description": "The UpdatedAt field",
+      "format": "date-time"
+    }
+  }
+}

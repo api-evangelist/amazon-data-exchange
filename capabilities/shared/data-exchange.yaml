@@ -1,0 +1,171 @@
+id: https://api-evangelist.github.io/amazon-data-exchange/capabilities/shared/data-exchange.yaml
+name: AWS Data Exchange API
+description: Naftiko shared capability definition for AWS Data Exchange API, providing programmatic access to data sets, revisions, assets, jobs, and event actions for cloud-based data marketplace workflows.
+version: 1.0.0-alpha1
+specificationVersion: 1.0.0-alpha1
+
+provider:
+  name: Amazon Web Services
+  url: https://aws.amazon.com
+
+tags:
+  - AWS
+  - Data Exchange
+  - Data Marketplace
+  - Third-Party Data
+
+rest:
+  port: 8100
+  baseURL: https://dataexchange.amazonaws.com
+  auth:
+    type: aws-signature-v4
+    service: dataexchange
+  resources:
+    - name: Data Sets
+      description: Manage AWS Data Exchange data sets
+      operations:
+        - operationId: listDataSets
+          summary: List Data Sets
+          method: GET
+          path: /v1/data-sets
+        - operationId: createDataSet
+          summary: Create Data Set
+          method: POST
+          path: /v1/data-sets
+        - operationId: getDataSet
+          summary: Get Data Set
+          method: GET
+          path: /v1/data-sets/{DataSetId}
+        - operationId: updateDataSet
+          summary: Update Data Set
+          method: PATCH
+          path: /v1/data-sets/{DataSetId}
+        - operationId: deleteDataSet
+          summary: Delete Data Set
+          method: DELETE
+          path: /v1/data-sets/{DataSetId}
+    - name: Revisions
+      description: Manage data set revisions
+      operations:
+        - operationId: listDataSetRevisions
+          summary: List Data Set Revisions
+          method: GET
+          path: /v1/data-sets/{DataSetId}/revisions
+        - operationId: createRevision
+          summary: Create Revision
+          method: POST
+          path: /v1/data-sets/{DataSetId}/revisions
+        - operationId: getRevision
+          summary: Get Revision
+          method: GET
+          path: /v1/data-sets/{DataSetId}/revisions/{RevisionId}
+        - operationId: updateRevision
+          summary: Update Revision
+          method: PATCH
+          path: /v1/data-sets/{DataSetId}/revisions/{RevisionId}
+        - operationId: deleteRevision
+          summary: Delete Revision
+          method: DELETE
+          path: /v1/data-sets/{DataSetId}/revisions/{RevisionId}
+    - name: Assets
+      description: Manage assets within revisions
+      operations:
+        - operationId: listRevisionAssets
+          summary: List Revision Assets
+          method: GET
+          path: /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets
+        - operationId: getAsset
+          summary: Get Asset
+          method: GET
+          path: /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}
+        - operationId: updateAsset
+          summary: Update Asset
+          method: PATCH
+          path: /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}
+        - operationId: deleteAsset
+          summary: Delete Asset
+          method: DELETE
+          path: /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}
+    - name: Jobs
+      description: Manage import and export jobs
+      operations:
+        - operationId: listJobs
+          summary: List Jobs
+          method: GET
+          path: /v1/jobs
+        - operationId: createJob
+          summary: Create Job
+          method: POST
+          path: /v1/jobs
+        - operationId: getJob
+          summary: Get Job
+          method: GET
+          path: /v1/jobs/{JobId}
+        - operationId: startJob
+          summary: Start Job
+          method: PATCH
+          path: /v1/jobs/{JobId}/start
+        - operationId: cancelJob
+          summary: Cancel Job
+          method: DELETE
+          path: /v1/jobs/{JobId}/cancel
+    - name: Event Actions
+      description: Manage event-driven automation actions
+      operations:
+        - operationId: listEventActions
+          summary: List Event Actions
+          method: GET
+          path: /v1/event-actions
+        - operationId: createEventAction
+          summary: Create Event Action
+          method: POST
+          path: /v1/event-actions
+        - operationId: getEventAction
+          summary: Get Event Action
+          method: GET
+          path: /v1/event-actions/{EventActionId}
+        - operationId: updateEventAction
+          summary: Update Event Action
+          method: PATCH
+          path: /v1/event-actions/{EventActionId}
+        - operationId: deleteEventAction
+          summary: Delete Event Action
+          method: DELETE
+          path: /v1/event-actions/{EventActionId}
+
+mcp:
+  port: 9100
+  tools:
+    - name: list_data_sets
+      description: List all available data sets
+      operationId: listDataSets
+    - name: create_data_set
+      description: Create a new data set
+      operationId: createDataSet
+    - name: get_data_set
+      description: Get details of a data set
+      operationId: getDataSet
+    - name: create_revision
+      description: Create a new revision for a data set
+      operationId: createRevision
+    - name: update_revision
+      description: Update a revision, including finalizing it
+      operationId: updateRevision
+    - name: list_revision_assets
+      description: List assets in a revision
+      operationId: listRevisionAssets
+    - name: create_job
+      description: Create a data import or export job
+      operationId: createJob
+    - name: start_job
+      description: Start a waiting job
+      operationId: startJob
+    - name: get_job
+      description: Get the status of a job
+      operationId: getJob
+    - name: create_event_action
+      description: Create an event action for automated data delivery
+      operationId: createEventAction
+    - name: list_event_actions
+      description: List configured event actions
+      operationId: listEventActions

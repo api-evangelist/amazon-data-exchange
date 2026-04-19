@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/error-structure.json",
+  "title": "Error",
+  "description": "Standard error response from the Data Exchange API.",
+  "type": "typedMap",
+  "fields": {
+    "message": {
+      "type": "str",
+      "description": "The message field"
+    },
+    "code": {
+      "type": "str",
+      "description": "The code field"
+    },
+    "requestId": {
+      "type": "str",
+      "description": "The requestId field"
+    }
+  }
+}

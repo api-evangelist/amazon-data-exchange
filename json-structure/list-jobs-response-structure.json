@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/list-jobs-response-structure.json",
+  "title": "List Jobs Response",
+  "description": "Response containing a list of jobs.",
+  "type": "typedMap",
+  "fields": {
+    "Jobs": {
+      "type": "list",
+      "description": "The Jobs field"
+    },
+    "NextToken": {
+      "type": "str",
+      "description": "The NextToken field"
+    }
+  }
+}

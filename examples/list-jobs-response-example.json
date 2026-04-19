@@ -1,0 +1,9 @@
+{
+  "Jobs": [
+    {
+      "Id": "job-001abc",
+      "Type": "EXPORT_ASSETS_TO_S3",
+      "State": "COMPLETED"
+    }
+  ]
+}

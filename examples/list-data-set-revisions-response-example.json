@@ -1,0 +1,10 @@
+{
+  "Revisions": [
+    {
+      "Id": "rev-001abc",
+      "DataSetId": "ds-abc123",
+      "Comment": "Initial release",
+      "Finalized": true
+    }
+  ]
+}

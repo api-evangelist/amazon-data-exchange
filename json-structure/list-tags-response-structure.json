@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/list-tags-response-structure.json",
+  "title": "List Tags Response",
+  "description": "Response containing tags for a resource.",
+  "type": "typedMap",
+  "fields": {
+    "Tags": {
+      "type": "map",
+      "description": "The Tags field"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "Id": "rev-001abc",
+  "Arn": "arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc",
+  "DataSetId": "ds-abc123",
+  "Comment": "Initial data release",
+  "Finalized": true,
+  "CreatedAt": "2024-01-20T10:00:00Z",
+  "UpdatedAt": "2024-01-20T11:00:00Z"
+}

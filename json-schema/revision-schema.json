@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/revision-schema.json",
+  "title": "Revision",
+  "description": "A revision of a data set, representing a snapshot of data at a point in time.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "Arn": {
+      "type": "string"
+    },
+    "DataSetId": {
+      "type": "string"
+    },
+    "Comment": {
+      "type": "string"
+    },
+    "Finalized": {
+      "type": "boolean"
+    },
+    "Tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "CreatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "UpdatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

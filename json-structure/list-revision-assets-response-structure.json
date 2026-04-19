@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/list-revision-assets-response-structure.json",
+  "title": "List Revision Assets Response",
+  "description": "Response containing a list of assets.",
+  "type": "typedMap",
+  "fields": {
+    "Assets": {
+      "type": "list",
+      "description": "The Assets field"
+    },
+    "NextToken": {
+      "type": "str",
+      "description": "The NextToken field"
+    }
+  }
+}

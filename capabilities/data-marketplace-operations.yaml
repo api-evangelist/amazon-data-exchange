@@ -1,0 +1,122 @@
+id: https://api-evangelist.github.io/amazon-data-exchange/capabilities/data-marketplace-operations.yaml
+name: Data Marketplace Operations
+description: Workflow-oriented Naftiko capability for data marketplace operations using AWS Data Exchange, covering data publishing, subscription management, and automated data delivery workflows.
+version: 1.0.0-alpha1
+specificationVersion: 1.0.0-alpha1
+
+tags:
+  - Data Marketplace
+  - Data Exchange
+  - Data Publishing
+  - Subscriptions
+  - Analytics
+
+imports:
+  - url: capabilities/shared/data-exchange.yaml
+    as: dataExchange
+
+personas:
+  - name: Data Provider
+    description: Organization publishing data products to the AWS Data Exchange marketplace
+  - name: Data Subscriber
+    description: Organization subscribing to and consuming third-party data products
+  - name: Data Engineer
+    description: Engineer automating data ingestion and delivery pipelines using AWS Data Exchange
+
+workflows:
+  - name: Publish Data Product
+    description: Create and publish a data set with revisions and assets to the marketplace
+    steps:
+      - step: createDataSet
+        capability: dataExchange
+        description: Create the data set with name, description, and asset type
+      - step: createRevision
+        capability: dataExchange
+        description: Create a revision representing this data release
+      - step: createJob
+        capability: dataExchange
+        description: Import assets into the revision via an import job
+      - step: startJob
+        capability: dataExchange
+        description: Start the import job
+      - step: updateRevision
+        capability: dataExchange
+        description: Finalize the revision to make it available to subscribers
+    persona: Data Provider
+
+  - name: Export Subscribed Data
+    description: Export data from a subscribed data set to Amazon S3
+    steps:
+      - step: listDataSets
+        capability: dataExchange
+        description: List available entitled data sets from subscriptions
+      - step: listDataSetRevisions
+        capability: dataExchange
+        description: Find the latest revision of the data set
+      - step: createJob
+        capability: dataExchange
+        description: Create an export job to copy assets to S3
+      - step: startJob
+        capability: dataExchange
+        description: Start the export job
+      - step: getJob
+        capability: dataExchange
+        description: Poll job status until completion
+    persona: Data Subscriber
+
+  - name: Automate Data Delivery
+    description: Configure automatic delivery of new data set revisions to S3
+    steps:
+      - step: createEventAction
+        capability: dataExchange
+        description: Create an event action triggered on RevisionPublished
+      - step: listEventActions
+        capability: dataExchange
+        description: Verify the event action is active
+    persona: Data Engineer
+
+  - name: Update Data Release
+    description: Add a new revision with updated data to an existing data set
+    steps:
+      - step: createRevision
+        capability: dataExchange
+        description: Create a new revision for the update
+      - step: createJob
+        capability: dataExchange
+        description: Import new/updated assets
+      - step: startJob
+        capability: dataExchange
+        description: Start the import job
+      - step: updateRevision
+        capability: dataExchange
+        description: Finalize the revision to notify subscribers
+    persona: Data Provider
+
+rest:
+  port: 8080
+  baseURL: https://dataexchange.amazonaws.com
+  auth:
+    type: aws-signature-v4
+    service: dataexchange
+
+mcp:
+  port: 9090
+  tools:
+    - name: publish_data_product
+      description: Create a data set, add a revision, import assets, and finalize for publishing
+      workflow: Publish Data Product
+    - name: export_subscribed_data
+      description: Export data from a subscribed data set to Amazon S3
+      workflow: Export Subscribed Data
+    - name: automate_data_delivery
+      description: Set up automatic delivery of new data revisions to S3
+      workflow: Automate Data Delivery
+    - name: update_data_release
+      description: Add a new revision with updated data to an existing data set
+      workflow: Update Data Release
+    - name: list_data_sets
+      description: List available data sets
+      operationId: listDataSets
+    - name: get_job_status
+      description: Check the status of a data import or export job
+      operationId: getJob

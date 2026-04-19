@@ -1,0 +1,275 @@
+rules:
+  # INFO / METADATA
+  info-title-prefix:
+    description: API title must start with "AWS Data Exchange"
+    severity: warn
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^AWS Data Exchange"
+
+  info-description-required:
+    description: Info object must have a description
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: Info object must have a version
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  info-contact-required:
+    description: Info object should have a contact
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  # OPENAPI VERSION
+  openapi-version-3x:
+    description: Must use OpenAPI 3.x
+    severity: error
+    given: "$"
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # SERVERS
+  servers-defined:
+    description: Servers array must be defined
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  servers-https-only:
+    description: All server URLs must use HTTPS
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # PATHS
+  paths-versioned:
+    description: AWS Data Exchange API paths should include version prefix /v1/
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v1/|^/tags/"
+
+  paths-kebab-case:
+    description: Path segments should use kebab-case
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{}-]+)+$"
+
+  # OPERATIONS
+  operation-summary-required:
+    description: All operations must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  operation-description-required:
+    description: All operations must have a description
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+
+  operation-id-required:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  operation-id-camel-case:
+    description: OperationId must use camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  operation-tags-required:
+    description: All operations must have tags
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  # CRUD CONVENTIONS
+  create-uses-post:
+    description: Create operations should use POST method
+    severity: info
+    given: "$.paths[*][post].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(create|import|start)"
+
+  get-uses-get-method:
+    description: Get/List operations should use GET method
+    severity: info
+    given: "$.paths[*][get].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(get|list)"
+
+  update-uses-patch:
+    description: Update operations should use PATCH method
+    severity: info
+    given: "$.paths[*][patch].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(update|start)"
+
+  delete-uses-delete-method:
+    description: Delete/Cancel operations should use DELETE method
+    severity: info
+    given: "$.paths[*][delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(delete|cancel|untag)"
+
+  # TAGS
+  tags-defined:
+    description: Tags array should be defined globally
+    severity: warn
+    given: "$"
+    then:
+      field: tags
+      function: truthy
+
+  tag-description-required:
+    description: Each tag must have a description
+    severity: warn
+    given: "$.tags[*]"
+    then:
+      field: description
+      function: truthy
+
+  # REQUEST BODIES
+  request-body-json-content:
+    description: POST/PATCH request bodies should support application/json
+    severity: warn
+    given: "$.paths[*][post,patch].requestBody.content"
+    then:
+      field: application/json
+      function: truthy
+
+  # RESPONSES
+  response-success-required:
+    description: All operations must have at least one 2xx response
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["202"]
+            - required: ["204"]
+
+  response-description-required:
+    description: All responses must have a description
+    severity: error
+    given: "$.paths[*][*].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  response-error-has-message:
+    description: Error response schemas should include a message field
+    severity: warn
+    given: "$.components.schemas.Error.properties"
+    then:
+      field: message
+      function: truthy
+
+  # SCHEMAS
+  schema-description-required:
+    description: Top-level schemas should have a description
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  # PAGINATION
+  list-response-has-next-token:
+    description: List operations should support pagination via NextToken
+    severity: info
+    given: "$.paths[*][get].responses.200.content.application/json.schema.properties"
+    then:
+      field: NextToken
+      function: truthy
+
+  # ARN IDENTIFIERS
+  arn-field-documented:
+    description: ARN fields should have descriptions documenting them as unique identifiers
+    severity: info
+    given: "$.components.schemas[*].properties.Arn.description"
+    then:
+      function: truthy
+
+  # SECURITY
+  security-schemes-defined:
+    description: Security schemes must be defined
+    severity: error
+    given: "$.components"
+    then:
+      field: securitySchemes
+      function: truthy
+
+  # GENERAL QUALITY
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings
+    severity: error
+    given: "$..description"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".+"
+
+  operation-examples-encouraged:
+    description: Operations should have examples in request/response bodies
+    severity: info
+    given: "$.paths[*][*].requestBody.content[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["examples"]
+            - required: ["example"]

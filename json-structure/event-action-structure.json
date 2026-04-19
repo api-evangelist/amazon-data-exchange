@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/event-action-structure.json",
+  "title": "Event Action",
+  "description": "An event action that automates responses to Data Exchange events.",
+  "type": "typedMap",
+  "fields": {
+    "Id": {
+      "type": "str",
+      "description": "The Id field"
+    },
+    "Arn": {
+      "type": "str",
+      "description": "The Arn field"
+    },
+    "Event": {
+      "type": "map",
+      "description": "The Event field"
+    },
+    "Action": {
+      "type": "map",
+      "description": "The Action field"
+    },
+    "CreatedAt": {
+      "type": "str",
+      "description": "The CreatedAt field",
+      "format": "date-time"
+    },
+    "UpdatedAt": {
+      "type": "str",
+      "description": "The UpdatedAt field",
+      "format": "date-time"
+    }
+  }
+}

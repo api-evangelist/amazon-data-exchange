@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/create-data-set-request-structure.json",
+  "title": "Create Data Set Request",
+  "description": "Request body for creating a new data set.",
+  "type": "typedMap",
+  "fields": {
+    "Name": {
+      "type": "str",
+      "description": "The Name field"
+    },
+    "Description": {
+      "type": "str",
+      "description": "The Description field"
+    },
+    "AssetType": {
+      "type": "str",
+      "description": "The AssetType field"
+    },
+    "Tags": {
+      "type": "map",
+      "description": "The Tags field"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/job-structure.json",
+  "title": "Job",
+  "description": "A Data Exchange job for importing or exporting assets.",
+  "type": "typedMap",
+  "fields": {
+    "Id": {
+      "type": "str",
+      "description": "The Id field"
+    },
+    "Arn": {
+      "type": "str",
+      "description": "The Arn field"
+    },
+    "Type": {
+      "type": "str",
+      "description": "The Type field"
+    },
+    "State": {
+      "type": "str",
+      "description": "The State field",
+      "enum": [
+        "WAITING",
+        "IN_PROGRESS",
+        "ERROR",
+        "COMPLETED",
+        "CANCELLED",
+        "TIMED_OUT"
+      ]
+    },
+    "Details": {
+      "type": "map",
+      "description": "The Details field"
+    },
+    "Errors": {
+      "type": "list",
+      "description": "The Errors field"
+    },
+    "CreatedAt": {
+      "type": "str",
+      "description": "The CreatedAt field",
+      "format": "date-time"
+    },
+    "UpdatedAt": {
+      "type": "str",
+      "description": "The UpdatedAt field",
+      "format": "date-time"
+    }
+  }
+}

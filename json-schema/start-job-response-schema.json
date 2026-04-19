@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/start-job-response-schema.json",
+  "title": "Start Job Response",
+  "description": "Response after starting a job.",
+  "type": "object",
+  "properties": {
+    "JobId": {
+      "type": "string"
+    },
+    "State": {
+      "type": "string"
+    }
+  }
+}

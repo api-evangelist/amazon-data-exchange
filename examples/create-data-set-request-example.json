@@ -1,0 +1,8 @@
+{
+  "Name": "Q1 Financial Data",
+  "Description": "Q1 2024 financial market data",
+  "AssetType": "S3_SNAPSHOT",
+  "Tags": {
+    "Environment": "Production"
+  }
+}

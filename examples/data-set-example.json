@@ -1,0 +1,10 @@
+{
+  "Id": "ds-abc123",
+  "Arn": "arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123",
+  "Name": "Market Research Dataset 2024",
+  "Description": "Comprehensive market research data",
+  "AssetType": "S3_SNAPSHOT",
+  "Origin": "OWNED",
+  "CreatedAt": "2024-01-15T10:00:00Z",
+  "UpdatedAt": "2024-03-01T12:00:00Z"
+}

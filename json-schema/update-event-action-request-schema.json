@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-schema/update-event-action-request-schema.json",
+  "title": "Update Event Action Request",
+  "description": "Request body for updating an event action.",
+  "type": "object",
+  "required": [
+    "Action"
+  ],
+  "properties": {
+    "Action": {
+      "type": "object"
+    }
+  }
+}

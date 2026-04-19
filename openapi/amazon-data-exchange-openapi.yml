@@ -1,0 +1,1529 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Exchange API
+  description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
+  version: 2017-07-25
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+
+servers:
+  - url: https://dataexchange.amazonaws.com
+    description: AWS Data Exchange API
+
+tags:
+  - name: Data Sets
+    description: Operations for managing data sets
+  - name: Revisions
+    description: Operations for managing data set revisions
+  - name: Assets
+    description: Operations for managing data assets within revisions
+  - name: Jobs
+    description: Operations for import/export jobs
+  - name: Event Actions
+    description: Operations for managing event-driven actions
+  - name: Tags
+    description: Operations for managing resource tags
+
+security:
+  - awsSignatureV4: []
+
+paths:
+  /v1/data-sets:
+    get:
+      operationId: listDataSets
+      summary: List Data Sets
+      description: Returns a list of data sets owned by the account or available to the account through subscriptions.
+      tags:
+        - Data Sets
+      parameters:
+        - name: maxResults
+          in: query
+          description: Maximum number of results to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 25
+        - name: nextToken
+          in: query
+          description: Pagination token for the next page of results
+          schema:
+            type: string
+        - name: origin
+          in: query
+          description: Filter data sets by origin (OWNED or ENTITLED)
+          schema:
+            type: string
+            enum: [OWNED, ENTITLED]
+      responses:
+        '200':
+          description: List of data sets returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDataSetsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    DataSets:
+                      - Id: ds-abc123
+                        Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123
+                        Name: Market Research Dataset 2024
+                        Description: Comprehensive market research data for 2024
+                        AssetType: S3_SNAPSHOT
+                        Origin: OWNED
+                        CreatedAt: '2024-01-15T10:00:00Z'
+                        UpdatedAt: '2024-03-01T12:00:00Z'
+                    NextToken: null
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createDataSet
+      summary: Create Data Set
+      description: Creates a new data set in AWS Data Exchange.
+      tags:
+        - Data Sets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataSetRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Name: Q1 Financial Data
+                  Description: Q1 2024 financial market data from premium sources
+                  AssetType: S3_SNAPSHOT
+                  Tags:
+                    Environment: Production
+                    Team: Analytics
+      responses:
+        '201':
+          description: Data set created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSet'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ds-xyz789
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-xyz789
+                    Name: Q1 Financial Data
+                    Description: Q1 2024 financial market data from premium sources
+                    AssetType: S3_SNAPSHOT
+                    Origin: OWNED
+                    CreatedAt: '2024-04-01T09:00:00Z'
+                    UpdatedAt: '2024-04-01T09:00:00Z'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/data-sets/{DataSetId}:
+    get:
+      operationId: getDataSet
+      summary: Get Data Set
+      description: Returns the details of a specific data set.
+      tags:
+        - Data Sets
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          description: The ID of the data set
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Data set details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSet'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ds-abc123
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123
+                    Name: Market Research Dataset 2024
+                    Description: Comprehensive market research data for 2024
+                    AssetType: S3_SNAPSHOT
+                    Origin: OWNED
+                    CreatedAt: '2024-01-15T10:00:00Z'
+                    UpdatedAt: '2024-03-01T12:00:00Z'
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: updateDataSet
+      summary: Update Data Set
+      description: Updates the details of a data set.
+      tags:
+        - Data Sets
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          description: The ID of the data set to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSetRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Name: Market Research Dataset 2024 Updated
+                  Description: Updated comprehensive market research data for 2024
+      responses:
+        '200':
+          description: Data set updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSet'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ds-abc123
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123
+                    Name: Market Research Dataset 2024 Updated
+                    Description: Updated comprehensive market research data for 2024
+                    AssetType: S3_SNAPSHOT
+                    Origin: OWNED
+                    CreatedAt: '2024-01-15T10:00:00Z'
+                    UpdatedAt: '2024-04-15T14:00:00Z'
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteDataSet
+      summary: Delete Data Set
+      description: Deletes a data set. A data set can be deleted if it has no active revisions.
+      tags:
+        - Data Sets
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          description: The ID of the data set to delete
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Data set deleted successfully
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/data-sets/{DataSetId}/revisions:
+    get:
+      operationId: listDataSetRevisions
+      summary: List Data Set Revisions
+      description: Returns a list of revisions for a data set.
+      tags:
+        - Revisions
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          description: The ID of the data set
+          schema:
+            type: string
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of revisions returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDataSetRevisionsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Revisions:
+                      - Id: rev-001abc
+                        Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc
+                        DataSetId: ds-abc123
+                        Comment: Initial data release
+                        Finalized: true
+                        CreatedAt: '2024-01-20T10:00:00Z'
+                        UpdatedAt: '2024-01-20T11:00:00Z'
+                    NextToken: null
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createRevision
+      summary: Create Revision
+      description: Creates a new revision for a data set.
+      tags:
+        - Revisions
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          description: The ID of the data set
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRevisionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Comment: Q1 2024 data release
+                  Tags:
+                    Quarter: Q1-2024
+      responses:
+        '201':
+          description: Revision created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: rev-002xyz
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-002xyz
+                    DataSetId: ds-abc123
+                    Comment: Q1 2024 data release
+                    Finalized: false
+                    CreatedAt: '2024-04-01T10:00:00Z'
+                    UpdatedAt: '2024-04-01T10:00:00Z'
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/data-sets/{DataSetId}/revisions/{RevisionId}:
+    get:
+      operationId: getRevision
+      summary: Get Revision
+      description: Returns the details of a specific revision.
+      tags:
+        - Revisions
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: RevisionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Revision details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: rev-001abc
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc
+                    DataSetId: ds-abc123
+                    Comment: Initial data release
+                    Finalized: true
+                    CreatedAt: '2024-01-20T10:00:00Z'
+                    UpdatedAt: '2024-01-20T11:00:00Z'
+        '404':
+          description: Revision not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: updateRevision
+      summary: Update Revision
+      description: Updates the details of a revision, including finalizing it for publishing.
+      tags:
+        - Revisions
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: RevisionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRevisionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Comment: Q1 2024 data release - finalized
+                  Finalized: true
+      responses:
+        '200':
+          description: Revision updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: rev-002xyz
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-002xyz
+                    DataSetId: ds-abc123
+                    Comment: Q1 2024 data release - finalized
+                    Finalized: true
+                    CreatedAt: '2024-04-01T10:00:00Z'
+                    UpdatedAt: '2024-04-01T15:00:00Z'
+        '404':
+          description: Revision not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteRevision
+      summary: Delete Revision
+      description: Deletes a revision. A revision can only be deleted if it has not been finalized.
+      tags:
+        - Revisions
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: RevisionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Revision deleted successfully
+        '404':
+          description: Revision not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets:
+    get:
+      operationId: listRevisionAssets
+      summary: List Revision Assets
+      description: Returns a list of assets in a specific revision.
+      tags:
+        - Assets
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: RevisionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of assets returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRevisionAssetsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Assets:
+                      - Id: asset-001
+                        Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc/assets/asset-001
+                        DataSetId: ds-abc123
+                        RevisionId: rev-001abc
+                        Name: market-data-q1.csv
+                        AssetType: S3_SNAPSHOT
+                        AssetDetails:
+                          S3SnapshotAsset:
+                            Size: 5242880
+                        CreatedAt: '2024-01-20T10:30:00Z'
+                        UpdatedAt: '2024-01-20T10:30:00Z'
+        '404':
+          description: Revision not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}:
+    get:
+      operationId: getAsset
+      summary: Get Asset
+      description: Returns the details of a specific asset.
+      tags:
+        - Assets
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: RevisionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: AssetId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Asset details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: asset-001
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc/assets/asset-001
+                    DataSetId: ds-abc123
+                    RevisionId: rev-001abc
+                    Name: market-data-q1.csv
+                    AssetType: S3_SNAPSHOT
+                    AssetDetails:
+                      S3SnapshotAsset:
+                        Size: 5242880
+                    CreatedAt: '2024-01-20T10:30:00Z'
+                    UpdatedAt: '2024-01-20T10:30:00Z'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: updateAsset
+      summary: Update Asset
+      description: Updates the name of a specific asset.
+      tags:
+        - Assets
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: RevisionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: AssetId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssetRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Name: market-data-q1-updated.csv
+      responses:
+        '200':
+          description: Asset updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: asset-001
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc/assets/asset-001
+                    DataSetId: ds-abc123
+                    RevisionId: rev-001abc
+                    Name: market-data-q1-updated.csv
+                    AssetType: S3_SNAPSHOT
+                    AssetDetails:
+                      S3SnapshotAsset:
+                        Size: 5242880
+                    CreatedAt: '2024-01-20T10:30:00Z'
+                    UpdatedAt: '2024-04-15T11:00:00Z'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteAsset
+      summary: Delete Asset
+      description: Deletes an asset from a revision.
+      tags:
+        - Assets
+      parameters:
+        - name: DataSetId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: RevisionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: AssetId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Asset deleted successfully
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/jobs:
+    get:
+      operationId: listJobs
+      summary: List Jobs
+      description: Returns a list of jobs created for the account.
+      tags:
+        - Jobs
+      parameters:
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+        - name: dataSetId
+          in: query
+          schema:
+            type: string
+        - name: revisionId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of jobs returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListJobsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Jobs:
+                      - Id: job-001abc
+                        Arn: arn:aws:dataexchange:us-east-1:123456789012:jobs/job-001abc
+                        Type: EXPORT_ASSETS_TO_S3
+                        State: COMPLETED
+                        Details:
+                          ExportAssetsToS3:
+                            DataSetId: ds-abc123
+                            RevisionId: rev-001abc
+                        CreatedAt: '2024-01-20T11:00:00Z'
+                        UpdatedAt: '2024-01-20T11:05:00Z'
+    post:
+      operationId: createJob
+      summary: Create Job
+      description: Creates a new import or export job for transferring assets.
+      tags:
+        - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJobRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Type: EXPORT_ASSETS_TO_S3
+                  Details:
+                    ExportAssetsToS3:
+                      DataSetId: ds-abc123
+                      RevisionId: rev-001abc
+                      AssetDestinations:
+                        - AssetId: asset-001
+                          Bucket: my-data-bucket
+                          Key: exports/market-data-q1.csv
+      responses:
+        '201':
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: job-002xyz
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:jobs/job-002xyz
+                    Type: EXPORT_ASSETS_TO_S3
+                    State: WAITING
+                    Details:
+                      ExportAssetsToS3:
+                        DataSetId: ds-abc123
+                        RevisionId: rev-001abc
+                    CreatedAt: '2024-04-15T12:00:00Z'
+                    UpdatedAt: '2024-04-15T12:00:00Z'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/jobs/{JobId}:
+    get:
+      operationId: getJob
+      summary: Get Job
+      description: Returns the details and current state of a specific job.
+      tags:
+        - Jobs
+      parameters:
+        - name: JobId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: job-001abc
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:jobs/job-001abc
+                    Type: EXPORT_ASSETS_TO_S3
+                    State: COMPLETED
+                    Details:
+                      ExportAssetsToS3:
+                        DataSetId: ds-abc123
+                        RevisionId: rev-001abc
+                    CreatedAt: '2024-01-20T11:00:00Z'
+                    UpdatedAt: '2024-01-20T11:05:00Z'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/jobs/{JobId}/start:
+    patch:
+      operationId: startJob
+      summary: Start Job
+      description: Starts a job that has been created but is in the WAITING state.
+      tags:
+        - Jobs
+      parameters:
+        - name: JobId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Job started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartJobResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    JobId: job-002xyz
+                    State: IN_PROGRESS
+
+  /v1/jobs/{JobId}/cancel:
+    delete:
+      operationId: cancelJob
+      summary: Cancel Job
+      description: Cancels a job that is in the WAITING or IN_PROGRESS state.
+      tags:
+        - Jobs
+      parameters:
+        - name: JobId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Job cancelled successfully
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/event-actions:
+    get:
+      operationId: listEventActions
+      summary: List Event Actions
+      description: Returns a list of event actions configured for the account.
+      tags:
+        - Event Actions
+      parameters:
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+        - name: eventSourceToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of event actions returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEventActionsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    EventActions:
+                      - Id: ea-001abc
+                        Arn: arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc
+                        Event:
+                          RevisionPublished:
+                            DataSetId: ds-abc123
+                        Action:
+                          ExportRevisionToS3:
+                            Encryption:
+                              Type: aws:kms
+                            RevisionDestination:
+                              Bucket: auto-export-bucket
+                              KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+                        CreatedAt: '2024-01-10T08:00:00Z'
+                        UpdatedAt: '2024-01-10T08:00:00Z'
+    post:
+      operationId: createEventAction
+      summary: Create Event Action
+      description: Creates a new event action for automating responses to data exchange events.
+      tags:
+        - Event Actions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventActionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Event:
+                    RevisionPublished:
+                      DataSetId: ds-abc123
+                  Action:
+                    ExportRevisionToS3:
+                      RevisionDestination:
+                        Bucket: my-auto-export-bucket
+                        KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+      responses:
+        '201':
+          description: Event action created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventAction'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ea-002xyz
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-002xyz
+                    Event:
+                      RevisionPublished:
+                        DataSetId: ds-abc123
+                    Action:
+                      ExportRevisionToS3:
+                        RevisionDestination:
+                          Bucket: my-auto-export-bucket
+                          KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+                    CreatedAt: '2024-04-15T13:00:00Z'
+                    UpdatedAt: '2024-04-15T13:00:00Z'
+
+  /v1/event-actions/{EventActionId}:
+    get:
+      operationId: getEventAction
+      summary: Get Event Action
+      description: Returns the details of a specific event action.
+      tags:
+        - Event Actions
+      parameters:
+        - name: EventActionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Event action details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventAction'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ea-001abc
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc
+                    Event:
+                      RevisionPublished:
+                        DataSetId: ds-abc123
+                    Action:
+                      ExportRevisionToS3:
+                        RevisionDestination:
+                          Bucket: auto-export-bucket
+                          KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+                    CreatedAt: '2024-01-10T08:00:00Z'
+                    UpdatedAt: '2024-01-10T08:00:00Z'
+        '404':
+          description: Event action not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: updateEventAction
+      summary: Update Event Action
+      description: Updates the action associated with an event action.
+      tags:
+        - Event Actions
+      parameters:
+        - name: EventActionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEventActionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Action:
+                    ExportRevisionToS3:
+                      RevisionDestination:
+                        Bucket: updated-export-bucket
+                        KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+      responses:
+        '200':
+          description: Event action updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventAction'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ea-001abc
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc
+                    Event:
+                      RevisionPublished:
+                        DataSetId: ds-abc123
+                    Action:
+                      ExportRevisionToS3:
+                        RevisionDestination:
+                          Bucket: updated-export-bucket
+                          KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+                    CreatedAt: '2024-01-10T08:00:00Z'
+                    UpdatedAt: '2024-04-15T14:00:00Z'
+        '404':
+          description: Event action not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteEventAction
+      summary: Delete Event Action
+      description: Deletes an event action.
+      tags:
+        - Event Actions
+      parameters:
+        - name: EventActionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Event action deleted successfully
+        '404':
+          description: Event action not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tags/{resourceArn}:
+    get:
+      operationId: listTagsForResource
+      summary: List Tags for Resource
+      description: Returns the list of tags associated with a Data Exchange resource.
+      tags:
+        - Tags
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          description: The ARN of the Data Exchange resource. This ARN uniquely identifies the resource.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tags returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTagsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Tags:
+                      Environment: Production
+                      Team: Analytics
+                      Project: MarketData2024
+    post:
+      operationId: tagResource
+      summary: Tag Resource
+      description: Adds tags to a Data Exchange resource.
+      tags:
+        - Tags
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          description: The ARN of the Data Exchange resource. This ARN uniquely identifies the resource.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagResourceRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Tags:
+                    Department: Engineering
+                    CostCenter: CC-2024
+      responses:
+        '204':
+          description: Tags added successfully
+    delete:
+      operationId: untagResource
+      summary: Untag Resource
+      description: Removes tags from a Data Exchange resource.
+      tags:
+        - Tags
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          description: The ARN of the Data Exchange resource. This ARN uniquely identifies the resource.
+          schema:
+            type: string
+        - name: tagKeys
+          in: query
+          required: true
+          description: The tag keys to remove
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '204':
+          description: Tags removed successfully
+
+components:
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication
+
+  schemas:
+    DataSet:
+      description: An AWS Data Exchange data set containing a collection of data available for subscription.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the data set
+        Arn:
+          type: string
+          description: The ARN of the data set. This ARN uniquely identifies the data set.
+        Name:
+          type: string
+          description: The name of the data set
+        Description:
+          type: string
+          description: The description of the data set
+        AssetType:
+          type: string
+          description: The type of asset contained in the data set
+          enum: [S3_SNAPSHOT, REDSHIFT_DATA_SHARE, API_GATEWAY_API, LAKE_FORMATION_DATA_PERMISSION, S3_DATA_ACCESS]
+        Origin:
+          type: string
+          description: Whether the data set is owned or entitled
+          enum: [OWNED, ENTITLED]
+        OriginDetails:
+          type: object
+          description: Details about the origin of the data set
+          properties:
+            ProductId:
+              type: string
+        Tags:
+          type: object
+          description: Tags associated with the data set
+          additionalProperties:
+            type: string
+        CreatedAt:
+          type: string
+          format: date-time
+          description: When the data set was created
+        UpdatedAt:
+          type: string
+          format: date-time
+          description: When the data set was last updated
+
+    CreateDataSetRequest:
+      description: Request body for creating a new data set.
+      type: object
+      required:
+        - Name
+        - Description
+        - AssetType
+      properties:
+        Name:
+          type: string
+          description: The name of the data set
+        Description:
+          type: string
+          description: The description of the data set
+        AssetType:
+          type: string
+          description: The type of asset for this data set
+          enum: [S3_SNAPSHOT, REDSHIFT_DATA_SHARE, API_GATEWAY_API, LAKE_FORMATION_DATA_PERMISSION, S3_DATA_ACCESS]
+        Tags:
+          type: object
+          description: Tags to add to the data set
+          additionalProperties:
+            type: string
+
+    UpdateDataSetRequest:
+      description: Request body for updating a data set.
+      type: object
+      properties:
+        Name:
+          type: string
+          description: The new name for the data set
+        Description:
+          type: string
+          description: The new description for the data set
+
+    ListDataSetsResponse:
+      description: Response containing a list of data sets.
+      type: object
+      properties:
+        DataSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSet'
+        NextToken:
+          type: string
+          description: Pagination token for the next page
+
+    Revision:
+      description: A revision of a data set, representing a snapshot of data at a point in time.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the revision
+        Arn:
+          type: string
+          description: The ARN of the revision. This ARN uniquely identifies the revision.
+        DataSetId:
+          type: string
+          description: The ID of the data set this revision belongs to
+        Comment:
+          type: string
+          description: A comment describing the revision
+        Finalized:
+          type: boolean
+          description: Whether the revision has been finalized for publishing
+        Tags:
+          type: object
+          description: Tags associated with the revision
+          additionalProperties:
+            type: string
+        CreatedAt:
+          type: string
+          format: date-time
+        UpdatedAt:
+          type: string
+          format: date-time
+
+    CreateRevisionRequest:
+      description: Request body for creating a new revision.
+      type: object
+      properties:
+        Comment:
+          type: string
+          description: A comment describing the revision
+          maxLength: 16384
+        Tags:
+          type: object
+          additionalProperties:
+            type: string
+
+    UpdateRevisionRequest:
+      description: Request body for updating a revision.
+      type: object
+      properties:
+        Comment:
+          type: string
+          description: An updated comment for the revision
+        Finalized:
+          type: boolean
+          description: Set to true to finalize the revision for publishing
+
+    ListDataSetRevisionsResponse:
+      description: Response containing a list of revisions.
+      type: object
+      properties:
+        Revisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        NextToken:
+          type: string
+
+    Asset:
+      description: An asset within a data set revision, representing an individual piece of data.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the asset
+        Arn:
+          type: string
+          description: The ARN of the asset. This ARN uniquely identifies the asset.
+        DataSetId:
+          type: string
+        RevisionId:
+          type: string
+        Name:
+          type: string
+          description: The name of the asset
+        AssetType:
+          type: string
+          enum: [S3_SNAPSHOT, REDSHIFT_DATA_SHARE, API_GATEWAY_API, LAKE_FORMATION_DATA_PERMISSION, S3_DATA_ACCESS]
+        AssetDetails:
+          type: object
+          description: Type-specific details about the asset
+        CreatedAt:
+          type: string
+          format: date-time
+        UpdatedAt:
+          type: string
+          format: date-time
+
+    UpdateAssetRequest:
+      description: Request body for updating an asset.
+      type: object
+      required:
+        - Name
+      properties:
+        Name:
+          type: string
+          description: The new name for the asset
+
+    ListRevisionAssetsResponse:
+      description: Response containing a list of assets.
+      type: object
+      properties:
+        Assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        NextToken:
+          type: string
+
+    Job:
+      description: A Data Exchange job for importing or exporting assets.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the job
+        Arn:
+          type: string
+          description: The ARN of the job. This ARN uniquely identifies the job.
+        Type:
+          type: string
+          description: The type of job
+          enum: [IMPORT_ASSETS_FROM_S3, IMPORT_ASSET_FROM_SIGNED_URL, EXPORT_ASSETS_TO_S3, EXPORT_ASSET_TO_SIGNED_URL, IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES, EXPORT_REVISIONS_TO_S3, IMPORT_ASSET_FROM_API_GATEWAY_API, CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET, IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY]
+        State:
+          type: string
+          description: Current state of the job
+          enum: [WAITING, IN_PROGRESS, ERROR, COMPLETED, CANCELLED, TIMED_OUT]
+        Details:
+          type: object
+          description: Job-type-specific details
+        Errors:
+          type: array
+          items:
+            type: object
+        CreatedAt:
+          type: string
+          format: date-time
+        UpdatedAt:
+          type: string
+          format: date-time
+
+    CreateJobRequest:
+      description: Request body for creating a new job.
+      type: object
+      required:
+        - Type
+        - Details
+      properties:
+        Type:
+          type: string
+          description: The type of job to create
+          enum: [IMPORT_ASSETS_FROM_S3, IMPORT_ASSET_FROM_SIGNED_URL, EXPORT_ASSETS_TO_S3, EXPORT_ASSET_TO_SIGNED_URL, IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES, EXPORT_REVISIONS_TO_S3, IMPORT_ASSET_FROM_API_GATEWAY_API, CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET, IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY]
+        Details:
+          type: object
+          description: Job-type-specific configuration
+
+    StartJobResponse:
+      description: Response after starting a job.
+      type: object
+      properties:
+        JobId:
+          type: string
+        State:
+          type: string
+
+    ListJobsResponse:
+      description: Response containing a list of jobs.
+      type: object
+      properties:
+        Jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        NextToken:
+          type: string
+
+    EventAction:
+      description: An event action that automates responses to Data Exchange events.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the event action
+        Arn:
+          type: string
+          description: The ARN of the event action. This ARN uniquely identifies the event action.
+        Event:
+          type: object
+          description: The event that triggers this action
+        Action:
+          type: object
+          description: The action to perform when the event occurs
+        CreatedAt:
+          type: string
+          format: date-time
+        UpdatedAt:
+          type: string
+          format: date-time
+
+    CreateEventActionRequest:
+      description: Request body for creating a new event action.
+      type: object
+      required:
+        - Event
+        - Action
+      properties:
+        Event:
+          type: object
+          description: The event that triggers the action
+        Action:
+          type: object
+          description: The action to perform when the event occurs
+
+    UpdateEventActionRequest:
+      description: Request body for updating an event action.
+      type: object
+      required:
+        - Action
+      properties:
+        Action:
+          type: object
+          description: The updated action configuration
+
+    ListEventActionsResponse:
+      description: Response containing a list of event actions.
+      type: object
+      properties:
+        EventActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventAction'
+        NextToken:
+          type: string
+
+    ListTagsResponse:
+      description: Response containing tags for a resource.
+      type: object
+      properties:
+        Tags:
+          type: object
+          description: The tags associated with the resource
+          additionalProperties:
+            type: string
+
+    TagResourceRequest:
+      description: Request body for adding tags to a resource.
+      type: object
+      required:
+        - Tags
+      properties:
+        Tags:
+          type: object
+          description: The tags to add to the resource
+          additionalProperties:
+            type: string
+
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error

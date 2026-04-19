@@ -1,0 +1,17 @@
+{
+  "Id": "ea-001abc",
+  "Arn": "arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc",
+  "Event": {
+    "RevisionPublished": {
+      "DataSetId": "ds-abc123"
+    }
+  },
+  "Action": {
+    "ExportRevisionToS3": {
+      "RevisionDestination": {
+        "Bucket": "my-bucket",
+        "KeyPattern": "${Revision.CreatedAt}/${Asset.Name}"
+      }
+    }
+  }
+}

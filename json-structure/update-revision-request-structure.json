@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-exchange/json-structure/update-revision-request-structure.json",
+  "title": "Update Revision Request",
+  "description": "Request body for updating a revision.",
+  "type": "typedMap",
+  "fields": {
+    "Comment": {
+      "type": "str",
+      "description": "The Comment field"
+    },
+    "Finalized": {
+      "type": "bool",
+      "description": "The Finalized field"
+    }
+  }
+}
