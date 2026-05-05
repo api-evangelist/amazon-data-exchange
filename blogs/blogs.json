@@ -1,0 +1,13 @@
+{
+  "repo": "amazon-data-exchange",
+  "feeds": [
+    {
+      "source": "https://aws.amazon.com/blogs/big-data/category/analytics/aws-data-exchange/",
+      "feed_url": "https://aws.amazon.com/blogs/big-data/category/analytics/aws-data-exchange/feed/",
+      "saved": 10,
+      "title": "AWS Data Exchange \u2013 AWS Big Data Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:20:50Z"
+}

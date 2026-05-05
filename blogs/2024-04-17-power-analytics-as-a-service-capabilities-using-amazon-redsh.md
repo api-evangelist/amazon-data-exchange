@@ -1,0 +1,69 @@
+---
+title: "Power analytics as a service capabilities using Amazon Redshift"
+url: "https://aws.amazon.com/blogs/big-data/power-analytics-as-a-service-capabilities-using-amazon-redshift/"
+date: "Wed, 17 Apr 2024 14:56:54 +0000"
+author: "Sandipan Bhaumik"
+feed_url: "https://aws.amazon.com/blogs/big-data/category/analytics/aws-data-exchange/feed/"
+---
+<p>Analytics as a service (AaaS) is a business model that uses the cloud to deliver analytic capabilities on a subscription basis. This model provides organizations with a cost-effective, scalable, and flexible solution for building analytics. The AaaS model accelerates data-driven decision-making through advanced analytics, enabling organizations to swiftly adapt to changing market trends and make informed strategic choices.</p> 
+<p><a href="https://aws.amazon.com/redshift/" rel="noopener" target="_blank">Amazon Redshift</a> is a cloud data warehouse service that offers real-time insights and predictive analytics capabilities for analyzing data from terabytes to petabytes. It offers features like <a href="https://aws.amazon.com/redshift/features/data-sharing/" rel="noopener" target="_blank">data sharing</a>, <a href="https://aws.amazon.com/redshift/features/redshift-ml/?nc=sn&amp;loc=2&amp;dn=6" rel="noopener" target="_blank">Amazon Redshift ML</a>, <a href="https://docs.aws.amazon.com/redshift/latest/dg/c-using-spectrum.html" rel="noopener" target="_blank">Amazon Redshift Spectrum</a>, and <a href="https://aws.amazon.com/redshift/redshift-serverless/" rel="noopener" target="_blank">Amazon Redshift Serverless</a>, which simplify application building and make it effortless for AaaS companies to embed rich data analytics capabilities. Amazon Redshift delivers up to <a href="https://aws.amazon.com/blogs/big-data/amazon-redshift-lower-price-higher-performance/" rel="noopener" target="_blank">4.9 times lower cost per user and up to 7.9 times better price-performance</a> than other cloud data warehouses.</p> 
+<p>The <a href="https://aws.amazon.com/blogs/apn/new-powered-by-amazon-redshift-program-helps-aws-partners-enable-customers-with-analytics-at-any-scale/" rel="noopener" target="_blank">Powered by Amazon Redshift</a> program helps AWS Partners operating an AaaS model quickly build analytics applications using Amazon Redshift and successfully scale their business. For example, you can build visualizations on top of Amazon Redshift and embed them within applications to provide outstanding analytics experiences for end-users. In this post, we explore how AaaS providers scale their processes with Amazon Redshift to deliver insights to their customers.</p> 
+<h2>AaaS delivery models</h2> 
+<p>While serving analytics at scale, AaaS providers and customers can choose where to store the data and where to process the data.</p> 
+<p>AaaS providers could choose to ingest and process all the customer data into their own account and deliver insights to the customer account. Alternatively, they could choose to directly process data in-place within the customer’s account.</p> 
+<p>The choice of these delivery models depends on many factors, and each has their own benefits. Because AaaS providers service multiple customers, they could mix these models in a hybrid fashion, meeting each customer’s preference. The following diagram illustrates the two delivery models.</p> 
+<p><img alt="" class="alignnone size-full wp-image-62417" height="500" src="https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2024/04/11/BDB-3999-image001.png" width="1262" /></p> 
+<p>We explore the technical details of each model in the next sections.</p> 
+<h2>Build AaaS on Amazon Redshift</h2> 
+<p>Amazon Redshift has features that allow AaaS providers the flexibility to deploy three unique delivery models:</p> 
+<ul> 
+ <li><strong>Managed model</strong> – Processing data within the Redshift data warehouse the AaaS provider manages</li> 
+ <li><strong>Bring-your-own-Redshift (BYOR) model</strong> – Processing data directly within the customer’s Redshift data warehouse</li> 
+ <li><strong>Hybrid model</strong> – Using a mix of both models depending on customer needs</li> 
+</ul> 
+<p>These delivery models give AaaS providers the flexibility to deliver insights to their customers no matter where the data warehouse is located.</p> 
+<p>Let’s look at how each of these delivery models work in practice.</p> 
+<h2>Managed model</h2> 
+<p>In this model, the AaaS provider ingests customer data in their own account, and engages their own Redshift data warehouse for processing. Then they use one or more methods to deliver the generated insights to their customers. Amazon Redshift enables companies to securely build multi-tenant applications, ensuring data isolation, integrity, and confidentiality. It provides features like row-level security (RLS), column-level security (CLS) for fine-grained access control, role-based access control (RBAC), and assigning permissions at the database and schema level.</p> 
+<p>The following diagram illustrates the managed delivery model and the various methods AaaS providers can use to deliver insights to their customers.</p> 
+<p><img alt="" class="alignnone size-full wp-image-62418" height="660" src="https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2024/04/11/BDB-3999-image003.png" width="1305" /></p> 
+<p>The workflow includes the following steps:</p> 
+<ol> 
+ <li>The AaaS provider pulls data from customer data sources like operational databases, files, and APIs, and ingests them into the Redshift data warehouse hosted in their account.</li> 
+ <li>Data processing jobs enrich the data in Amazon Redshift. This could be an application the AaaS provider has built to process data, or they could use a data processing service like <a href="https://aws.amazon.com/emr/" rel="noopener" target="_blank">Amazon EMR</a> or <a href="https://aws.amazon.com/glue/" rel="noopener" target="_blank">AWS Glue</a> to run Spark applications.</li> 
+ <li>Now the AaaS provider has multiple methods to deliver insights to their customers: 
+  <ol> 
+   <li><strong>Option 1</strong> – The enriched data with insights is shared directly with the customer’s Redshift instance using the <a href="https://aws.amazon.com/redshift/features/data-sharing/?nc=sn&amp;loc=2&amp;dn=4" rel="noopener" target="_blank">Amazon Redshift data sharing</a> feature. End-users consume data using business intelligence (BI) tools and analytics applications.</li> 
+   <li><strong>Option 2 </strong>– If AaaS providers are publishing generic insights to <a href="https://aws.amazon.com/data-exchange/" rel="noopener" target="_blank">AWS Data Exchange</a> to reach millions of AWS customers and monetize those insights, their customers can use <a href="https://aws.amazon.com/redshift/features/aws-data-exchange-for-amazon-redshift/" rel="noopener" target="_blank">AWS Data Exchange for Amazon Redshift</a>. With this feature, customers get instant insights in their Redshift data warehouse without having to write extract, transform, and load (ETL) pipelines to ingest the data. AWS Data Exchange provides their customers a secure and compliant way to subscribe to the data with consolidated billing and subscription management.</li> 
+   <li><strong>Option 3 </strong>– The AaaS provider exposes insights on a web application using the <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html" rel="noopener" target="_blank">Amazon Redshift Data API</a>. Customers access the web application directly from the internet. The gives the AaaS provider the flexibility to expose insights outside an AWS account.</li> 
+   <li><strong>Option 4 </strong>– Customers connect to the AaaS provider’s Redshift instance using <a href="https://aws.amazon.com/pm/quicksight/?trk=b7e92271-15e5-42ba-ab54-a4067f643635&amp;sc_channel=ps&amp;ef_id=CjwKCAjwkY2qBhBDEiwAoQXK5fRoMeDhcbf_MVcFUYZZU1gblt28uZgJLI50QYJaJDiDaeoqMgISmRoC8NcQAvD_BwE:G:s&amp;s_kwcid=AL!4422!3!651612449930!e!!g!!amazon%20quicksight!19835790704!146491705865" rel="noopener" target="_blank">Amazon QuickSight</a> or other third-party BI tools through a JDBC connection.</li> 
+  </ol> </li> 
+</ol> 
+<p>In this model, the customer shifts the responsibility of data management and governance to the AaaS providers, with light services to consume insights. This leads to improved decision-making as customers focus on core activities and save time from tedious data management tasks. Because AaaS providers move data from the customer accounts, there could be associated data transfer costs depending on how they move the data. However, because they deliver this service at scale to multiple customers, they can offer cost-efficient services using economies of scale.</p> 
+<h2>BYOR model</h2> 
+<p>In cases where the customer hosts a Redshift data warehouse and wants to run analytics in their own data platform without moving data out, you use the BYOR model.</p> 
+<p>The following diagram illustrates the BYOR model, where AaaS providers process data to add insights directly in their customer’s data warehouse so the data never leaves the customer account.</p> 
+<p><img alt="" class="alignnone size-full wp-image-62419" height="767" src="https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2024/04/11/BDB-3999-image005.png" width="1087" /></p> 
+<p>The solution includes the following steps:</p> 
+<ol> 
+ <li>The customer ingests all the data from various data sources into their Redshift data warehouse.</li> 
+ <li>The data undergoes processing: 
+  <ol type="a"> 
+   <li>The AaaS provider uses a secure channel, <a href="https://aws.amazon.com/privatelink/" rel="noopener" target="_blank">AWS PrivateLink</a> for the <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/data-api-access.html" rel="noopener" target="_blank">Redshift Data API</a>, to push data processing logic directly in the customer’s Redshift data warehouse.</li> 
+   <li>They use the same channel to process data at scale with multiple customers. The diagram illustrates a second customer, but this can scale to hundreds or thousands of customers. AaaS providers can tailor data processing logic per customer by isolating scripts for each customer and deploying them according to the customer’s identity, providing a customized and efficient service.</li> 
+  </ol> </li> 
+ <li>The customer’s end-users consume data from their own account using BI tools and analytics applications.</li> 
+ <li>The customer has control over how to expose insights to their end-users.</li> 
+</ol> 
+<p>This delivery model allows customers to manage their own data, reducing dependency on AaaS providers and cutting data transfer costs. By keeping data in their own environment, customers can reduce the risk of data breach while benefiting from insights for better decision-making.</p> 
+<h2>Hybrid model</h2> 
+<p>Customers have diverse needs influenced by factors like data security, compliance, and technical expertise. To cover a broader range of customers, AaaS providers can choose a hybrid approach that delivers both the managed model and the BYOR model depending on the customer, offering flexibility and the ability to serve multiple customers.</p> 
+<p>The following diagram illustrates the AaaS provider delivering insights through the BYOR model for Customer 1 and 4, the managed model for Customer 2 and 3, and so on.</p> 
+<p><img alt="" class="alignnone size-full wp-image-62420" height="531" src="https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2024/04/11/BDB-3999-image007.png" width="620" /></p> 
+<h2>Conclusion</h2> 
+<p>In this post, we talked about the rising demand of analytics as a service and how providers can use the capabilities of Amazon Redshift to deliver insights to their customers. We examined two primary delivery models: the managed model, where AaaS providers process data on their own accounts, and the BYOR model, where AaaS providers process and enrich data directly in their customer’s account. Each method offers unique benefits, such as cost-efficiency, enhanced control, and personalized insights. The flexibility of the AWS Cloud facilitates a hybrid model, accommodating diverse customer needs and allowing AaaS providers to scale. We also introduced the <a href="https://aws.amazon.com/blogs/apn/new-powered-by-amazon-redshift-program-helps-aws-partners-enable-customers-with-analytics-at-any-scale/" rel="noopener" target="_blank">Powered by Amazon Redshift</a> program, which supports AaaS businesses in building effective analytics applications, fostering improved user engagement and business growth.</p> 
+<p>We take this opportunity to invite our ISV partners to <a href="https://aws.amazon.com/redshift/powered-by-redshift/" rel="noopener" target="_blank">reach out to us and learn more</a> about the Powered by Amazon Redshift program.</p> 
+<hr /> 
+<h3>About the Authors</h3> 
+<p style="clear: both;"><strong><img alt="" class="size-full wp-image-38177 alignleft" height="133" src="https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2022/11/23/bhaums-1.jpg" width="100" />Sandipan Bhaumik</strong> is a Senior Analytics Specialist Solutions Architect based in London, UK. He helps customers modernize their traditional data platforms using the modern data architecture in the cloud to perform analytics at scale.</p> 
+<p style="clear: both;"><strong><img alt="" class="size-full wp-image-15134 alignleft" height="133" src="https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2020/12/17/Sain-Das.jpg" width="100" />Sain Das</strong> is a Senior Product Manager on the Amazon Redshift team and leads Amazon Redshift GTM for partner programs, including the Powered by Amazon Redshift and Redshift Ready programs.</p>
