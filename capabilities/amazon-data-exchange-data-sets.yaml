@@ -1,0 +1,247 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Data Exchange API — Data Sets
+  description: 'AWS Data Exchange API — Data Sets. 5 operations. Lead operation: List Data Sets. Self-contained Naftiko capability
+    covering one Amazon Data Exchange business surface.'
+  tags:
+  - Amazon Data Exchange
+  - Data Sets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_DATA_EXCHANGE_API_KEY: AMAZON_DATA_EXCHANGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-data-exchange-data-sets
+    baseUri: https://dataexchange.amazonaws.com
+    description: AWS Data Exchange API — Data Sets business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-data-sets
+      path: /v1/data-sets
+      operations:
+      - name: listdatasets
+        method: GET
+        description: List Data Sets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxResults
+          in: query
+          type: integer
+          description: Maximum number of results to return
+        - name: nextToken
+          in: query
+          type: string
+          description: Pagination token for the next page of results
+        - name: origin
+          in: query
+          type: string
+          description: Filter data sets by origin (OWNED or ENTITLED)
+      - name: createdataset
+        method: POST
+        description: Create Data Set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-data-sets-DataSetId
+      path: /v1/data-sets/{DataSetId}
+      operations:
+      - name: getdataset
+        method: GET
+        description: Get Data Set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: DataSetId
+          in: path
+          type: string
+          description: The ID of the data set
+          required: true
+      - name: updatedataset
+        method: PATCH
+        description: Update Data Set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: DataSetId
+          in: path
+          type: string
+          description: The ID of the data set to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletedataset
+        method: DELETE
+        description: Delete Data Set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: DataSetId
+          in: path
+          type: string
+          description: The ID of the data set to delete
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_DATA_EXCHANGE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-data-exchange-data-sets-rest
+    port: 8080
+    description: REST adapter for AWS Data Exchange API — Data Sets. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/data-sets
+      name: v1-data-sets
+      description: REST surface for v1-data-sets.
+      operations:
+      - method: GET
+        name: listdatasets
+        description: List Data Sets
+        call: amazon-data-exchange-data-sets.listdatasets
+        with:
+          maxResults: rest.maxResults
+          nextToken: rest.nextToken
+          origin: rest.origin
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdataset
+        description: Create Data Set
+        call: amazon-data-exchange-data-sets.createdataset
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/data-sets/{datasetid}
+      name: v1-data-sets-datasetid
+      description: REST surface for v1-data-sets-DataSetId.
+      operations:
+      - method: GET
+        name: getdataset
+        description: Get Data Set
+        call: amazon-data-exchange-data-sets.getdataset
+        with:
+          DataSetId: rest.DataSetId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatedataset
+        description: Update Data Set
+        call: amazon-data-exchange-data-sets.updatedataset
+        with:
+          DataSetId: rest.DataSetId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedataset
+        description: Delete Data Set
+        call: amazon-data-exchange-data-sets.deletedataset
+        with:
+          DataSetId: rest.DataSetId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-data-exchange-data-sets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Data Exchange API — Data Sets. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-data-sets
+      description: List Data Sets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-data-sets.listdatasets
+      with:
+        maxResults: tools.maxResults
+        nextToken: tools.nextToken
+        origin: tools.origin
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-data-set
+      description: Create Data Set
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-data-exchange-data-sets.createdataset
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-set
+      description: Get Data Set
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-data-sets.getdataset
+      with:
+        DataSetId: tools.DataSetId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-data-set
+      description: Update Data Set
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-data-sets.updatedataset
+      with:
+        DataSetId: tools.DataSetId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-data-set
+      description: Delete Data Set
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-data-exchange-data-sets.deletedataset
+      with:
+        DataSetId: tools.DataSetId
+      outputParameters:
+      - type: object
+        mapping: $.

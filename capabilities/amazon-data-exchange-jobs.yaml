@@ -1,0 +1,253 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Data Exchange API — Jobs
+  description: 'AWS Data Exchange API — Jobs. 5 operations. Lead operation: List Jobs. Self-contained Naftiko capability covering
+    one Amazon Data Exchange business surface.'
+  tags:
+  - Amazon Data Exchange
+  - Jobs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_DATA_EXCHANGE_API_KEY: AMAZON_DATA_EXCHANGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-data-exchange-jobs
+    baseUri: https://dataexchange.amazonaws.com
+    description: AWS Data Exchange API — Jobs business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-jobs
+      path: /v1/jobs
+      operations:
+      - name: listjobs
+        method: GET
+        description: List Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxResults
+          in: query
+          type: integer
+        - name: nextToken
+          in: query
+          type: string
+        - name: dataSetId
+          in: query
+          type: string
+        - name: revisionId
+          in: query
+          type: string
+      - name: createjob
+        method: POST
+        description: Create Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-jobs-JobId
+      path: /v1/jobs/{JobId}
+      operations:
+      - name: getjob
+        method: GET
+        description: Get Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: JobId
+          in: path
+          type: string
+          required: true
+    - name: v1-jobs-JobId-cancel
+      path: /v1/jobs/{JobId}/cancel
+      operations:
+      - name: canceljob
+        method: DELETE
+        description: Cancel Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: JobId
+          in: path
+          type: string
+          required: true
+    - name: v1-jobs-JobId-start
+      path: /v1/jobs/{JobId}/start
+      operations:
+      - name: startjob
+        method: PATCH
+        description: Start Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: JobId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_DATA_EXCHANGE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-data-exchange-jobs-rest
+    port: 8080
+    description: REST adapter for AWS Data Exchange API — Jobs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/jobs
+      name: v1-jobs
+      description: REST surface for v1-jobs.
+      operations:
+      - method: GET
+        name: listjobs
+        description: List Jobs
+        call: amazon-data-exchange-jobs.listjobs
+        with:
+          maxResults: rest.maxResults
+          nextToken: rest.nextToken
+          dataSetId: rest.dataSetId
+          revisionId: rest.revisionId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createjob
+        description: Create Job
+        call: amazon-data-exchange-jobs.createjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/jobs/{jobid}
+      name: v1-jobs-jobid
+      description: REST surface for v1-jobs-JobId.
+      operations:
+      - method: GET
+        name: getjob
+        description: Get Job
+        call: amazon-data-exchange-jobs.getjob
+        with:
+          JobId: rest.JobId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/jobs/{jobid}/cancel
+      name: v1-jobs-jobid-cancel
+      description: REST surface for v1-jobs-JobId-cancel.
+      operations:
+      - method: DELETE
+        name: canceljob
+        description: Cancel Job
+        call: amazon-data-exchange-jobs.canceljob
+        with:
+          JobId: rest.JobId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/jobs/{jobid}/start
+      name: v1-jobs-jobid-start
+      description: REST surface for v1-jobs-JobId-start.
+      operations:
+      - method: PATCH
+        name: startjob
+        description: Start Job
+        call: amazon-data-exchange-jobs.startjob
+        with:
+          JobId: rest.JobId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-data-exchange-jobs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Data Exchange API — Jobs. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-jobs
+      description: List Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-jobs.listjobs
+      with:
+        maxResults: tools.maxResults
+        nextToken: tools.nextToken
+        dataSetId: tools.dataSetId
+        revisionId: tools.revisionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-job
+      description: Create Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-data-exchange-jobs.createjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-job
+      description: Get Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-jobs.getjob
+      with:
+        JobId: tools.JobId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-job
+      description: Cancel Job
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-data-exchange-jobs.canceljob
+      with:
+        JobId: tools.JobId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-job
+      description: Start Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-jobs.startjob
+      with:
+        JobId: tools.JobId
+      outputParameters:
+      - type: object
+        mapping: $.

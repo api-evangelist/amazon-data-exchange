@@ -1,0 +1,166 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Data Exchange API — Tags
+  description: 'AWS Data Exchange API — Tags. 3 operations. Lead operation: List Tags for Resource. Self-contained Naftiko
+    capability covering one Amazon Data Exchange business surface.'
+  tags:
+  - Amazon Data Exchange
+  - Tags
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_DATA_EXCHANGE_API_KEY: AMAZON_DATA_EXCHANGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-data-exchange-tags
+    baseUri: https://dataexchange.amazonaws.com
+    description: AWS Data Exchange API — Tags business capability. Self-contained, no shared references.
+    resources:
+    - name: tags-resourceArn
+      path: /tags/{resourceArn}
+      operations:
+      - name: listtagsforresource
+        method: GET
+        description: List Tags for Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: The ARN of the Data Exchange resource. This ARN uniquely identifies the resource.
+          required: true
+      - name: tagresource
+        method: POST
+        description: Tag Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: The ARN of the Data Exchange resource. This ARN uniquely identifies the resource.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: untagresource
+        method: DELETE
+        description: Untag Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: The ARN of the Data Exchange resource. This ARN uniquely identifies the resource.
+          required: true
+        - name: tagKeys
+          in: query
+          type: array
+          description: The tag keys to remove
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_DATA_EXCHANGE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-data-exchange-tags-rest
+    port: 8080
+    description: REST adapter for AWS Data Exchange API — Tags. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tags/{resourcearn}
+      name: tags-resourcearn
+      description: REST surface for tags-resourceArn.
+      operations:
+      - method: GET
+        name: listtagsforresource
+        description: List Tags for Resource
+        call: amazon-data-exchange-tags.listtagsforresource
+        with:
+          resourceArn: rest.resourceArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: tagresource
+        description: Tag Resource
+        call: amazon-data-exchange-tags.tagresource
+        with:
+          resourceArn: rest.resourceArn
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: untagresource
+        description: Untag Resource
+        call: amazon-data-exchange-tags.untagresource
+        with:
+          resourceArn: rest.resourceArn
+          tagKeys: rest.tagKeys
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-data-exchange-tags-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Data Exchange API — Tags. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-tags-resource
+      description: List Tags for Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-tags.listtagsforresource
+      with:
+        resourceArn: tools.resourceArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tag-resource
+      description: Tag Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-data-exchange-tags.tagresource
+      with:
+        resourceArn: tools.resourceArn
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: untag-resource
+      description: Untag Resource
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-data-exchange-tags.untagresource
+      with:
+        resourceArn: tools.resourceArn
+        tagKeys: tools.tagKeys
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,268 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Data Exchange API — Revisions
+  description: 'AWS Data Exchange API — Revisions. 5 operations. Lead operation: List Data Set Revisions. Self-contained Naftiko
+    capability covering one Amazon Data Exchange business surface.'
+  tags:
+  - Amazon Data Exchange
+  - Revisions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_DATA_EXCHANGE_API_KEY: AMAZON_DATA_EXCHANGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-data-exchange-revisions
+    baseUri: https://dataexchange.amazonaws.com
+    description: AWS Data Exchange API — Revisions business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-data-sets-DataSetId-revisions
+      path: /v1/data-sets/{DataSetId}/revisions
+      operations:
+      - name: listdatasetrevisions
+        method: GET
+        description: List Data Set Revisions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: DataSetId
+          in: path
+          type: string
+          description: The ID of the data set
+          required: true
+        - name: maxResults
+          in: query
+          type: integer
+        - name: nextToken
+          in: query
+          type: string
+      - name: createrevision
+        method: POST
+        description: Create Revision
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: DataSetId
+          in: path
+          type: string
+          description: The ID of the data set
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-data-sets-DataSetId-revisions-RevisionId
+      path: /v1/data-sets/{DataSetId}/revisions/{RevisionId}
+      operations:
+      - name: getrevision
+        method: GET
+        description: Get Revision
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: DataSetId
+          in: path
+          type: string
+          required: true
+        - name: RevisionId
+          in: path
+          type: string
+          required: true
+      - name: updaterevision
+        method: PATCH
+        description: Update Revision
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: DataSetId
+          in: path
+          type: string
+          required: true
+        - name: RevisionId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleterevision
+        method: DELETE
+        description: Delete Revision
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: DataSetId
+          in: path
+          type: string
+          required: true
+        - name: RevisionId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_DATA_EXCHANGE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-data-exchange-revisions-rest
+    port: 8080
+    description: REST adapter for AWS Data Exchange API — Revisions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/data-sets/{datasetid}/revisions
+      name: v1-data-sets-datasetid-revisions
+      description: REST surface for v1-data-sets-DataSetId-revisions.
+      operations:
+      - method: GET
+        name: listdatasetrevisions
+        description: List Data Set Revisions
+        call: amazon-data-exchange-revisions.listdatasetrevisions
+        with:
+          DataSetId: rest.DataSetId
+          maxResults: rest.maxResults
+          nextToken: rest.nextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrevision
+        description: Create Revision
+        call: amazon-data-exchange-revisions.createrevision
+        with:
+          DataSetId: rest.DataSetId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/data-sets/{datasetid}/revisions/{revisionid}
+      name: v1-data-sets-datasetid-revisions-revisionid
+      description: REST surface for v1-data-sets-DataSetId-revisions-RevisionId.
+      operations:
+      - method: GET
+        name: getrevision
+        description: Get Revision
+        call: amazon-data-exchange-revisions.getrevision
+        with:
+          DataSetId: rest.DataSetId
+          RevisionId: rest.RevisionId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updaterevision
+        description: Update Revision
+        call: amazon-data-exchange-revisions.updaterevision
+        with:
+          DataSetId: rest.DataSetId
+          RevisionId: rest.RevisionId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterevision
+        description: Delete Revision
+        call: amazon-data-exchange-revisions.deleterevision
+        with:
+          DataSetId: rest.DataSetId
+          RevisionId: rest.RevisionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-data-exchange-revisions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Data Exchange API — Revisions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-data-set-revisions
+      description: List Data Set Revisions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-revisions.listdatasetrevisions
+      with:
+        DataSetId: tools.DataSetId
+        maxResults: tools.maxResults
+        nextToken: tools.nextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-revision
+      description: Create Revision
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-data-exchange-revisions.createrevision
+      with:
+        DataSetId: tools.DataSetId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-revision
+      description: Get Revision
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-revisions.getrevision
+      with:
+        DataSetId: tools.DataSetId
+        RevisionId: tools.RevisionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-revision
+      description: Update Revision
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-data-exchange-revisions.updaterevision
+      with:
+        DataSetId: tools.DataSetId
+        RevisionId: tools.RevisionId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-revision
+      description: Delete Revision
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-data-exchange-revisions.deleterevision
+      with:
+        DataSetId: tools.DataSetId
+        RevisionId: tools.RevisionId
+      outputParameters:
+      - type: object
+        mapping: $.
