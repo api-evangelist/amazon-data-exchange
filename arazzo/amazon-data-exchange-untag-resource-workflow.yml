@@ -1,0 +1,78 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Untag Resource
+  summary: Read a resource's tags and remove a chosen set of tag keys from it.
+  description: >-
+    A governance cleanup flow for AWS Data Exchange. The workflow reads the
+    current tags on a resource ARN, removes the supplied tag keys, and reads the
+    tags back to confirm the removal. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: untag-resource
+  summary: Remove tag keys from a Data Exchange resource and confirm.
+  description: >-
+    Lists a resource's tags, removes the supplied tag keys, and lists the tags
+    again to verify the removal.
+  inputs:
+    type: object
+    required:
+    - resourceArn
+    - tagKeys
+    properties:
+      resourceArn:
+        type: string
+        description: The ARN of the Data Exchange resource to modify.
+      tagKeys:
+        type: array
+        description: The tag keys to remove from the resource.
+        items:
+          type: string
+  steps:
+  - stepId: listTagsBefore
+    description: >-
+      Read the current tags on the resource before removing any.
+    operationId: listTagsForResource
+    parameters:
+    - name: resourceArn
+      in: path
+      value: $inputs.resourceArn
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tagsBefore: $response.body#/Tags
+  - stepId: untagResource
+    description: >-
+      Remove the supplied tag keys from the resource.
+    operationId: untagResource
+    parameters:
+    - name: resourceArn
+      in: path
+      value: $inputs.resourceArn
+    - name: tagKeys
+      in: query
+      value: $inputs.tagKeys
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      untagStatus: $statusCode
+  - stepId: listTagsAfter
+    description: >-
+      Read the tags back to confirm the chosen keys were removed.
+    operationId: listTagsForResource
+    parameters:
+    - name: resourceArn
+      in: path
+      value: $inputs.resourceArn
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tagsAfter: $response.body#/Tags
+  outputs:
+    tagsBefore: $steps.listTagsBefore.outputs.tagsBefore
+    tagsAfter: $steps.listTagsAfter.outputs.tagsAfter

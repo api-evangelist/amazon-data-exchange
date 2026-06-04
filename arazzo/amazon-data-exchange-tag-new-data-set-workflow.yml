@@ -1,0 +1,89 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Tag New Data Set
+  summary: Create a data set, apply governance tags to it, and read the tags back.
+  description: >-
+    A governance flow for AWS Data Exchange. The workflow creates a new data
+    set, applies a set of resource tags to the data set's ARN, and then reads
+    the tags back to confirm they were applied. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tag-new-data-set
+  summary: Create a data set, tag it, and verify the tags.
+  description: >-
+    Creates a data set, adds the supplied tags to its ARN via the tagging API,
+    and lists the tags to confirm.
+  inputs:
+    type: object
+    required:
+    - name
+    - description
+    - tags
+    properties:
+      name:
+        type: string
+        description: The name for the new data set.
+      description:
+        type: string
+        description: The description for the new data set.
+      assetType:
+        type: string
+        description: The asset type for the data set.
+        default: S3_SNAPSHOT
+      tags:
+        type: object
+        description: A map of tag key/value pairs to apply to the data set.
+  steps:
+  - stepId: createDataSet
+    description: >-
+      Create the new data set that will be tagged.
+    operationId: createDataSet
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.name
+        Description: $inputs.description
+        AssetType: $inputs.assetType
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      dataSetArn: $response.body#/Arn
+      dataSetId: $response.body#/Id
+  - stepId: tagDataSet
+    description: >-
+      Apply the supplied governance tags to the data set's ARN.
+    operationId: tagResource
+    parameters:
+    - name: resourceArn
+      in: path
+      value: $steps.createDataSet.outputs.dataSetArn
+    requestBody:
+      contentType: application/json
+      payload:
+        Tags: $inputs.tags
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      tagStatus: $statusCode
+  - stepId: listTags
+    description: >-
+      Read the tags back from the data set ARN to confirm they were applied.
+    operationId: listTagsForResource
+    parameters:
+    - name: resourceArn
+      in: path
+      value: $steps.createDataSet.outputs.dataSetArn
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      appliedTags: $response.body#/Tags
+  outputs:
+    dataSetId: $steps.createDataSet.outputs.dataSetId
+    dataSetArn: $steps.createDataSet.outputs.dataSetArn
+    appliedTags: $steps.listTags.outputs.appliedTags

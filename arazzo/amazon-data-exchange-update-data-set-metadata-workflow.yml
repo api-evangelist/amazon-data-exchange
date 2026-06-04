@@ -1,0 +1,85 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Update Data Set Metadata
+  summary: Read a data set, update its name and description, and verify the change.
+  description: >-
+    A metadata maintenance flow for AWS Data Exchange. The workflow reads the
+    current details of a data set, updates its name and description, and reads
+    it back to confirm the new values. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-data-set-metadata
+  summary: Update a data set's name and description and verify the result.
+  description: >-
+    Gets the data set, patches its name and description, and gets it again to
+    confirm the update.
+  inputs:
+    type: object
+    required:
+    - dataSetId
+    - name
+    - description
+    properties:
+      dataSetId:
+        type: string
+        description: The ID of the data set to update.
+      name:
+        type: string
+        description: The new name for the data set.
+      description:
+        type: string
+        description: The new description for the data set.
+  steps:
+  - stepId: getDataSet
+    description: >-
+      Read the current details of the data set before updating it.
+    operationId: getDataSet
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      oldName: $response.body#/Name
+  - stepId: updateDataSet
+    description: >-
+      Patch the data set with the new name and description.
+    operationId: updateDataSet
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.name
+        Description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedName: $response.body#/Name
+      updatedAt: $response.body#/UpdatedAt
+  - stepId: verifyDataSet
+    description: >-
+      Read the data set back to confirm the new metadata is in effect.
+    operationId: getDataSet
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      confirmedName: $response.body#/Name
+      confirmedDescription: $response.body#/Description
+  outputs:
+    dataSetId: $inputs.dataSetId
+    oldName: $steps.getDataSet.outputs.oldName
+    confirmedName: $steps.verifyDataSet.outputs.confirmedName

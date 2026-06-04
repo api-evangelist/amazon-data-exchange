@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Delete Draft Revision
+  summary: Find a revision, confirm it is not finalized, and delete it as a draft.
+  description: >-
+    A cleanup flow for AWS Data Exchange. A revision can only be deleted if it
+    has not been finalized, so the workflow lists a data set's revisions, reads
+    the first revision's details, and branches: when the revision is not
+    finalized it deletes it, otherwise it ends without action. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: delete-draft-revision
+  summary: Delete the first revision of a data set only if it is not finalized.
+  description: >-
+    Lists revisions, reads the first revision, and deletes it when it is still a
+    draft (not finalized).
+  inputs:
+    type: object
+    required:
+    - dataSetId
+    properties:
+      dataSetId:
+        type: string
+        description: The ID of the data set whose draft revision is removed.
+  steps:
+  - stepId: listRevisions
+    description: >-
+      List the revisions of the data set to locate a candidate to delete.
+    operationId: listDataSetRevisions
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstRevisionId: $response.body#/Revisions/0/Id
+  - stepId: getRevision
+    description: >-
+      Read the first revision and branch on whether it has been finalized.
+    operationId: getRevision
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $steps.listRevisions.outputs.firstRevisionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalized: $response.body#/Finalized
+    onSuccess:
+    - name: isDraft
+      type: goto
+      stepId: deleteRevision
+      criteria:
+      - context: $response.body
+        condition: $.Finalized == false
+        type: jsonpath
+    - name: isFinalized
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Finalized == true
+        type: jsonpath
+  - stepId: deleteRevision
+    description: >-
+      Delete the draft revision since it has not been finalized.
+    operationId: deleteRevision
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $steps.listRevisions.outputs.firstRevisionId
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      deleteStatus: $statusCode
+  outputs:
+    dataSetId: $inputs.dataSetId
+    revisionId: $steps.listRevisions.outputs.firstRevisionId
+    finalized: $steps.getRevision.outputs.finalized

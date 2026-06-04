@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Export Entitled Data
+  summary: Discover an entitled data set, pick its latest revision, and export it to S3.
+  description: >-
+    The subscriber consumption path for AWS Data Exchange. Entitlements are
+    represented as data sets whose origin is ENTITLED, so the workflow lists
+    entitled data sets, lists the revisions of the first entitled data set,
+    creates an EXPORT_REVISIONS_TO_S3 job for the first revision, starts it, and
+    polls until the job completes. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: export-entitled-data
+  summary: Export the first revision of an entitled data set to S3.
+  description: >-
+    Lists ENTITLED data sets, lists the first one's revisions, and runs an
+    export job for the first revision, polling to completion.
+  inputs:
+    type: object
+    required:
+    - bucket
+    properties:
+      bucket:
+        type: string
+        description: The destination S3 bucket for the exported assets.
+      keyPattern:
+        type: string
+        description: The key pattern for naming exported objects.
+        default: ${Revision.CreatedAt}/${Asset.Name}
+  steps:
+  - stepId: listEntitledDataSets
+    description: >-
+      List the data sets the account is entitled to through subscriptions by
+      filtering on the ENTITLED origin.
+    operationId: listDataSets
+    parameters:
+    - name: origin
+      in: query
+      value: ENTITLED
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      entitledDataSetId: $response.body#/DataSets/0/Id
+  - stepId: listEntitledRevisions
+    description: >-
+      List the revisions available within the entitled data set.
+    operationId: listDataSetRevisions
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $steps.listEntitledDataSets.outputs.entitledDataSetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      revisionId: $response.body#/Revisions/0/Id
+  - stepId: createExportJob
+    description: >-
+      Create an EXPORT_REVISIONS_TO_S3 job for the chosen entitled revision.
+    operationId: createJob
+    requestBody:
+      contentType: application/json
+      payload:
+        Type: EXPORT_REVISIONS_TO_S3
+        Details:
+          ExportRevisionsToS3:
+            DataSetId: $steps.listEntitledDataSets.outputs.entitledDataSetId
+            RevisionDestinations:
+            - RevisionId: $steps.listEntitledRevisions.outputs.revisionId
+              Bucket: $inputs.bucket
+              KeyPattern: $inputs.keyPattern
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      jobId: $response.body#/Id
+  - stepId: startExportJob
+    description: >-
+      Start the export job.
+    operationId: startJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.createExportJob.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      startedState: $response.body#/State
+  - stepId: pollExportJob
+    description: >-
+      Poll the export job until terminal. Loops while WAITING or IN_PROGRESS and
+      ends on COMPLETED.
+    operationId: getJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.createExportJob.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/State
+    onSuccess:
+    - name: exportDone
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.State == "COMPLETED"
+        type: jsonpath
+    - name: exportPending
+      type: goto
+      stepId: pollExportJob
+      criteria:
+      - context: $response.body
+        condition: $.State == "WAITING" || $.State == "IN_PROGRESS"
+        type: jsonpath
+  outputs:
+    entitledDataSetId: $steps.listEntitledDataSets.outputs.entitledDataSetId
+    revisionId: $steps.listEntitledRevisions.outputs.revisionId
+    jobId: $steps.createExportJob.outputs.jobId
+    finalState: $steps.pollExportJob.outputs.state

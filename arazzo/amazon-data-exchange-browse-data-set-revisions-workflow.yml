@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Browse Data Set Revisions
+  summary: List owned data sets, inspect the first one, and list its revisions.
+  description: >-
+    A read-only discovery flow over AWS Data Exchange. The workflow lists data
+    sets the account owns, fetches the full details of the first returned data
+    set, and then lists the revisions that belong to it. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: browse-data-set-revisions
+  summary: List owned data sets and enumerate revisions of the first one.
+  description: >-
+    Lists data sets filtered to OWNED origin, gets the first data set, and lists
+    its revisions for inspection.
+  inputs:
+    type: object
+    properties:
+      maxResults:
+        type: integer
+        description: Maximum number of data sets to return.
+        default: 25
+  steps:
+  - stepId: listOwnedDataSets
+    description: >-
+      List the data sets the account owns, paging up to maxResults entries.
+    operationId: listDataSets
+    parameters:
+    - name: origin
+      in: query
+      value: OWNED
+    - name: maxResults
+      in: query
+      value: $inputs.maxResults
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstDataSetId: $response.body#/DataSets/0/Id
+      nextToken: $response.body#/NextToken
+  - stepId: getDataSet
+    description: >-
+      Fetch the full details of the first data set returned by the listing.
+    operationId: getDataSet
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $steps.listOwnedDataSets.outputs.firstDataSetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      dataSetName: $response.body#/Name
+      assetType: $response.body#/AssetType
+  - stepId: listRevisions
+    description: >-
+      List the revisions belonging to the selected data set.
+    operationId: listDataSetRevisions
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $steps.listOwnedDataSets.outputs.firstDataSetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstRevisionId: $response.body#/Revisions/0/Id
+      revisions: $response.body#/Revisions
+  outputs:
+    dataSetId: $steps.listOwnedDataSets.outputs.firstDataSetId
+    dataSetName: $steps.getDataSet.outputs.dataSetName
+    firstRevisionId: $steps.listRevisions.outputs.firstRevisionId

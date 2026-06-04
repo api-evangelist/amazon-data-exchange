@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Inspect Revision Assets
+  summary: List the assets in a revision and fetch the details of the first asset.
+  description: >-
+    A read-only flow for inspecting the contents of a revision in AWS Data
+    Exchange. The workflow lists the assets contained in a revision and then
+    fetches the full details of the first asset returned. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: inspect-revision-assets
+  summary: List a revision's assets and get the first asset's details.
+  description: >-
+    Lists the assets in the supplied revision and then retrieves the full
+    details of the first asset for inspection.
+  inputs:
+    type: object
+    required:
+    - dataSetId
+    - revisionId
+    properties:
+      dataSetId:
+        type: string
+        description: The ID of the data set that owns the revision.
+      revisionId:
+        type: string
+        description: The ID of the revision whose assets are listed.
+  steps:
+  - stepId: listAssets
+    description: >-
+      List the assets contained in the revision.
+    operationId: listRevisionAssets
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $inputs.revisionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstAssetId: $response.body#/Assets/0/Id
+      assets: $response.body#/Assets
+  - stepId: getAsset
+    description: >-
+      Fetch the full details of the first asset returned by the listing.
+    operationId: getAsset
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $inputs.revisionId
+    - name: AssetId
+      in: path
+      value: $steps.listAssets.outputs.firstAssetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      assetName: $response.body#/Name
+      assetArn: $response.body#/Arn
+      assetDetails: $response.body#/AssetDetails
+  outputs:
+    firstAssetId: $steps.listAssets.outputs.firstAssetId
+    assetName: $steps.getAsset.outputs.assetName

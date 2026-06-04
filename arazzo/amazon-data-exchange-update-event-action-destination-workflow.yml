@@ -1,0 +1,77 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Update Event Action Destination
+  summary: Find an existing event action, repoint its export destination, and verify the change.
+  description: >-
+    A maintenance flow for automated exports in AWS Data Exchange. The workflow
+    lists the account's event actions, updates the first one to export to a new
+    S3 destination bucket, and reads it back to confirm the change. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-event-action-destination
+  summary: Repoint the first event action's export destination to a new bucket.
+  description: >-
+    Lists event actions, updates the first one's ExportRevisionToS3 destination,
+    and gets it back to confirm.
+  inputs:
+    type: object
+    required:
+    - bucket
+    properties:
+      bucket:
+        type: string
+        description: The new destination S3 bucket for the event action export.
+      keyPattern:
+        type: string
+        description: The key pattern for naming exported objects.
+        default: ${Revision.CreatedAt}/${Asset.Name}
+  steps:
+  - stepId: listEventActions
+    description: >-
+      List the event actions configured for the account.
+    operationId: listEventActions
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      eventActionId: $response.body#/EventActions/0/Id
+  - stepId: updateEventAction
+    description: >-
+      Update the first event action to export to the new destination bucket.
+    operationId: updateEventAction
+    parameters:
+    - name: EventActionId
+      in: path
+      value: $steps.listEventActions.outputs.eventActionId
+    requestBody:
+      contentType: application/json
+      payload:
+        Action:
+          ExportRevisionToS3:
+            RevisionDestination:
+              Bucket: $inputs.bucket
+              KeyPattern: $inputs.keyPattern
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedAt: $response.body#/UpdatedAt
+  - stepId: verifyEventAction
+    description: >-
+      Read the event action back to confirm the new destination configuration.
+    operationId: getEventAction
+    parameters:
+    - name: EventActionId
+      in: path
+      value: $steps.listEventActions.outputs.eventActionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      action: $response.body#/Action
+  outputs:
+    eventActionId: $steps.listEventActions.outputs.eventActionId
+    action: $steps.verifyEventAction.outputs.action

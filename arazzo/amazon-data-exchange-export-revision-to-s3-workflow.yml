@@ -1,0 +1,127 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Export Revision To S3
+  summary: Export all assets of a revision to an S3 bucket by creating, starting, and polling a job.
+  description: >-
+    The consumer (or producer) export path for AWS Data Exchange. The workflow
+    creates an EXPORT_REVISIONS_TO_S3 job pointed at a chosen data set and
+    revision, starts the job, and polls until it reaches a terminal state,
+    branching on completion versus failure. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: export-revision-to-s3
+  summary: Export a revision's assets to S3 and wait for the job to finish.
+  description: >-
+    Creates an EXPORT_REVISIONS_TO_S3 job for the supplied data set and
+    revision, starts it, and polls the job state until COMPLETED or a failure
+    state.
+  inputs:
+    type: object
+    required:
+    - dataSetId
+    - revisionId
+    - bucket
+    properties:
+      dataSetId:
+        type: string
+        description: The ID of the data set whose revision is exported.
+      revisionId:
+        type: string
+        description: The ID of the revision to export.
+      bucket:
+        type: string
+        description: The destination S3 bucket for the exported assets.
+      keyPattern:
+        type: string
+        description: The key pattern for naming exported objects.
+        default: ${Revision.CreatedAt}/${Asset.Name}
+  steps:
+  - stepId: createExportJob
+    description: >-
+      Create an EXPORT_REVISIONS_TO_S3 job that writes the revision's assets to
+      the destination bucket.
+    operationId: createJob
+    requestBody:
+      contentType: application/json
+      payload:
+        Type: EXPORT_REVISIONS_TO_S3
+        Details:
+          ExportRevisionsToS3:
+            DataSetId: $inputs.dataSetId
+            RevisionDestinations:
+            - RevisionId: $inputs.revisionId
+              Bucket: $inputs.bucket
+              KeyPattern: $inputs.keyPattern
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      jobId: $response.body#/Id
+      jobState: $response.body#/State
+  - stepId: startExportJob
+    description: >-
+      Start the export job, transitioning it out of the WAITING state.
+    operationId: startJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.createExportJob.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      startedState: $response.body#/State
+  - stepId: pollExportJob
+    description: >-
+      Poll the export job until terminal. Loops while WAITING or IN_PROGRESS,
+      branches to success on COMPLETED and to failure on ERROR or TIMED_OUT.
+    operationId: getJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.createExportJob.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/State
+    onSuccess:
+    - name: exportDone
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.State == "COMPLETED"
+        type: jsonpath
+    - name: exportPending
+      type: goto
+      stepId: pollExportJob
+      criteria:
+      - context: $response.body
+        condition: $.State == "WAITING" || $.State == "IN_PROGRESS"
+        type: jsonpath
+    - name: exportFailed
+      type: goto
+      stepId: reportFailure
+      criteria:
+      - context: $response.body
+        condition: $.State == "ERROR" || $.State == "TIMED_OUT"
+        type: jsonpath
+  - stepId: reportFailure
+    description: >-
+      Re-read the failed job to capture its error details for reporting.
+    operationId: getJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.createExportJob.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/State
+      errors: $response.body#/Errors
+  outputs:
+    jobId: $steps.createExportJob.outputs.jobId
+    finalState: $steps.pollExportJob.outputs.state

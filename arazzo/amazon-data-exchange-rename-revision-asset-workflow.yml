@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Rename Revision Asset
+  summary: Locate an asset in a revision and rename it to a new asset name.
+  description: >-
+    A small maintenance flow for AWS Data Exchange. The workflow lists the
+    assets in a revision, reads the first asset's current details, and then
+    updates that asset with a new name. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rename-revision-asset
+  summary: Rename the first asset of a revision to a supplied name.
+  description: >-
+    Lists the assets in the revision, reads the first asset, and renames it via
+    an asset update.
+  inputs:
+    type: object
+    required:
+    - dataSetId
+    - revisionId
+    - newName
+    properties:
+      dataSetId:
+        type: string
+        description: The ID of the data set that owns the revision.
+      revisionId:
+        type: string
+        description: The ID of the revision whose asset is renamed.
+      newName:
+        type: string
+        description: The new name to assign to the asset.
+  steps:
+  - stepId: listAssets
+    description: >-
+      List the assets in the revision to locate the asset to rename.
+    operationId: listRevisionAssets
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $inputs.revisionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstAssetId: $response.body#/Assets/0/Id
+  - stepId: getAsset
+    description: >-
+      Read the current details of the asset before renaming it.
+    operationId: getAsset
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $inputs.revisionId
+    - name: AssetId
+      in: path
+      value: $steps.listAssets.outputs.firstAssetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      oldName: $response.body#/Name
+  - stepId: renameAsset
+    description: >-
+      Update the asset with the new name.
+    operationId: updateAsset
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $inputs.revisionId
+    - name: AssetId
+      in: path
+      value: $steps.listAssets.outputs.firstAssetId
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.newName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedName: $response.body#/Name
+      updatedAt: $response.body#/UpdatedAt
+  outputs:
+    assetId: $steps.listAssets.outputs.firstAssetId
+    oldName: $steps.getAsset.outputs.oldName
+    newName: $steps.renameAsset.outputs.updatedName

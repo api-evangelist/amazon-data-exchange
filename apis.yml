@@ -71,6 +71,51 @@ apis:
   - type: NaftikoCapability
     url: capabilities/amazon-data-exchange-tags.yaml
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/amazon-data-exchange-auto-export-on-publish-workflow.yml
+    name: Amazon Data Exchange Auto Export On Publish
+    summary: Register a RevisionPublished event action, then create and finalize a revision to trigger it.
+  - url: arazzo/amazon-data-exchange-browse-data-set-revisions-workflow.yml
+    name: Amazon Data Exchange Browse Data Set Revisions
+    summary: List owned data sets, inspect the first one, and list its revisions.
+  - url: arazzo/amazon-data-exchange-cancel-running-job-workflow.yml
+    name: Amazon Data Exchange Cancel Running Job
+    summary: Find an in-flight job for a data set and cancel it if it is still running.
+  - url: arazzo/amazon-data-exchange-delete-draft-revision-workflow.yml
+    name: Amazon Data Exchange Delete Draft Revision
+    summary: Find a revision, confirm it is not finalized, and delete it as a draft.
+  - url: arazzo/amazon-data-exchange-export-entitled-data-workflow.yml
+    name: Amazon Data Exchange Export Entitled Data
+    summary: Discover an entitled data set, pick its latest revision, and export it to S3.
+  - url: arazzo/amazon-data-exchange-export-revision-to-s3-workflow.yml
+    name: Amazon Data Exchange Export Revision To S3
+    summary: Export all assets of a revision to an S3 bucket by creating, starting, and polling a job.
+  - url: arazzo/amazon-data-exchange-import-asset-from-signed-url-workflow.yml
+    name: Amazon Data Exchange Import Asset From Signed URL
+    summary: Open a revision, import a single asset from a signed URL, wait, and list the result.
+  - url: arazzo/amazon-data-exchange-inspect-revision-assets-workflow.yml
+    name: Amazon Data Exchange Inspect Revision Assets
+    summary: List the assets in a revision and fetch the details of the first asset.
+  - url: arazzo/amazon-data-exchange-publish-data-set-workflow.yml
+    name: Amazon Data Exchange Publish Data Set
+    summary: Create a data set, add a revision, import assets from S3, and finalize it for publishing.
+  - url: arazzo/amazon-data-exchange-rename-revision-asset-workflow.yml
+    name: Amazon Data Exchange Rename Revision Asset
+    summary: Locate an asset in a revision and rename it to a new asset name.
+  - url: arazzo/amazon-data-exchange-tag-new-data-set-workflow.yml
+    name: Amazon Data Exchange Tag New Data Set
+    summary: Create a data set, apply governance tags to it, and read the tags back.
+  - url: arazzo/amazon-data-exchange-untag-resource-workflow.yml
+    name: Amazon Data Exchange Untag Resource
+    summary: Read a resource's tags and remove a chosen set of tag keys from it.
+  - url: arazzo/amazon-data-exchange-update-data-set-metadata-workflow.yml
+    name: Amazon Data Exchange Update Data Set Metadata
+    summary: Read a data set, update its name and description, and verify the change.
+  - url: arazzo/amazon-data-exchange-update-event-action-destination-workflow.yml
+    name: Amazon Data Exchange Update Event Action Destination
+    summary: Find an existing event action, repoint its export destination, and verify the change.
 - type: Portal
   url: https://aws.amazon.com/data-exchange/
 - type: DeveloperPortal

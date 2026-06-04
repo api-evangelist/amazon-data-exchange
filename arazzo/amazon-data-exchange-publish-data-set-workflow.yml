@@ -1,0 +1,172 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Publish Data Set
+  summary: Create a data set, add a revision, import assets from S3, and finalize it for publishing.
+  description: >-
+    The full producer publishing path for AWS Data Exchange. The workflow
+    creates a new owned data set, opens a revision against it, creates an
+    IMPORT_ASSETS_FROM_S3 job to load assets into the revision, starts the job,
+    polls the job until it reaches a terminal state, and finally finalizes the
+    revision so it is ready to be published to subscribers. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: publish-data-set
+  summary: Create a data set, revision, import job, and finalize the revision.
+  description: >-
+    Provisions a new S3_SNAPSHOT data set, creates a revision, imports assets
+    from an S3 bucket via a job, waits for the job to complete, and finalizes
+    the revision for publishing.
+  inputs:
+    type: object
+    required:
+    - name
+    - description
+    - bucket
+    - key
+    properties:
+      name:
+        type: string
+        description: The name for the new data set.
+      description:
+        type: string
+        description: The description for the new data set.
+      assetType:
+        type: string
+        description: The asset type for the data set and import job.
+        default: S3_SNAPSHOT
+      bucket:
+        type: string
+        description: The S3 bucket holding the asset to import.
+      key:
+        type: string
+        description: The S3 object key of the asset to import.
+      comment:
+        type: string
+        description: A comment describing the revision.
+        default: Initial data release
+  steps:
+  - stepId: createDataSet
+    description: >-
+      Create a new owned data set that will hold the published revisions.
+    operationId: createDataSet
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.name
+        Description: $inputs.description
+        AssetType: $inputs.assetType
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      dataSetId: $response.body#/Id
+      dataSetArn: $response.body#/Arn
+  - stepId: createRevision
+    description: >-
+      Open a new, non-finalized revision on the data set to receive assets.
+    operationId: createRevision
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $steps.createDataSet.outputs.dataSetId
+    requestBody:
+      contentType: application/json
+      payload:
+        Comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      revisionId: $response.body#/Id
+  - stepId: createImportJob
+    description: >-
+      Create an IMPORT_ASSETS_FROM_S3 job that loads the S3 object into the
+      revision as an asset.
+    operationId: createJob
+    requestBody:
+      contentType: application/json
+      payload:
+        Type: IMPORT_ASSETS_FROM_S3
+        Details:
+          ImportAssetsFromS3:
+            DataSetId: $steps.createDataSet.outputs.dataSetId
+            RevisionId: $steps.createRevision.outputs.revisionId
+            AssetSources:
+            - Bucket: $inputs.bucket
+              Key: $inputs.key
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      jobId: $response.body#/Id
+      jobState: $response.body#/State
+  - stepId: startImportJob
+    description: >-
+      Start the import job, transitioning it out of the WAITING state.
+    operationId: startJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.createImportJob.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      startedState: $response.body#/State
+  - stepId: pollImportJob
+    description: >-
+      Poll the job until it reaches a terminal state. Loops back while the job
+      is still WAITING or IN_PROGRESS, branches to finalize on COMPLETED.
+    operationId: getJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.createImportJob.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/State
+    onSuccess:
+    - name: importDone
+      type: goto
+      stepId: finalizeRevision
+      criteria:
+      - context: $response.body
+        condition: $.State == "COMPLETED"
+        type: jsonpath
+    - name: importPending
+      type: goto
+      stepId: pollImportJob
+      criteria:
+      - context: $response.body
+        condition: $.State == "WAITING" || $.State == "IN_PROGRESS"
+        type: jsonpath
+  - stepId: finalizeRevision
+    description: >-
+      Finalize the revision so it can be published to subscribers. Sets
+      Finalized to true via an update to the revision.
+    operationId: updateRevision
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $steps.createDataSet.outputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $steps.createRevision.outputs.revisionId
+    requestBody:
+      contentType: application/json
+      payload:
+        Comment: $inputs.comment
+        Finalized: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalized: $response.body#/Finalized
+      revisionArn: $response.body#/Arn
+  outputs:
+    dataSetId: $steps.createDataSet.outputs.dataSetId
+    revisionId: $steps.createRevision.outputs.revisionId
+    jobId: $steps.createImportJob.outputs.jobId
+    finalized: $steps.finalizeRevision.outputs.finalized

@@ -1,0 +1,85 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Cancel Running Job
+  summary: Find an in-flight job for a data set and cancel it if it is still running.
+  description: >-
+    An operational flow for halting an in-flight transfer in AWS Data Exchange.
+    The workflow lists jobs for a data set, reads the first job's current state,
+    and branches: when the job is still WAITING or IN_PROGRESS it cancels the
+    job, otherwise it ends without action. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: cancel-running-job
+  summary: Cancel the first cancellable job for a data set.
+  description: >-
+    Lists jobs scoped to a data set, checks the first job's state, and cancels
+    it only if it is still WAITING or IN_PROGRESS.
+  inputs:
+    type: object
+    required:
+    - dataSetId
+    properties:
+      dataSetId:
+        type: string
+        description: The ID of the data set whose jobs are listed.
+  steps:
+  - stepId: listJobs
+    description: >-
+      List the jobs associated with the data set.
+    operationId: listJobs
+    parameters:
+    - name: dataSetId
+      in: query
+      value: $inputs.dataSetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstJobId: $response.body#/Jobs/0/Id
+  - stepId: checkJob
+    description: >-
+      Read the current state of the first job and branch on whether it is still
+      cancellable.
+    operationId: getJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.listJobs.outputs.firstJobId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/State
+    onSuccess:
+    - name: jobCancellable
+      type: goto
+      stepId: cancelJob
+      criteria:
+      - context: $response.body
+        condition: $.State == "WAITING" || $.State == "IN_PROGRESS"
+        type: jsonpath
+    - name: jobTerminal
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.State == "COMPLETED" || $.State == "ERROR" || $.State == "CANCELLED" || $.State == "TIMED_OUT"
+        type: jsonpath
+  - stepId: cancelJob
+    description: >-
+      Cancel the job, stopping the in-flight transfer.
+    operationId: cancelJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.listJobs.outputs.firstJobId
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      cancelStatus: $statusCode
+  outputs:
+    jobId: $steps.listJobs.outputs.firstJobId
+    jobState: $steps.checkJob.outputs.state

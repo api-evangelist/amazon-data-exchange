@@ -1,0 +1,116 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Auto Export On Publish
+  summary: Register a RevisionPublished event action, then create and finalize a revision to trigger it.
+  description: >-
+    Sets up automated downstream delivery in AWS Data Exchange. The workflow
+    creates an event action that exports revisions to S3 whenever a revision is
+    published for a data set, then creates a new revision on that data set and
+    finalizes it so the configured event action fires. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: auto-export-on-publish
+  summary: Create a RevisionPublished export event action and publish a revision.
+  description: >-
+    Registers an ExportRevisionToS3 event action keyed to RevisionPublished for
+    the data set, creates a revision, and finalizes it to publish.
+  inputs:
+    type: object
+    required:
+    - dataSetId
+    - bucket
+    properties:
+      dataSetId:
+        type: string
+        description: The ID of the data set the event action and revision target.
+      bucket:
+        type: string
+        description: The destination S3 bucket for auto-exported revisions.
+      keyPattern:
+        type: string
+        description: The key pattern for naming auto-exported objects.
+        default: ${Revision.CreatedAt}/${Asset.Name}
+      comment:
+        type: string
+        description: A comment describing the revision.
+        default: Auto-export release
+  steps:
+  - stepId: createEventAction
+    description: >-
+      Create an event action that exports a revision to S3 whenever a revision
+      is published for the data set.
+    operationId: createEventAction
+    requestBody:
+      contentType: application/json
+      payload:
+        Event:
+          RevisionPublished:
+            DataSetId: $inputs.dataSetId
+        Action:
+          ExportRevisionToS3:
+            RevisionDestination:
+              Bucket: $inputs.bucket
+              KeyPattern: $inputs.keyPattern
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      eventActionId: $response.body#/Id
+      eventActionArn: $response.body#/Arn
+  - stepId: createRevision
+    description: >-
+      Create a new revision on the data set that will be published.
+    operationId: createRevision
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    requestBody:
+      contentType: application/json
+      payload:
+        Comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      revisionId: $response.body#/Id
+  - stepId: finalizeRevision
+    description: >-
+      Finalize the revision, publishing it and triggering the event action.
+    operationId: updateRevision
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $steps.createRevision.outputs.revisionId
+    requestBody:
+      contentType: application/json
+      payload:
+        Comment: $inputs.comment
+        Finalized: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalized: $response.body#/Finalized
+  - stepId: verifyEventAction
+    description: >-
+      Read back the event action to confirm it is registered and configured.
+    operationId: getEventAction
+    parameters:
+    - name: EventActionId
+      in: path
+      value: $steps.createEventAction.outputs.eventActionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      action: $response.body#/Action
+  outputs:
+    eventActionId: $steps.createEventAction.outputs.eventActionId
+    revisionId: $steps.createRevision.outputs.revisionId
+    finalized: $steps.finalizeRevision.outputs.finalized

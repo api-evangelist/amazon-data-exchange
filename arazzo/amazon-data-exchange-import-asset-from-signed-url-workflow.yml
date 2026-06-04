@@ -1,0 +1,132 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Exchange Import Asset From Signed URL
+  summary: Open a revision, import a single asset from a signed URL, wait, and list the result.
+  description: >-
+    Loads a single file into a revision via a presigned upload in AWS Data
+    Exchange. The workflow creates a revision on an existing data set, creates an
+    IMPORT_ASSET_FROM_SIGNED_URL job, starts it, polls the job to completion,
+    and lists the revision's assets to confirm the import. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataExchangeApi
+  url: ../openapi/amazon-data-exchange-openapi.yml
+  type: openapi
+workflows:
+- workflowId: import-asset-from-signed-url
+  summary: Import one asset from a signed URL into a new revision.
+  description: >-
+    Creates a revision, runs an IMPORT_ASSET_FROM_SIGNED_URL job to completion,
+    and lists the revision assets.
+  inputs:
+    type: object
+    required:
+    - dataSetId
+    - assetName
+    properties:
+      dataSetId:
+        type: string
+        description: The ID of the data set to create the revision under.
+      assetName:
+        type: string
+        description: The asset name to assign to the imported file.
+      comment:
+        type: string
+        description: A comment describing the revision.
+        default: Signed URL import
+  steps:
+  - stepId: createRevision
+    description: >-
+      Create a new revision to receive the imported asset.
+    operationId: createRevision
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    requestBody:
+      contentType: application/json
+      payload:
+        Comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      revisionId: $response.body#/Id
+  - stepId: createImportJob
+    description: >-
+      Create an IMPORT_ASSET_FROM_SIGNED_URL job for the named asset.
+    operationId: createJob
+    requestBody:
+      contentType: application/json
+      payload:
+        Type: IMPORT_ASSET_FROM_SIGNED_URL
+        Details:
+          ImportAssetFromSignedUrl:
+            DataSetId: $inputs.dataSetId
+            RevisionId: $steps.createRevision.outputs.revisionId
+            AssetName: $inputs.assetName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      jobId: $response.body#/Id
+  - stepId: startImportJob
+    description: >-
+      Start the signed URL import job.
+    operationId: startJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.createImportJob.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      startedState: $response.body#/State
+  - stepId: pollImportJob
+    description: >-
+      Poll the import job until terminal. Loops while WAITING or IN_PROGRESS and
+      proceeds to list assets on COMPLETED.
+    operationId: getJob
+    parameters:
+    - name: JobId
+      in: path
+      value: $steps.createImportJob.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/State
+    onSuccess:
+    - name: importDone
+      type: goto
+      stepId: listAssets
+      criteria:
+      - context: $response.body
+        condition: $.State == "COMPLETED"
+        type: jsonpath
+    - name: importPending
+      type: goto
+      stepId: pollImportJob
+      criteria:
+      - context: $response.body
+        condition: $.State == "WAITING" || $.State == "IN_PROGRESS"
+        type: jsonpath
+  - stepId: listAssets
+    description: >-
+      List the revision's assets to confirm the imported asset is present.
+    operationId: listRevisionAssets
+    parameters:
+    - name: DataSetId
+      in: path
+      value: $inputs.dataSetId
+    - name: RevisionId
+      in: path
+      value: $steps.createRevision.outputs.revisionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      importedAssetId: $response.body#/Assets/0/Id
+      importedAssetName: $response.body#/Assets/0/Name
+  outputs:
+    revisionId: $steps.createRevision.outputs.revisionId
+    jobId: $steps.createImportJob.outputs.jobId
+    importedAssetId: $steps.listAssets.outputs.importedAssetId
