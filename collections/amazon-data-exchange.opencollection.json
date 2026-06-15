@@ -1,0 +1,689 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Data Exchange API",
+    "version": "Mon Jul 24 2017 20:00:00 GMT-0400 (Eastern Daylight Time)"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Sets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Data Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token for the next page of results"
+              },
+              {
+                "name": "origin",
+                "value": "",
+                "type": "query",
+                "description": "Filter data sets by origin (OWNED or ENTITLED)"
+              }
+            ]
+          },
+          "docs": "Returns a list of data sets owned by the account or available to the account through subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create Data Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new data set in AWS Data Exchange."
+        },
+        {
+          "info": {
+            "name": "Get Data Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data set"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific data set."
+        },
+        {
+          "info": {
+            "name": "Update Data Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data set to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the details of a data set."
+        },
+        {
+          "info": {
+            "name": "Delete Data Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data set to delete"
+              }
+            ]
+          },
+          "docs": "Deletes a data set. A data set can be deleted if it has no active revisions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Revisions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Data Set Revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId/revisions",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data set"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of revisions for a data set."
+        },
+        {
+          "info": {
+            "name": "Create Revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId/revisions",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new revision for a data set."
+        },
+        {
+          "info": {
+            "name": "Get Revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId/revisions/:RevisionId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "RevisionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific revision."
+        },
+        {
+          "info": {
+            "name": "Update Revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId/revisions/:RevisionId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "RevisionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the details of a revision, including finalizing it for publishing."
+        },
+        {
+          "info": {
+            "name": "Delete Revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId/revisions/:RevisionId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "RevisionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a revision. A revision can only be deleted if it has not been finalized."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Revision Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId/revisions/:RevisionId/assets",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "RevisionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of assets in a specific revision."
+        },
+        {
+          "info": {
+            "name": "Get Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "RevisionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AssetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific asset."
+        },
+        {
+          "info": {
+            "name": "Update Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "RevisionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AssetId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name of a specific asset."
+        },
+        {
+          "info": {
+            "name": "Delete Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "RevisionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AssetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an asset from a revision."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of jobs created for the account."
+        },
+        {
+          "info": {
+            "name": "Create Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new import or export job for transferring assets."
+        },
+        {
+          "info": {
+            "name": "Get Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs/:JobId",
+            "params": [
+              {
+                "name": "JobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the details and current state of a specific job."
+        },
+        {
+          "info": {
+            "name": "Start Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs/:JobId/start",
+            "params": [
+              {
+                "name": "JobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Starts a job that has been created but is in the WAITING state."
+        },
+        {
+          "info": {
+            "name": "Cancel Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs/:JobId/cancel",
+            "params": [
+              {
+                "name": "JobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels a job that is in the WAITING or IN_PROGRESS state."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Event Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Event Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/event-actions",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventSourceToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of event actions configured for the account."
+        },
+        {
+          "info": {
+            "name": "Create Event Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dataexchange.amazonaws.com/v1/event-actions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new event action for automating responses to data exchange events."
+        },
+        {
+          "info": {
+            "name": "Get Event Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/event-actions/:EventActionId",
+            "params": [
+              {
+                "name": "EventActionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific event action."
+        },
+        {
+          "info": {
+            "name": "Update Event Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dataexchange.amazonaws.com/v1/event-actions/:EventActionId",
+            "params": [
+              {
+                "name": "EventActionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the action associated with an event action."
+        },
+        {
+          "info": {
+            "name": "Delete Event Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dataexchange.amazonaws.com/v1/event-actions/:EventActionId",
+            "params": [
+              {
+                "name": "EventActionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an event action."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tags for Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path",
+                "description": "The ARN of the Data Exchange resource. This ARN uniquely identifies the resource."
+              }
+            ]
+          },
+          "docs": "Returns the list of tags associated with a Data Exchange resource."
+        },
+        {
+          "info": {
+            "name": "Tag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dataexchange.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path",
+                "description": "The ARN of the Data Exchange resource. This ARN uniquely identifies the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds tags to a Data Exchange resource."
+        },
+        {
+          "info": {
+            "name": "Untag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dataexchange.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path",
+                "description": "The ARN of the Data Exchange resource. This ARN uniquely identifies the resource."
+              },
+              {
+                "name": "tagKeys",
+                "value": "",
+                "type": "query",
+                "description": "The tag keys to remove"
+              }
+            ]
+          },
+          "docs": "Removes tags from a Data Exchange resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

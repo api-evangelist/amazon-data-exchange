@@ -1,0 +1,4137 @@
+{
+  "info": {
+    "_postman_id": "6d8378b1-667a-4df1-9797-f8dee5f58d9c",
+    "name": "AWS Data Exchange API",
+    "description": "The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:02:53.000Z",
+    "updatedAt": "2026-06-05T15:02:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6d8378b1-667a-4df1-9797-f8dee5f58d9c"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "data-sets",
+          "item": [
+            {
+              "name": "{DataSetId}",
+              "item": [
+                {
+                  "name": "revisions",
+                  "item": [
+                    {
+                      "name": "{RevisionId}",
+                      "item": [
+                        {
+                          "name": "assets",
+                          "item": [
+                            {
+                              "name": "{AssetId}",
+                              "item": [
+                                {
+                                  "name": "Get Asset",
+                                  "id": "3e0dceba-a430-4495-b523-cac3ac25bae9",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "data-sets",
+                                        ":DataSetId",
+                                        "revisions",
+                                        ":RevisionId",
+                                        "assets",
+                                        ":AssetId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "21c65cb5-4b23-4ae8-8fa2-db86f5a73da0",
+                                          "key": "DataSetId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "6b69e51e-570e-4542-9427-dddb3e6c80d6",
+                                          "key": "RevisionId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "6814dce8-6157-4177-8777-750af2f211e7",
+                                          "key": "AssetId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Returns the details of a specific asset."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "664c4a91-236a-41c6-8c25-983761a0da88",
+                                      "name": "Asset details returned successfully",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "data-sets",
+                                            ":DataSetId",
+                                            "revisions",
+                                            ":RevisionId",
+                                            "assets",
+                                            ":AssetId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "DataSetId"
+                                            },
+                                            {
+                                              "key": "RevisionId"
+                                            },
+                                            {
+                                              "key": "AssetId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"DataSetId\": \"<string>\",\n  \"RevisionId\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"AssetType\": \"API_GATEWAY_API\",\n  \"AssetDetails\": {},\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                                      "createdAt": "2026-06-05T15:02:54.000Z",
+                                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                                      "uid": "35240-664c4a91-236a-41c6-8c25-983761a0da88"
+                                    },
+                                    {
+                                      "id": "a44decd9-8143-41e2-afd9-5707778933c6",
+                                      "name": "Asset not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "data-sets",
+                                            ":DataSetId",
+                                            "revisions",
+                                            ":RevisionId",
+                                            "assets",
+                                            ":AssetId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "DataSetId"
+                                            },
+                                            {
+                                              "key": "RevisionId"
+                                            },
+                                            {
+                                              "key": "AssetId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                                      "createdAt": "2026-06-05T15:02:54.000Z",
+                                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                                      "uid": "35240-a44decd9-8143-41e2-afd9-5707778933c6"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:02:54.000Z",
+                                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                                  "uid": "35240-3e0dceba-a430-4495-b523-cac3ac25bae9"
+                                },
+                                {
+                                  "name": "Update Asset",
+                                  "id": "f9b97b5f-cee2-4b47-a037-343e6a2652a4",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"Name\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "data-sets",
+                                        ":DataSetId",
+                                        "revisions",
+                                        ":RevisionId",
+                                        "assets",
+                                        ":AssetId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "082fab26-8080-47a2-a351-83d52deed681",
+                                          "key": "DataSetId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b04ee297-8023-4479-b0f4-974051ef34ab",
+                                          "key": "RevisionId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "365b7f1d-1e35-491d-85a2-6707485c336f",
+                                          "key": "AssetId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Updates the name of a specific asset."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "853cf429-bc07-4de5-91fb-69c6fe15ffb8",
+                                      "name": "Asset updated successfully",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"Name\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "data-sets",
+                                            ":DataSetId",
+                                            "revisions",
+                                            ":RevisionId",
+                                            "assets",
+                                            ":AssetId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "DataSetId"
+                                            },
+                                            {
+                                              "key": "RevisionId"
+                                            },
+                                            {
+                                              "key": "AssetId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"DataSetId\": \"<string>\",\n  \"RevisionId\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"AssetType\": \"API_GATEWAY_API\",\n  \"AssetDetails\": {},\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                                      "createdAt": "2026-06-05T15:02:54.000Z",
+                                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                                      "uid": "35240-853cf429-bc07-4de5-91fb-69c6fe15ffb8"
+                                    },
+                                    {
+                                      "id": "e376dfc4-f48d-4567-9666-34a5f2f8afe7",
+                                      "name": "Asset not found",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"Name\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "data-sets",
+                                            ":DataSetId",
+                                            "revisions",
+                                            ":RevisionId",
+                                            "assets",
+                                            ":AssetId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "DataSetId"
+                                            },
+                                            {
+                                              "key": "RevisionId"
+                                            },
+                                            {
+                                              "key": "AssetId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                                      "createdAt": "2026-06-05T15:02:54.000Z",
+                                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                                      "uid": "35240-e376dfc4-f48d-4567-9666-34a5f2f8afe7"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:02:54.000Z",
+                                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                                  "uid": "35240-f9b97b5f-cee2-4b47-a037-343e6a2652a4"
+                                },
+                                {
+                                  "name": "Delete Asset",
+                                  "id": "588bd747-57c9-48df-9a9e-e6610a46cef1",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "data-sets",
+                                        ":DataSetId",
+                                        "revisions",
+                                        ":RevisionId",
+                                        "assets",
+                                        ":AssetId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "62427c8c-0e3d-4e53-9724-48091609f347",
+                                          "key": "DataSetId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b8398339-2e3e-494f-966c-b0d732d40eeb",
+                                          "key": "RevisionId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b75bada1-f01d-43dc-af57-9ee2fe1b8158",
+                                          "key": "AssetId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Deletes an asset from a revision."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "3b22a8e1-1afb-4d53-8f9a-b343f949079e",
+                                      "name": "Asset deleted successfully",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "data-sets",
+                                            ":DataSetId",
+                                            "revisions",
+                                            ":RevisionId",
+                                            "assets",
+                                            ":AssetId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "DataSetId"
+                                            },
+                                            {
+                                              "key": "RevisionId"
+                                            },
+                                            {
+                                              "key": "AssetId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:02:54.000Z",
+                                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                                      "uid": "35240-3b22a8e1-1afb-4d53-8f9a-b343f949079e"
+                                    },
+                                    {
+                                      "id": "da44c36a-9c00-45a6-9738-da680551a4a3",
+                                      "name": "Asset not found",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets/:AssetId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "data-sets",
+                                            ":DataSetId",
+                                            "revisions",
+                                            ":RevisionId",
+                                            "assets",
+                                            ":AssetId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "DataSetId"
+                                            },
+                                            {
+                                              "key": "RevisionId"
+                                            },
+                                            {
+                                              "key": "AssetId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                                      "createdAt": "2026-06-05T15:02:54.000Z",
+                                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                                      "uid": "35240-da44c36a-9c00-45a6-9738-da680551a4a3"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:02:54.000Z",
+                                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                                  "uid": "35240-588bd747-57c9-48df-9a9e-e6610a46cef1"
+                                }
+                              ],
+                              "id": "d684a2a4-2880-443c-841d-7c0370573f8c",
+                              "createdAt": "2026-06-05T15:02:54.000Z",
+                              "updatedAt": "2026-06-05T15:02:54.000Z",
+                              "uid": "35240-d684a2a4-2880-443c-841d-7c0370573f8c"
+                            },
+                            {
+                              "name": "List Revision Assets",
+                              "id": "804e30ec-702a-4248-8666-161d76d78e1a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets?maxResults=<integer>&nextToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data-sets",
+                                    ":DataSetId",
+                                    "revisions",
+                                    ":RevisionId",
+                                    "assets"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "maxResults",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "nextToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "fe04951f-22bf-4221-89a1-f8ca1c905228",
+                                      "key": "DataSetId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "5f386050-8873-4d57-b9e2-a34fae7b35a7",
+                                      "key": "RevisionId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a list of assets in a specific revision."
+                              },
+                              "response": [
+                                {
+                                  "id": "b6a3646c-4f6a-48ed-8e4d-6c36c21ccee7",
+                                  "name": "List of assets returned successfully",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets?maxResults=<integer>&nextToken=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "data-sets",
+                                        ":DataSetId",
+                                        "revisions",
+                                        ":RevisionId",
+                                        "assets"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "maxResults",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "nextToken",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "DataSetId"
+                                        },
+                                        {
+                                          "key": "RevisionId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"Assets\": [\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"DataSetId\": \"<string>\",\n      \"RevisionId\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"AssetType\": \"S3_DATA_ACCESS\",\n      \"AssetDetails\": {},\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    },\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"DataSetId\": \"<string>\",\n      \"RevisionId\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"AssetType\": \"LAKE_FORMATION_DATA_PERMISSION\",\n      \"AssetDetails\": {},\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"NextToken\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:02:54.000Z",
+                                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                                  "uid": "35240-b6a3646c-4f6a-48ed-8e4d-6c36c21ccee7"
+                                },
+                                {
+                                  "id": "5ae6c46e-495a-461d-9882-7813cd42cf64",
+                                  "name": "Revision not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId/assets?maxResults=<integer>&nextToken=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "data-sets",
+                                        ":DataSetId",
+                                        "revisions",
+                                        ":RevisionId",
+                                        "assets"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "maxResults",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "nextToken",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "DataSetId"
+                                        },
+                                        {
+                                          "key": "RevisionId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:02:54.000Z",
+                                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                                  "uid": "35240-5ae6c46e-495a-461d-9882-7813cd42cf64"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:02:54.000Z",
+                              "updatedAt": "2026-06-05T15:02:54.000Z",
+                              "uid": "35240-804e30ec-702a-4248-8666-161d76d78e1a"
+                            }
+                          ],
+                          "id": "6c6e944c-4c79-46f3-8e5c-4bc442eb5deb",
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-6c6e944c-4c79-46f3-8e5c-4bc442eb5deb"
+                        },
+                        {
+                          "name": "Get Revision",
+                          "id": "19f5163c-9670-45cd-beed-07d1283270f2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data-sets",
+                                ":DataSetId",
+                                "revisions",
+                                ":RevisionId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d204c0e9-7f5c-4e13-871e-df59573265fc",
+                                  "key": "DataSetId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "a25093ea-edd7-47d6-9432-1bb07919f383",
+                                  "key": "RevisionId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns the details of a specific revision."
+                          },
+                          "response": [
+                            {
+                              "id": "51a1cb4c-e7fe-4519-86ce-6033578d3710",
+                              "name": "Revision details returned successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data-sets",
+                                    ":DataSetId",
+                                    "revisions",
+                                    ":RevisionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "DataSetId"
+                                    },
+                                    {
+                                      "key": "RevisionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"DataSetId\": \"<string>\",\n  \"Comment\": \"<string>\",\n  \"Finalized\": \"<boolean>\",\n  \"Tags\": {\n    \"amet_b9\": \"<string>\",\n    \"eiusmodb8\": \"<string>\"\n  },\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-06-05T15:02:54.000Z",
+                              "updatedAt": "2026-06-05T15:02:54.000Z",
+                              "uid": "35240-51a1cb4c-e7fe-4519-86ce-6033578d3710"
+                            },
+                            {
+                              "id": "540fbd9e-7e5f-4c58-a223-5ad6870b0422",
+                              "name": "Revision not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data-sets",
+                                    ":DataSetId",
+                                    "revisions",
+                                    ":RevisionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "DataSetId"
+                                    },
+                                    {
+                                      "key": "RevisionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:02:54.000Z",
+                              "updatedAt": "2026-06-05T15:02:54.000Z",
+                              "uid": "35240-540fbd9e-7e5f-4c58-a223-5ad6870b0422"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-19f5163c-9670-45cd-beed-07d1283270f2"
+                        },
+                        {
+                          "name": "Update Revision",
+                          "id": "164b9bfa-0175-4792-b069-8f404baf9d38",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"Comment\": \"<string>\",\n  \"Finalized\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data-sets",
+                                ":DataSetId",
+                                "revisions",
+                                ":RevisionId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cc1d1c40-9c3b-4b7e-9143-ccf78285a571",
+                                  "key": "DataSetId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "c37dc67b-5506-4c3e-9ab7-0a19b484794c",
+                                  "key": "RevisionId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Updates the details of a revision, including finalizing it for publishing."
+                          },
+                          "response": [
+                            {
+                              "id": "b68f70f8-3418-44fa-b4b5-d0abd1f701ff",
+                              "name": "Revision updated successfully",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"Comment\": \"<string>\",\n  \"Finalized\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data-sets",
+                                    ":DataSetId",
+                                    "revisions",
+                                    ":RevisionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "DataSetId"
+                                    },
+                                    {
+                                      "key": "RevisionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"DataSetId\": \"<string>\",\n  \"Comment\": \"<string>\",\n  \"Finalized\": \"<boolean>\",\n  \"Tags\": {\n    \"amet_b9\": \"<string>\",\n    \"eiusmodb8\": \"<string>\"\n  },\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-06-05T15:02:54.000Z",
+                              "updatedAt": "2026-06-05T15:02:54.000Z",
+                              "uid": "35240-b68f70f8-3418-44fa-b4b5-d0abd1f701ff"
+                            },
+                            {
+                              "id": "588fe96c-42f6-46df-85de-34913477d4c7",
+                              "name": "Revision not found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"Comment\": \"<string>\",\n  \"Finalized\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data-sets",
+                                    ":DataSetId",
+                                    "revisions",
+                                    ":RevisionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "DataSetId"
+                                    },
+                                    {
+                                      "key": "RevisionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:02:54.000Z",
+                              "updatedAt": "2026-06-05T15:02:54.000Z",
+                              "uid": "35240-588fe96c-42f6-46df-85de-34913477d4c7"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-164b9bfa-0175-4792-b069-8f404baf9d38"
+                        },
+                        {
+                          "name": "Delete Revision",
+                          "id": "62f4eadd-2b0f-4074-8f09-915c331cd736",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data-sets",
+                                ":DataSetId",
+                                "revisions",
+                                ":RevisionId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7b41c424-ca75-4e0a-8f90-8d2262fcd6a4",
+                                  "key": "DataSetId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "b9edcc09-a564-4166-8784-e3640cad7480",
+                                  "key": "RevisionId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Deletes a revision. A revision can only be deleted if it has not been finalized."
+                          },
+                          "response": [
+                            {
+                              "id": "de72531a-3853-4c1e-90c5-b2b7026838a1",
+                              "name": "Revision deleted successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data-sets",
+                                    ":DataSetId",
+                                    "revisions",
+                                    ":RevisionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "DataSetId"
+                                    },
+                                    {
+                                      "key": "RevisionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:02:54.000Z",
+                              "updatedAt": "2026-06-05T15:02:54.000Z",
+                              "uid": "35240-de72531a-3853-4c1e-90c5-b2b7026838a1"
+                            },
+                            {
+                              "id": "8e1959c3-09b8-4771-9c66-426f0f467cb2",
+                              "name": "Revision not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions/:RevisionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data-sets",
+                                    ":DataSetId",
+                                    "revisions",
+                                    ":RevisionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "DataSetId"
+                                    },
+                                    {
+                                      "key": "RevisionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:02:54.000Z",
+                              "updatedAt": "2026-06-05T15:02:54.000Z",
+                              "uid": "35240-8e1959c3-09b8-4771-9c66-426f0f467cb2"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-62f4eadd-2b0f-4074-8f09-915c331cd736"
+                        }
+                      ],
+                      "id": "7e2b5d31-d323-482e-8df2-21cac833744b",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-7e2b5d31-d323-482e-8df2-21cac833744b"
+                    },
+                    {
+                      "name": "List Data Set Revisions",
+                      "id": "9505f9fe-a3d2-4aa9-80e2-db72dd98d2a2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions?maxResults=<integer>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data-sets",
+                            ":DataSetId",
+                            "revisions"
+                          ],
+                          "query": [
+                            {
+                              "key": "maxResults",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "8c275813-4a3a-4d2a-9f65-dcfc8902a337",
+                              "key": "DataSetId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the data set"
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of revisions for a data set."
+                      },
+                      "response": [
+                        {
+                          "id": "c0e8bb67-9499-4ff3-9002-d1aa22774d3a",
+                          "name": "List of revisions returned successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions?maxResults=<integer>&nextToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data-sets",
+                                ":DataSetId",
+                                "revisions"
+                              ],
+                              "query": [
+                                {
+                                  "key": "maxResults",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "nextToken",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "DataSetId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"Revisions\": [\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"DataSetId\": \"<string>\",\n      \"Comment\": \"<string>\",\n      \"Finalized\": \"<boolean>\",\n      \"Tags\": {\n        \"ad3\": \"<string>\",\n        \"ut1_3\": \"<string>\",\n        \"ullamcob4\": \"<string>\"\n      },\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    },\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"DataSetId\": \"<string>\",\n      \"Comment\": \"<string>\",\n      \"Finalized\": \"<boolean>\",\n      \"Tags\": {\n        \"ad198\": \"<string>\"\n      },\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"NextToken\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-c0e8bb67-9499-4ff3-9002-d1aa22774d3a"
+                        },
+                        {
+                          "id": "0f5e7b7c-ee92-4aa4-b1dc-e047c29bccc9",
+                          "name": "Data set not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions?maxResults=<integer>&nextToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data-sets",
+                                ":DataSetId",
+                                "revisions"
+                              ],
+                              "query": [
+                                {
+                                  "key": "maxResults",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "nextToken",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "DataSetId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-0f5e7b7c-ee92-4aa4-b1dc-e047c29bccc9"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-9505f9fe-a3d2-4aa9-80e2-db72dd98d2a2"
+                    },
+                    {
+                      "name": "Create Revision",
+                      "id": "16f337f8-af83-4852-b8eb-d24eca1c9280",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Comment\": \"<string>\",\n  \"Tags\": {\n    \"veniam_dc\": \"<string>\",\n    \"cupidatat8\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data-sets",
+                            ":DataSetId",
+                            "revisions"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ac60cb8f-ee08-410f-b22e-e2322cab16b3",
+                              "key": "DataSetId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the data set"
+                            }
+                          ]
+                        },
+                        "description": "Creates a new revision for a data set."
+                      },
+                      "response": [
+                        {
+                          "id": "5f510b28-347d-4ae2-9124-e194332a0ece",
+                          "name": "Revision created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"Comment\": \"<string>\",\n  \"Tags\": {\n    \"veniam_dc\": \"<string>\",\n    \"cupidatat8\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data-sets",
+                                ":DataSetId",
+                                "revisions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "DataSetId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"DataSetId\": \"<string>\",\n  \"Comment\": \"<string>\",\n  \"Finalized\": \"<boolean>\",\n  \"Tags\": {\n    \"amet_b9\": \"<string>\",\n    \"eiusmodb8\": \"<string>\"\n  },\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-5f510b28-347d-4ae2-9124-e194332a0ece"
+                        },
+                        {
+                          "id": "208c2ecb-6947-4936-9f78-bf7b1cb9d3bd",
+                          "name": "Data set not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"Comment\": \"<string>\",\n  \"Tags\": {\n    \"veniam_dc\": \"<string>\",\n    \"cupidatat8\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data-sets/:DataSetId/revisions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data-sets",
+                                ":DataSetId",
+                                "revisions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "DataSetId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-208c2ecb-6947-4936-9f78-bf7b1cb9d3bd"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-16f337f8-af83-4852-b8eb-d24eca1c9280"
+                    }
+                  ],
+                  "id": "c3fb5f3d-c7d2-4f23-ac7c-9ca6a712842b",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-c3fb5f3d-c7d2-4f23-ac7c-9ca6a712842b"
+                },
+                {
+                  "name": "Get Data Set",
+                  "id": "9550e598-e2aa-4b39-891b-e28ed52d7342",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/data-sets/:DataSetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "data-sets",
+                        ":DataSetId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0f687a9b-4e1c-46b2-9553-133065abb26a",
+                          "key": "DataSetId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the data set"
+                        }
+                      ]
+                    },
+                    "description": "Returns the details of a specific data set."
+                  },
+                  "response": [
+                    {
+                      "id": "0070f0d7-dabf-40d1-9952-efa43bad9c23",
+                      "name": "Data set details returned successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data-sets",
+                            ":DataSetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "DataSetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Description\": \"<string>\",\n  \"AssetType\": \"LAKE_FORMATION_DATA_PERMISSION\",\n  \"Origin\": \"ENTITLED\",\n  \"OriginDetails\": {\n    \"ProductId\": \"<string>\"\n  },\n  \"Tags\": {\n    \"et2\": \"<string>\",\n    \"eiusmodd\": \"<string>\"\n  },\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-0070f0d7-dabf-40d1-9952-efa43bad9c23"
+                    },
+                    {
+                      "id": "180ca4a0-bae1-48ff-b8e0-6c19f3f93c29",
+                      "name": "Data set not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data-sets",
+                            ":DataSetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "DataSetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-180ca4a0-bae1-48ff-b8e0-6c19f3f93c29"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-9550e598-e2aa-4b39-891b-e28ed52d7342"
+                },
+                {
+                  "name": "Update Data Set",
+                  "id": "31cc2082-4bbd-4deb-8349-e5fa7bb9f472",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Name\": \"<string>\",\n  \"Description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/data-sets/:DataSetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "data-sets",
+                        ":DataSetId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ee993159-c6bb-4b84-a039-ff8f5b3dc6c1",
+                          "key": "DataSetId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the data set to update"
+                        }
+                      ]
+                    },
+                    "description": "Updates the details of a data set."
+                  },
+                  "response": [
+                    {
+                      "id": "554f8f13-2da6-4e0d-8c73-6c56148f220c",
+                      "name": "Data set updated successfully",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Name\": \"<string>\",\n  \"Description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data-sets",
+                            ":DataSetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "DataSetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Description\": \"<string>\",\n  \"AssetType\": \"LAKE_FORMATION_DATA_PERMISSION\",\n  \"Origin\": \"ENTITLED\",\n  \"OriginDetails\": {\n    \"ProductId\": \"<string>\"\n  },\n  \"Tags\": {\n    \"et2\": \"<string>\",\n    \"eiusmodd\": \"<string>\"\n  },\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-554f8f13-2da6-4e0d-8c73-6c56148f220c"
+                    },
+                    {
+                      "id": "7382b841-0a38-45da-a413-8fb204ecd39e",
+                      "name": "Data set not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Name\": \"<string>\",\n  \"Description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data-sets",
+                            ":DataSetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "DataSetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-7382b841-0a38-45da-a413-8fb204ecd39e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-31cc2082-4bbd-4deb-8349-e5fa7bb9f472"
+                },
+                {
+                  "name": "Delete Data Set",
+                  "id": "f228836d-9d8b-453f-b512-6413796edbba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/data-sets/:DataSetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "data-sets",
+                        ":DataSetId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a60b443d-f3c1-44e7-9b8a-2e7715508fbf",
+                          "key": "DataSetId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the data set to delete"
+                        }
+                      ]
+                    },
+                    "description": "Deletes a data set. A data set can be deleted if it has no active revisions."
+                  },
+                  "response": [
+                    {
+                      "id": "3095cd4f-f092-41af-846d-325c48ec118b",
+                      "name": "Data set deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data-sets",
+                            ":DataSetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "DataSetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-3095cd4f-f092-41af-846d-325c48ec118b"
+                    },
+                    {
+                      "id": "029e1ac9-f4ce-4fc7-9362-d2b384319a84",
+                      "name": "Data set not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data-sets/:DataSetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data-sets",
+                            ":DataSetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "DataSetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-029e1ac9-f4ce-4fc7-9362-d2b384319a84"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-f228836d-9d8b-453f-b512-6413796edbba"
+                }
+              ],
+              "id": "d36366fa-cfec-41d2-8b7e-9f2f604d2d51",
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-d36366fa-cfec-41d2-8b7e-9f2f604d2d51"
+            },
+            {
+              "name": "List Data Sets",
+              "id": "82f91e85-9645-4536-bec7-53cd56c608cb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/data-sets?maxResults=<integer>&nextToken=<string>&origin=OWNED",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "data-sets"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token for the next page of results",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter data sets by origin (OWNED or ENTITLED)",
+                      "key": "origin",
+                      "value": "OWNED"
+                    }
+                  ]
+                },
+                "description": "Returns a list of data sets owned by the account or available to the account through subscriptions."
+              },
+              "response": [
+                {
+                  "id": "a19615f7-3840-47f5-8063-b6f22b37a100",
+                  "name": "List of data sets returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/data-sets?maxResults=<integer>&nextToken=<string>&origin=OWNED",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "data-sets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "maxResults",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Pagination token for the next page of results",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter data sets by origin (OWNED or ENTITLED)",
+                          "key": "origin",
+                          "value": "OWNED"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"DataSets\": [\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Description\": \"<string>\",\n      \"AssetType\": \"REDSHIFT_DATA_SHARE\",\n      \"Origin\": \"ENTITLED\",\n      \"OriginDetails\": {\n        \"ProductId\": \"<string>\"\n      },\n      \"Tags\": {\n        \"eta6a\": \"<string>\"\n      },\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    },\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Description\": \"<string>\",\n      \"AssetType\": \"API_GATEWAY_API\",\n      \"Origin\": \"ENTITLED\",\n      \"OriginDetails\": {\n        \"ProductId\": \"<string>\"\n      },\n      \"Tags\": {\n        \"laborum_4ce\": \"<string>\",\n        \"voluptate_a\": \"<string>\"\n      },\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"NextToken\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-a19615f7-3840-47f5-8063-b6f22b37a100"
+                },
+                {
+                  "id": "262002f5-d320-4771-b4cf-f4fd6fd20e7f",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/data-sets?maxResults=<integer>&nextToken=<string>&origin=OWNED",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "data-sets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "maxResults",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Pagination token for the next page of results",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter data sets by origin (OWNED or ENTITLED)",
+                          "key": "origin",
+                          "value": "OWNED"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-262002f5-d320-4771-b4cf-f4fd6fd20e7f"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-82f91e85-9645-4536-bec7-53cd56c608cb"
+            },
+            {
+              "name": "Create Data Set",
+              "id": "d4af9814-5978-4688-81c7-0833eab6a8ee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Name\": \"<string>\",\n  \"Description\": \"<string>\",\n  \"AssetType\": \"LAKE_FORMATION_DATA_PERMISSION\",\n  \"Tags\": {\n    \"ut_2\": \"<string>\",\n    \"magna_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/data-sets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "data-sets"
+                  ]
+                },
+                "description": "Creates a new data set in AWS Data Exchange."
+              },
+              "response": [
+                {
+                  "id": "fa98404e-be37-406f-84a5-82286b3ac6ae",
+                  "name": "Data set created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Name\": \"<string>\",\n  \"Description\": \"<string>\",\n  \"AssetType\": \"LAKE_FORMATION_DATA_PERMISSION\",\n  \"Tags\": {\n    \"ut_2\": \"<string>\",\n    \"magna_2\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/data-sets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "data-sets"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Description\": \"<string>\",\n  \"AssetType\": \"LAKE_FORMATION_DATA_PERMISSION\",\n  \"Origin\": \"ENTITLED\",\n  \"OriginDetails\": {\n    \"ProductId\": \"<string>\"\n  },\n  \"Tags\": {\n    \"et2\": \"<string>\",\n    \"eiusmodd\": \"<string>\"\n  },\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-fa98404e-be37-406f-84a5-82286b3ac6ae"
+                },
+                {
+                  "id": "95cd1825-c782-4095-bf76-7334d5d8b70c",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Name\": \"<string>\",\n  \"Description\": \"<string>\",\n  \"AssetType\": \"LAKE_FORMATION_DATA_PERMISSION\",\n  \"Tags\": {\n    \"ut_2\": \"<string>\",\n    \"magna_2\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/data-sets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "data-sets"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-95cd1825-c782-4095-bf76-7334d5d8b70c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-d4af9814-5978-4688-81c7-0833eab6a8ee"
+            }
+          ],
+          "id": "4fdaf15a-8fa2-4dd2-af26-1386f0e8fa9a",
+          "createdAt": "2026-06-05T15:02:54.000Z",
+          "updatedAt": "2026-06-05T15:02:54.000Z",
+          "uid": "35240-4fdaf15a-8fa2-4dd2-af26-1386f0e8fa9a"
+        },
+        {
+          "name": "jobs",
+          "item": [
+            {
+              "name": "{JobId}",
+              "item": [
+                {
+                  "name": "start",
+                  "item": [
+                    {
+                      "name": "Start Job",
+                      "id": "ff1743ad-b3a7-4b4b-b659-39d19e4244ed",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:JobId/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":JobId",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c4972920-e53f-47b3-8774-221c712200fb",
+                              "key": "JobId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Starts a job that has been created but is in the WAITING state."
+                      },
+                      "response": [
+                        {
+                          "id": "f016d8cd-eac0-4807-a79a-68f3f989c9e8",
+                          "name": "Job started successfully",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/jobs/:JobId/start",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "jobs",
+                                ":JobId",
+                                "start"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "JobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"JobId\": \"<string>\",\n  \"State\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-f016d8cd-eac0-4807-a79a-68f3f989c9e8"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-ff1743ad-b3a7-4b4b-b659-39d19e4244ed"
+                    }
+                  ],
+                  "id": "4335c9f0-f4e5-408e-b9c9-b7cdbf976b88",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-4335c9f0-f4e5-408e-b9c9-b7cdbf976b88"
+                },
+                {
+                  "name": "cancel",
+                  "item": [
+                    {
+                      "name": "Cancel Job",
+                      "id": "e8bbd0a9-7ce5-4509-8df4-c107759ba806",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:JobId/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":JobId",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "id": "acbb2c7b-2d94-4050-8891-a9481c66171e",
+                              "key": "JobId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Cancels a job that is in the WAITING or IN_PROGRESS state."
+                      },
+                      "response": [
+                        {
+                          "id": "ef1191a1-4edd-4b37-89ee-73e7ab7392c6",
+                          "name": "Job cancelled successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/jobs/:JobId/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "jobs",
+                                ":JobId",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "JobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-ef1191a1-4edd-4b37-89ee-73e7ab7392c6"
+                        },
+                        {
+                          "id": "626c6a3a-2217-4f00-b560-11b8933cd500",
+                          "name": "Job not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/jobs/:JobId/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "jobs",
+                                ":JobId",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "JobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:02:54.000Z",
+                          "updatedAt": "2026-06-05T15:02:54.000Z",
+                          "uid": "35240-626c6a3a-2217-4f00-b560-11b8933cd500"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-e8bbd0a9-7ce5-4509-8df4-c107759ba806"
+                    }
+                  ],
+                  "id": "8a88d28d-617c-4718-9d66-3e2fe5823520",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-8a88d28d-617c-4718-9d66-3e2fe5823520"
+                },
+                {
+                  "name": "Get Job",
+                  "id": "c02c2297-5bdc-43d1-beaa-a125001ed5a3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs/:JobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs",
+                        ":JobId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "16729f74-52db-4295-950f-0151f067837a",
+                          "key": "JobId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns the details and current state of a specific job."
+                  },
+                  "response": [
+                    {
+                      "id": "f05631c8-008d-457a-99ae-0518fb1a5749",
+                      "name": "Job details returned successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:JobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":JobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "JobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"Type\": \"EXPORT_REVISIONS_TO_S3\",\n  \"State\": \"IN_PROGRESS\",\n  \"Details\": {},\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-f05631c8-008d-457a-99ae-0518fb1a5749"
+                    },
+                    {
+                      "id": "4fac1609-b597-496c-9e47-fe888af3a548",
+                      "name": "Job not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:JobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":JobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "JobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-4fac1609-b597-496c-9e47-fe888af3a548"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-c02c2297-5bdc-43d1-beaa-a125001ed5a3"
+                }
+              ],
+              "id": "f2cb574e-8cf0-4f58-8ede-43b8866cb0ed",
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-f2cb574e-8cf0-4f58-8ede-43b8866cb0ed"
+            },
+            {
+              "name": "List Jobs",
+              "id": "189646b3-4508-47e1-a535-ca598f015b3e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/jobs?maxResults=<integer>&nextToken=<string>&dataSetId=<string>&revisionId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataSetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "revisionId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of jobs created for the account."
+              },
+              "response": [
+                {
+                  "id": "e459f3ac-4371-4b3d-9640-2cab07b7008f",
+                  "name": "List of jobs returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?maxResults=<integer>&nextToken=<string>&dataSetId=<string>&revisionId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "key": "maxResults",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "nextToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "dataSetId",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "revisionId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Jobs\": [\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"Type\": \"CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET\",\n      \"State\": \"COMPLETED\",\n      \"Details\": {},\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    },\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"Type\": \"EXPORT_REVISIONS_TO_S3\",\n      \"State\": \"WAITING\",\n      \"Details\": {},\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"NextToken\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-e459f3ac-4371-4b3d-9640-2cab07b7008f"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-189646b3-4508-47e1-a535-ca598f015b3e"
+            },
+            {
+              "name": "Create Job",
+              "id": "82ba9831-8cac-4bf9-af83-2fb75d6347c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Type\": \"IMPORT_ASSET_FROM_API_GATEWAY_API\",\n  \"Details\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ]
+                },
+                "description": "Creates a new import or export job for transferring assets."
+              },
+              "response": [
+                {
+                  "id": "f318a027-0d4d-474b-9996-45ae1c0a53bc",
+                  "name": "Job created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Type\": \"IMPORT_ASSET_FROM_API_GATEWAY_API\",\n  \"Details\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"Type\": \"EXPORT_REVISIONS_TO_S3\",\n  \"State\": \"IN_PROGRESS\",\n  \"Details\": {},\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-f318a027-0d4d-474b-9996-45ae1c0a53bc"
+                },
+                {
+                  "id": "3659d414-8e7c-4a6c-bdbe-0c27e4a3273b",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Type\": \"IMPORT_ASSET_FROM_API_GATEWAY_API\",\n  \"Details\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-3659d414-8e7c-4a6c-bdbe-0c27e4a3273b"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-82ba9831-8cac-4bf9-af83-2fb75d6347c7"
+            }
+          ],
+          "id": "a9a8cc89-981a-440b-8d1f-b63d8f0e0ffa",
+          "createdAt": "2026-06-05T15:02:54.000Z",
+          "updatedAt": "2026-06-05T15:02:54.000Z",
+          "uid": "35240-a9a8cc89-981a-440b-8d1f-b63d8f0e0ffa"
+        },
+        {
+          "name": "event-actions",
+          "item": [
+            {
+              "name": "{EventActionId}",
+              "item": [
+                {
+                  "name": "Get Event Action",
+                  "id": "56883fad-c1ac-48b0-8732-4c624b3c6c9a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-actions/:EventActionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-actions",
+                        ":EventActionId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "26eac2ac-cb72-46a2-853c-298dee158ae1",
+                          "key": "EventActionId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns the details of a specific event action."
+                  },
+                  "response": [
+                    {
+                      "id": "21d3b716-5039-4657-91aa-d37fc8731cdb",
+                      "name": "Event action details returned successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-actions/:EventActionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-actions",
+                            ":EventActionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "EventActionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"Event\": {},\n  \"Action\": {},\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-21d3b716-5039-4657-91aa-d37fc8731cdb"
+                    },
+                    {
+                      "id": "6474551f-f41f-4d04-b3e0-469e570f6f45",
+                      "name": "Event action not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-actions/:EventActionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-actions",
+                            ":EventActionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "EventActionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-6474551f-f41f-4d04-b3e0-469e570f6f45"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-56883fad-c1ac-48b0-8732-4c624b3c6c9a"
+                },
+                {
+                  "name": "Update Event Action",
+                  "id": "32217492-b853-4d9f-b6a4-4f8ca6913ac9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Action\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-actions/:EventActionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-actions",
+                        ":EventActionId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "051c1d51-d6d8-4505-843c-d650dee3b742",
+                          "key": "EventActionId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Updates the action associated with an event action."
+                  },
+                  "response": [
+                    {
+                      "id": "a078cb07-24bc-46ce-8217-0e92bd96d3e2",
+                      "name": "Event action updated successfully",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Action\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-actions/:EventActionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-actions",
+                            ":EventActionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "EventActionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"Event\": {},\n  \"Action\": {},\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-a078cb07-24bc-46ce-8217-0e92bd96d3e2"
+                    },
+                    {
+                      "id": "a104db79-314a-4370-bbbc-b3a01e28a0fe",
+                      "name": "Event action not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Action\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-actions/:EventActionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-actions",
+                            ":EventActionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "EventActionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-a104db79-314a-4370-bbbc-b3a01e28a0fe"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-32217492-b853-4d9f-b6a4-4f8ca6913ac9"
+                },
+                {
+                  "name": "Delete Event Action",
+                  "id": "135c565c-cd03-4242-a18b-003b5235634e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-actions/:EventActionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-actions",
+                        ":EventActionId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0cb8fdaa-68ca-4c2a-9d94-45c44db1edd5",
+                          "key": "EventActionId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes an event action."
+                  },
+                  "response": [
+                    {
+                      "id": "ff73e066-af5a-41b8-9918-6d9f3743ba5d",
+                      "name": "Event action deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-actions/:EventActionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-actions",
+                            ":EventActionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "EventActionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-ff73e066-af5a-41b8-9918-6d9f3743ba5d"
+                    },
+                    {
+                      "id": "1d9bd7db-d7bd-46f3-978d-e79c5404311e",
+                      "name": "Event action not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event-actions/:EventActionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event-actions",
+                            ":EventActionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "EventActionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:54.000Z",
+                      "updatedAt": "2026-06-05T15:02:54.000Z",
+                      "uid": "35240-1d9bd7db-d7bd-46f3-978d-e79c5404311e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-135c565c-cd03-4242-a18b-003b5235634e"
+                }
+              ],
+              "id": "bc379687-4365-44bb-a658-b2f08144a891",
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-bc379687-4365-44bb-a658-b2f08144a891"
+            },
+            {
+              "name": "List Event Actions",
+              "id": "9877ebfa-efa3-4b9a-929e-b94174fd7438",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/event-actions?maxResults=<integer>&nextToken=<string>&eventSourceToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "event-actions"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventSourceToken",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of event actions configured for the account."
+              },
+              "response": [
+                {
+                  "id": "a954cc17-925b-4c96-b240-c64c6d9e3f3e",
+                  "name": "List of event actions returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-actions?maxResults=<integer>&nextToken=<string>&eventSourceToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-actions"
+                      ],
+                      "query": [
+                        {
+                          "key": "maxResults",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "nextToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "eventSourceToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"EventActions\": [\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"Event\": {},\n      \"Action\": {},\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    },\n    {\n      \"Id\": \"<string>\",\n      \"Arn\": \"<string>\",\n      \"Event\": {},\n      \"Action\": {},\n      \"CreatedAt\": \"<dateTime>\",\n      \"UpdatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"NextToken\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-a954cc17-925b-4c96-b240-c64c6d9e3f3e"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-9877ebfa-efa3-4b9a-929e-b94174fd7438"
+            },
+            {
+              "name": "Create Event Action",
+              "id": "cb2cd841-5abd-4bb2-bfee-ec3439a19590",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Event\": {},\n  \"Action\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/event-actions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "event-actions"
+                  ]
+                },
+                "description": "Creates a new event action for automating responses to data exchange events."
+              },
+              "response": [
+                {
+                  "id": "6963d261-0fa4-4c43-b25c-a6e2dbad00a7",
+                  "name": "Event action created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Event\": {},\n  \"Action\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event-actions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event-actions"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Id\": \"<string>\",\n  \"Arn\": \"<string>\",\n  \"Event\": {},\n  \"Action\": {},\n  \"CreatedAt\": \"<dateTime>\",\n  \"UpdatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-6963d261-0fa4-4c43-b25c-a6e2dbad00a7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-cb2cd841-5abd-4bb2-bfee-ec3439a19590"
+            }
+          ],
+          "id": "d00f0f59-bfb3-4e03-ae77-8ef678533eae",
+          "createdAt": "2026-06-05T15:02:54.000Z",
+          "updatedAt": "2026-06-05T15:02:54.000Z",
+          "uid": "35240-d00f0f59-bfb3-4e03-ae77-8ef678533eae"
+        }
+      ],
+      "id": "86aa60ab-3c36-4e2b-8d13-da45fff84b1c",
+      "createdAt": "2026-06-05T15:02:54.000Z",
+      "updatedAt": "2026-06-05T15:02:54.000Z",
+      "uid": "35240-86aa60ab-3c36-4e2b-8d13-da45fff84b1c"
+    },
+    {
+      "name": "tags",
+      "item": [
+        {
+          "name": "{resourceArn}",
+          "item": [
+            {
+              "name": "List Tags for Resource",
+              "id": "dd9652d9-e773-4b5c-b0a0-ad2fb5b5d0be",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resourceArn",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resourceArn"
+                  ],
+                  "variable": [
+                    {
+                      "id": "79c875ab-c581-463a-bbc3-03bcf7130aba",
+                      "key": "resourceArn",
+                      "value": "<string>",
+                      "description": "(Required) The ARN of the Data Exchange resource. This ARN uniquely identifies the resource."
+                    }
+                  ]
+                },
+                "description": "Returns the list of tags associated with a Data Exchange resource."
+              },
+              "response": [
+                {
+                  "id": "1f5086d0-b988-48d9-9258-18526afbe276",
+                  "name": "Tags returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Tags\": {\n    \"commodoa0a\": \"<string>\",\n    \"aliquadf\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-1f5086d0-b988-48d9-9258-18526afbe276"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-dd9652d9-e773-4b5c-b0a0-ad2fb5b5d0be"
+            },
+            {
+              "name": "Tag Resource",
+              "id": "11609277-e7a7-48ce-9c73-6ea101a6f0cc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Tags\": {\n    \"occaecat_216\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resourceArn",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resourceArn"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ee9b4a1e-652e-414a-afee-40747221de5e",
+                      "key": "resourceArn",
+                      "value": "<string>",
+                      "description": "(Required) The ARN of the Data Exchange resource. This ARN uniquely identifies the resource."
+                    }
+                  ]
+                },
+                "description": "Adds tags to a Data Exchange resource."
+              },
+              "response": [
+                {
+                  "id": "9c80edeb-8a86-44cb-8dc2-4597da04dbae",
+                  "name": "Tags added successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Tags\": {\n    \"occaecat_216\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-9c80edeb-8a86-44cb-8dc2-4597da04dbae"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-11609277-e7a7-48ce-9c73-6ea101a6f0cc"
+            },
+            {
+              "name": "Untag Resource",
+              "id": "b56c8e5d-7079-425d-b9d4-6f06a620b6cd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resourceArn?tagKeys=<string>&tagKeys=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resourceArn"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The tag keys to remove",
+                      "key": "tagKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The tag keys to remove",
+                      "key": "tagKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "09d69c35-be85-420f-a4d3-71e02be06436",
+                      "key": "resourceArn",
+                      "value": "<string>",
+                      "description": "(Required) The ARN of the Data Exchange resource. This ARN uniquely identifies the resource."
+                    }
+                  ]
+                },
+                "description": "Removes tags from a Data Exchange resource."
+              },
+              "response": [
+                {
+                  "id": "586e3c09-9b26-4695-921b-01f0fb778bb7",
+                  "name": "Tags removed successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn?tagKeys=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The tag keys to remove",
+                          "key": "tagKeys",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:02:54.000Z",
+                  "updatedAt": "2026-06-05T15:02:54.000Z",
+                  "uid": "35240-586e3c09-9b26-4695-921b-01f0fb778bb7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:54.000Z",
+              "updatedAt": "2026-06-05T15:02:54.000Z",
+              "uid": "35240-b56c8e5d-7079-425d-b9d4-6f06a620b6cd"
+            }
+          ],
+          "id": "5fe701b1-9980-4ffb-8516-abf80a90336b",
+          "createdAt": "2026-06-05T15:02:54.000Z",
+          "updatedAt": "2026-06-05T15:02:54.000Z",
+          "uid": "35240-5fe701b1-9980-4ffb-8516-abf80a90336b"
+        }
+      ],
+      "id": "1b4312d4-871f-4781-a711-1b0e981f87c6",
+      "createdAt": "2026-06-05T15:02:54.000Z",
+      "updatedAt": "2026-06-05T15:02:54.000Z",
+      "uid": "35240-1b4312d4-871f-4781-a711-1b0e981f87c6"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dataexchange.amazonaws.com"
+    }
+  ]
+}
