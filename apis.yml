@@ -7,7 +7,7 @@ description: >-
   directly in the AWS Management Console and use the Data Exchange API to load data into Amazon S3 for analysis with AWS
   analytics and machine learning services.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - AWS
   - Data Exchange
