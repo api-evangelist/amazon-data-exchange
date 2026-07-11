@@ -61,6 +61,14 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-data-exchange-context.jsonld
 common:
+  - type: TrustCenter
+    url: security/amazon-data-exchange-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-data-exchange-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-data-exchange-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-data-exchange-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-data-exchange/overview
   - type: Arazzo
