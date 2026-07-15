@@ -61,6 +61,8 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-data-exchange-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-data-exchange-agentic-access.yml
   - type: TrustCenter
     url: security/amazon-data-exchange-trust-center.yml
   - type: VulnerabilityDisclosure
