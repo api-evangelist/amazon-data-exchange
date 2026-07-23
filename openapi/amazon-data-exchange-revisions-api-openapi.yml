@@ -1,0 +1,319 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Exchange Assets Revisions API
+  description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
+  version: 2017-07-25
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+servers:
+- url: https://dataexchange.amazonaws.com
+  description: AWS Data Exchange API
+security:
+- awsSignatureV4: []
+tags:
+- name: Revisions
+  description: Operations for managing data set revisions
+paths:
+  /v1/data-sets/{DataSetId}/revisions:
+    get:
+      operationId: listDataSetRevisions
+      summary: List Data Set Revisions
+      description: Returns a list of revisions for a data set.
+      tags:
+      - Revisions
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        description: The ID of the data set
+        schema:
+          type: string
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of revisions returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDataSetRevisionsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Revisions:
+                    - Id: rev-001abc
+                      Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc
+                      DataSetId: ds-abc123
+                      Comment: Initial data release
+                      Finalized: true
+                      CreatedAt: '2024-01-20T10:00:00Z'
+                      UpdatedAt: '2024-01-20T11:00:00Z'
+                    NextToken: null
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createRevision
+      summary: Create Revision
+      description: Creates a new revision for a data set.
+      tags:
+      - Revisions
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        description: The ID of the data set
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRevisionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Comment: Q1 2024 data release
+                  Tags:
+                    Quarter: Q1-2024
+      responses:
+        '201':
+          description: Revision created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: rev-002xyz
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-002xyz
+                    DataSetId: ds-abc123
+                    Comment: Q1 2024 data release
+                    Finalized: false
+                    CreatedAt: '2024-04-01T10:00:00Z'
+                    UpdatedAt: '2024-04-01T10:00:00Z'
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/data-sets/{DataSetId}/revisions/{RevisionId}:
+    get:
+      operationId: getRevision
+      summary: Get Revision
+      description: Returns the details of a specific revision.
+      tags:
+      - Revisions
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: RevisionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Revision details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: rev-001abc
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc
+                    DataSetId: ds-abc123
+                    Comment: Initial data release
+                    Finalized: true
+                    CreatedAt: '2024-01-20T10:00:00Z'
+                    UpdatedAt: '2024-01-20T11:00:00Z'
+        '404':
+          description: Revision not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: updateRevision
+      summary: Update Revision
+      description: Updates the details of a revision, including finalizing it for publishing.
+      tags:
+      - Revisions
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: RevisionId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRevisionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Comment: Q1 2024 data release - finalized
+                  Finalized: true
+      responses:
+        '200':
+          description: Revision updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: rev-002xyz
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-002xyz
+                    DataSetId: ds-abc123
+                    Comment: Q1 2024 data release - finalized
+                    Finalized: true
+                    CreatedAt: '2024-04-01T10:00:00Z'
+                    UpdatedAt: '2024-04-01T15:00:00Z'
+        '404':
+          description: Revision not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteRevision
+      summary: Delete Revision
+      description: Deletes a revision. A revision can only be deleted if it has not been finalized.
+      tags:
+      - Revisions
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: RevisionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Revision deleted successfully
+        '404':
+          description: Revision not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ListDataSetRevisionsResponse:
+      description: Response containing a list of revisions.
+      type: object
+      properties:
+        Revisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        NextToken:
+          type: string
+    CreateRevisionRequest:
+      description: Request body for creating a new revision.
+      type: object
+      properties:
+        Comment:
+          type: string
+          description: A comment describing the revision
+          maxLength: 16384
+        Tags:
+          type: object
+          additionalProperties:
+            type: string
+    UpdateRevisionRequest:
+      description: Request body for updating a revision.
+      type: object
+      properties:
+        Comment:
+          type: string
+          description: An updated comment for the revision
+        Finalized:
+          type: boolean
+          description: Set to true to finalize the revision for publishing
+    Revision:
+      description: A revision of a data set, representing a snapshot of data at a point in time.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the revision
+        Arn:
+          type: string
+          description: The ARN of the revision. This ARN uniquely identifies the revision.
+        DataSetId:
+          type: string
+          description: The ID of the data set this revision belongs to
+        Comment:
+          type: string
+          description: A comment describing the revision
+        Finalized:
+          type: boolean
+          description: Whether the revision has been finalized for publishing
+        Tags:
+          type: object
+          description: Tags associated with the revision
+          additionalProperties:
+            type: string
+        CreatedAt:
+          type: string
+          format: date-time
+        UpdatedAt:
+          type: string
+          format: date-time
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

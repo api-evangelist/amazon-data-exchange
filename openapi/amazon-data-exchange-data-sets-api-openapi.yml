@@ -1,0 +1,350 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Exchange Assets Data Sets API
+  description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
+  version: 2017-07-25
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+servers:
+- url: https://dataexchange.amazonaws.com
+  description: AWS Data Exchange API
+security:
+- awsSignatureV4: []
+tags:
+- name: Data Sets
+  description: Operations for managing data sets
+paths:
+  /v1/data-sets:
+    get:
+      operationId: listDataSets
+      summary: List Data Sets
+      description: Returns a list of data sets owned by the account or available to the account through subscriptions.
+      tags:
+      - Data Sets
+      parameters:
+      - name: maxResults
+        in: query
+        description: Maximum number of results to return
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 25
+      - name: nextToken
+        in: query
+        description: Pagination token for the next page of results
+        schema:
+          type: string
+      - name: origin
+        in: query
+        description: Filter data sets by origin (OWNED or ENTITLED)
+        schema:
+          type: string
+          enum:
+          - OWNED
+          - ENTITLED
+      responses:
+        '200':
+          description: List of data sets returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDataSetsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    DataSets:
+                    - Id: ds-abc123
+                      Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123
+                      Name: Market Research Dataset 2024
+                      Description: Comprehensive market research data for 2024
+                      AssetType: S3_SNAPSHOT
+                      Origin: OWNED
+                      CreatedAt: '2024-01-15T10:00:00Z'
+                      UpdatedAt: '2024-03-01T12:00:00Z'
+                    NextToken: null
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createDataSet
+      summary: Create Data Set
+      description: Creates a new data set in AWS Data Exchange.
+      tags:
+      - Data Sets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataSetRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Name: Q1 Financial Data
+                  Description: Q1 2024 financial market data from premium sources
+                  AssetType: S3_SNAPSHOT
+                  Tags:
+                    Environment: Production
+                    Team: Analytics
+      responses:
+        '201':
+          description: Data set created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSet'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ds-xyz789
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-xyz789
+                    Name: Q1 Financial Data
+                    Description: Q1 2024 financial market data from premium sources
+                    AssetType: S3_SNAPSHOT
+                    Origin: OWNED
+                    CreatedAt: '2024-04-01T09:00:00Z'
+                    UpdatedAt: '2024-04-01T09:00:00Z'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/data-sets/{DataSetId}:
+    get:
+      operationId: getDataSet
+      summary: Get Data Set
+      description: Returns the details of a specific data set.
+      tags:
+      - Data Sets
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        description: The ID of the data set
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Data set details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSet'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ds-abc123
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123
+                    Name: Market Research Dataset 2024
+                    Description: Comprehensive market research data for 2024
+                    AssetType: S3_SNAPSHOT
+                    Origin: OWNED
+                    CreatedAt: '2024-01-15T10:00:00Z'
+                    UpdatedAt: '2024-03-01T12:00:00Z'
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: updateDataSet
+      summary: Update Data Set
+      description: Updates the details of a data set.
+      tags:
+      - Data Sets
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        description: The ID of the data set to update
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSetRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Name: Market Research Dataset 2024 Updated
+                  Description: Updated comprehensive market research data for 2024
+      responses:
+        '200':
+          description: Data set updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSet'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ds-abc123
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123
+                    Name: Market Research Dataset 2024 Updated
+                    Description: Updated comprehensive market research data for 2024
+                    AssetType: S3_SNAPSHOT
+                    Origin: OWNED
+                    CreatedAt: '2024-01-15T10:00:00Z'
+                    UpdatedAt: '2024-04-15T14:00:00Z'
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteDataSet
+      summary: Delete Data Set
+      description: Deletes a data set. A data set can be deleted if it has no active revisions.
+      tags:
+      - Data Sets
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        description: The ID of the data set to delete
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Data set deleted successfully
+        '404':
+          description: Data set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    DataSet:
+      description: An AWS Data Exchange data set containing a collection of data available for subscription.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the data set
+        Arn:
+          type: string
+          description: The ARN of the data set. This ARN uniquely identifies the data set.
+        Name:
+          type: string
+          description: The name of the data set
+        Description:
+          type: string
+          description: The description of the data set
+        AssetType:
+          type: string
+          description: The type of asset contained in the data set
+          enum:
+          - S3_SNAPSHOT
+          - REDSHIFT_DATA_SHARE
+          - API_GATEWAY_API
+          - LAKE_FORMATION_DATA_PERMISSION
+          - S3_DATA_ACCESS
+        Origin:
+          type: string
+          description: Whether the data set is owned or entitled
+          enum:
+          - OWNED
+          - ENTITLED
+        OriginDetails:
+          type: object
+          description: Details about the origin of the data set
+          properties:
+            ProductId:
+              type: string
+        Tags:
+          type: object
+          description: Tags associated with the data set
+          additionalProperties:
+            type: string
+        CreatedAt:
+          type: string
+          format: date-time
+          description: When the data set was created
+        UpdatedAt:
+          type: string
+          format: date-time
+          description: When the data set was last updated
+    UpdateDataSetRequest:
+      description: Request body for updating a data set.
+      type: object
+      properties:
+        Name:
+          type: string
+          description: The new name for the data set
+        Description:
+          type: string
+          description: The new description for the data set
+    ListDataSetsResponse:
+      description: Response containing a list of data sets.
+      type: object
+      properties:
+        DataSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSet'
+        NextToken:
+          type: string
+          description: Pagination token for the next page
+    CreateDataSetRequest:
+      description: Request body for creating a new data set.
+      type: object
+      required:
+      - Name
+      - Description
+      - AssetType
+      properties:
+        Name:
+          type: string
+          description: The name of the data set
+        Description:
+          type: string
+          description: The description of the data set
+        AssetType:
+          type: string
+          description: The type of asset for this data set
+          enum:
+          - S3_SNAPSHOT
+          - REDSHIFT_DATA_SHARE
+          - API_GATEWAY_API
+          - LAKE_FORMATION_DATA_PERMISSION
+          - S3_DATA_ACCESS
+        Tags:
+          type: object
+          description: Tags to add to the data set
+          additionalProperties:
+            type: string
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

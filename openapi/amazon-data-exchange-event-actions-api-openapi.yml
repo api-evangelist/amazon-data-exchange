@@ -1,0 +1,304 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Exchange Assets Event Actions API
+  description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
+  version: 2017-07-25
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+servers:
+- url: https://dataexchange.amazonaws.com
+  description: AWS Data Exchange API
+security:
+- awsSignatureV4: []
+tags:
+- name: Event Actions
+  description: Operations for managing event-driven actions
+paths:
+  /v1/event-actions:
+    get:
+      operationId: listEventActions
+      summary: List Event Actions
+      description: Returns a list of event actions configured for the account.
+      tags:
+      - Event Actions
+      parameters:
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      - name: eventSourceToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of event actions returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEventActionsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    EventActions:
+                    - Id: ea-001abc
+                      Arn: arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc
+                      Event:
+                        RevisionPublished:
+                          DataSetId: ds-abc123
+                      Action:
+                        ExportRevisionToS3:
+                          Encryption:
+                            Type: aws:kms
+                          RevisionDestination:
+                            Bucket: auto-export-bucket
+                            KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+                      CreatedAt: '2024-01-10T08:00:00Z'
+                      UpdatedAt: '2024-01-10T08:00:00Z'
+    post:
+      operationId: createEventAction
+      summary: Create Event Action
+      description: Creates a new event action for automating responses to data exchange events.
+      tags:
+      - Event Actions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventActionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Event:
+                    RevisionPublished:
+                      DataSetId: ds-abc123
+                  Action:
+                    ExportRevisionToS3:
+                      RevisionDestination:
+                        Bucket: my-auto-export-bucket
+                        KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+      responses:
+        '201':
+          description: Event action created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventAction'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ea-002xyz
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-002xyz
+                    Event:
+                      RevisionPublished:
+                        DataSetId: ds-abc123
+                    Action:
+                      ExportRevisionToS3:
+                        RevisionDestination:
+                          Bucket: my-auto-export-bucket
+                          KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+                    CreatedAt: '2024-04-15T13:00:00Z'
+                    UpdatedAt: '2024-04-15T13:00:00Z'
+  /v1/event-actions/{EventActionId}:
+    get:
+      operationId: getEventAction
+      summary: Get Event Action
+      description: Returns the details of a specific event action.
+      tags:
+      - Event Actions
+      parameters:
+      - name: EventActionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Event action details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventAction'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ea-001abc
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc
+                    Event:
+                      RevisionPublished:
+                        DataSetId: ds-abc123
+                    Action:
+                      ExportRevisionToS3:
+                        RevisionDestination:
+                          Bucket: auto-export-bucket
+                          KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+                    CreatedAt: '2024-01-10T08:00:00Z'
+                    UpdatedAt: '2024-01-10T08:00:00Z'
+        '404':
+          description: Event action not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: updateEventAction
+      summary: Update Event Action
+      description: Updates the action associated with an event action.
+      tags:
+      - Event Actions
+      parameters:
+      - name: EventActionId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEventActionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Action:
+                    ExportRevisionToS3:
+                      RevisionDestination:
+                        Bucket: updated-export-bucket
+                        KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+      responses:
+        '200':
+          description: Event action updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventAction'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: ea-001abc
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc
+                    Event:
+                      RevisionPublished:
+                        DataSetId: ds-abc123
+                    Action:
+                      ExportRevisionToS3:
+                        RevisionDestination:
+                          Bucket: updated-export-bucket
+                          KeyPattern: ${Revision.CreatedAt}/${Asset.Name}
+                    CreatedAt: '2024-01-10T08:00:00Z'
+                    UpdatedAt: '2024-04-15T14:00:00Z'
+        '404':
+          description: Event action not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteEventAction
+      summary: Delete Event Action
+      description: Deletes an event action.
+      tags:
+      - Event Actions
+      parameters:
+      - name: EventActionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Event action deleted successfully
+        '404':
+          description: Event action not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ListEventActionsResponse:
+      description: Response containing a list of event actions.
+      type: object
+      properties:
+        EventActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventAction'
+        NextToken:
+          type: string
+    UpdateEventActionRequest:
+      description: Request body for updating an event action.
+      type: object
+      required:
+      - Action
+      properties:
+        Action:
+          type: object
+          description: The updated action configuration
+    EventAction:
+      description: An event action that automates responses to Data Exchange events.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the event action
+        Arn:
+          type: string
+          description: The ARN of the event action. This ARN uniquely identifies the event action.
+        Event:
+          type: object
+          description: The event that triggers this action
+        Action:
+          type: object
+          description: The action to perform when the event occurs
+        CreatedAt:
+          type: string
+          format: date-time
+        UpdatedAt:
+          type: string
+          format: date-time
+    CreateEventActionRequest:
+      description: Request body for creating a new event action.
+      type: object
+      required:
+      - Event
+      - Action
+      properties:
+        Event:
+          type: object
+          description: The event that triggers the action
+        Action:
+          type: object
+          description: The action to perform when the event occurs
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

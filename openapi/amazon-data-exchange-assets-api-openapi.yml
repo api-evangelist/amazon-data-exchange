@@ -1,0 +1,289 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Exchange Assets API
+  description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
+  version: 2017-07-25
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+servers:
+- url: https://dataexchange.amazonaws.com
+  description: AWS Data Exchange API
+security:
+- awsSignatureV4: []
+tags:
+- name: Assets
+  description: Operations for managing data assets within revisions
+paths:
+  /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets:
+    get:
+      operationId: listRevisionAssets
+      summary: List Revision Assets
+      description: Returns a list of assets in a specific revision.
+      tags:
+      - Assets
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: RevisionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of assets returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRevisionAssetsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Assets:
+                    - Id: asset-001
+                      Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc/assets/asset-001
+                      DataSetId: ds-abc123
+                      RevisionId: rev-001abc
+                      Name: market-data-q1.csv
+                      AssetType: S3_SNAPSHOT
+                      AssetDetails:
+                        S3SnapshotAsset:
+                          Size: 5242880
+                      CreatedAt: '2024-01-20T10:30:00Z'
+                      UpdatedAt: '2024-01-20T10:30:00Z'
+        '404':
+          description: Revision not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}:
+    get:
+      operationId: getAsset
+      summary: Get Asset
+      description: Returns the details of a specific asset.
+      tags:
+      - Assets
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: RevisionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: AssetId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Asset details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: asset-001
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc/assets/asset-001
+                    DataSetId: ds-abc123
+                    RevisionId: rev-001abc
+                    Name: market-data-q1.csv
+                    AssetType: S3_SNAPSHOT
+                    AssetDetails:
+                      S3SnapshotAsset:
+                        Size: 5242880
+                    CreatedAt: '2024-01-20T10:30:00Z'
+                    UpdatedAt: '2024-01-20T10:30:00Z'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: updateAsset
+      summary: Update Asset
+      description: Updates the name of a specific asset.
+      tags:
+      - Assets
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: RevisionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: AssetId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssetRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Name: market-data-q1-updated.csv
+      responses:
+        '200':
+          description: Asset updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: asset-001
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:data-sets/ds-abc123/revisions/rev-001abc/assets/asset-001
+                    DataSetId: ds-abc123
+                    RevisionId: rev-001abc
+                    Name: market-data-q1-updated.csv
+                    AssetType: S3_SNAPSHOT
+                    AssetDetails:
+                      S3SnapshotAsset:
+                        Size: 5242880
+                    CreatedAt: '2024-01-20T10:30:00Z'
+                    UpdatedAt: '2024-04-15T11:00:00Z'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteAsset
+      summary: Delete Asset
+      description: Deletes an asset from a revision.
+      tags:
+      - Assets
+      parameters:
+      - name: DataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: RevisionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: AssetId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Asset deleted successfully
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    UpdateAssetRequest:
+      description: Request body for updating an asset.
+      type: object
+      required:
+      - Name
+      properties:
+        Name:
+          type: string
+          description: The new name for the asset
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
+    Asset:
+      description: An asset within a data set revision, representing an individual piece of data.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the asset
+        Arn:
+          type: string
+          description: The ARN of the asset. This ARN uniquely identifies the asset.
+        DataSetId:
+          type: string
+        RevisionId:
+          type: string
+        Name:
+          type: string
+          description: The name of the asset
+        AssetType:
+          type: string
+          enum:
+          - S3_SNAPSHOT
+          - REDSHIFT_DATA_SHARE
+          - API_GATEWAY_API
+          - LAKE_FORMATION_DATA_PERMISSION
+          - S3_DATA_ACCESS
+        AssetDetails:
+          type: object
+          description: Type-specific details about the asset
+        CreatedAt:
+          type: string
+          format: date-time
+        UpdatedAt:
+          type: string
+          format: date-time
+    ListRevisionAssetsResponse:
+      description: Response containing a list of assets.
+      type: object
+      properties:
+        Assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        NextToken:
+          type: string
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

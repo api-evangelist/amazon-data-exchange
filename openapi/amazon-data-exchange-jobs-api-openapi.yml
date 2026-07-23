@@ -1,0 +1,311 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Exchange Assets Jobs API
+  description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
+  version: 2017-07-25
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+servers:
+- url: https://dataexchange.amazonaws.com
+  description: AWS Data Exchange API
+security:
+- awsSignatureV4: []
+tags:
+- name: Jobs
+  description: Operations for import/export jobs
+paths:
+  /v1/jobs:
+    get:
+      operationId: listJobs
+      summary: List Jobs
+      description: Returns a list of jobs created for the account.
+      tags:
+      - Jobs
+      parameters:
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      - name: dataSetId
+        in: query
+        schema:
+          type: string
+      - name: revisionId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of jobs returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListJobsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Jobs:
+                    - Id: job-001abc
+                      Arn: arn:aws:dataexchange:us-east-1:123456789012:jobs/job-001abc
+                      Type: EXPORT_ASSETS_TO_S3
+                      State: COMPLETED
+                      Details:
+                        ExportAssetsToS3:
+                          DataSetId: ds-abc123
+                          RevisionId: rev-001abc
+                      CreatedAt: '2024-01-20T11:00:00Z'
+                      UpdatedAt: '2024-01-20T11:05:00Z'
+    post:
+      operationId: createJob
+      summary: Create Job
+      description: Creates a new import or export job for transferring assets.
+      tags:
+      - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJobRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Type: EXPORT_ASSETS_TO_S3
+                  Details:
+                    ExportAssetsToS3:
+                      DataSetId: ds-abc123
+                      RevisionId: rev-001abc
+                      AssetDestinations:
+                      - AssetId: asset-001
+                        Bucket: my-data-bucket
+                        Key: exports/market-data-q1.csv
+      responses:
+        '201':
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: job-002xyz
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:jobs/job-002xyz
+                    Type: EXPORT_ASSETS_TO_S3
+                    State: WAITING
+                    Details:
+                      ExportAssetsToS3:
+                        DataSetId: ds-abc123
+                        RevisionId: rev-001abc
+                    CreatedAt: '2024-04-15T12:00:00Z'
+                    UpdatedAt: '2024-04-15T12:00:00Z'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/jobs/{JobId}:
+    get:
+      operationId: getJob
+      summary: Get Job
+      description: Returns the details and current state of a specific job.
+      tags:
+      - Jobs
+      parameters:
+      - name: JobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Id: job-001abc
+                    Arn: arn:aws:dataexchange:us-east-1:123456789012:jobs/job-001abc
+                    Type: EXPORT_ASSETS_TO_S3
+                    State: COMPLETED
+                    Details:
+                      ExportAssetsToS3:
+                        DataSetId: ds-abc123
+                        RevisionId: rev-001abc
+                    CreatedAt: '2024-01-20T11:00:00Z'
+                    UpdatedAt: '2024-01-20T11:05:00Z'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/jobs/{JobId}/start:
+    patch:
+      operationId: startJob
+      summary: Start Job
+      description: Starts a job that has been created but is in the WAITING state.
+      tags:
+      - Jobs
+      parameters:
+      - name: JobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Job started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartJobResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    JobId: job-002xyz
+                    State: IN_PROGRESS
+  /v1/jobs/{JobId}/cancel:
+    delete:
+      operationId: cancelJob
+      summary: Cancel Job
+      description: Cancels a job that is in the WAITING or IN_PROGRESS state.
+      tags:
+      - Jobs
+      parameters:
+      - name: JobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Job cancelled successfully
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Job:
+      description: A Data Exchange job for importing or exporting assets.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the job
+        Arn:
+          type: string
+          description: The ARN of the job. This ARN uniquely identifies the job.
+        Type:
+          type: string
+          description: The type of job
+          enum:
+          - IMPORT_ASSETS_FROM_S3
+          - IMPORT_ASSET_FROM_SIGNED_URL
+          - EXPORT_ASSETS_TO_S3
+          - EXPORT_ASSET_TO_SIGNED_URL
+          - IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES
+          - EXPORT_REVISIONS_TO_S3
+          - IMPORT_ASSET_FROM_API_GATEWAY_API
+          - CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET
+          - IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY
+        State:
+          type: string
+          description: Current state of the job
+          enum:
+          - WAITING
+          - IN_PROGRESS
+          - ERROR
+          - COMPLETED
+          - CANCELLED
+          - TIMED_OUT
+        Details:
+          type: object
+          description: Job-type-specific details
+        Errors:
+          type: array
+          items:
+            type: object
+        CreatedAt:
+          type: string
+          format: date-time
+        UpdatedAt:
+          type: string
+          format: date-time
+    StartJobResponse:
+      description: Response after starting a job.
+      type: object
+      properties:
+        JobId:
+          type: string
+        State:
+          type: string
+    CreateJobRequest:
+      description: Request body for creating a new job.
+      type: object
+      required:
+      - Type
+      - Details
+      properties:
+        Type:
+          type: string
+          description: The type of job to create
+          enum:
+          - IMPORT_ASSETS_FROM_S3
+          - IMPORT_ASSET_FROM_SIGNED_URL
+          - EXPORT_ASSETS_TO_S3
+          - EXPORT_ASSET_TO_SIGNED_URL
+          - IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES
+          - EXPORT_REVISIONS_TO_S3
+          - IMPORT_ASSET_FROM_API_GATEWAY_API
+          - CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET
+          - IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY
+        Details:
+          type: object
+          description: Job-type-specific configuration
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
+    ListJobsResponse:
+      description: Response containing a list of jobs.
+      type: object
+      properties:
+        Jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        NextToken:
+          type: string
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

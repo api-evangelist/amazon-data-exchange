@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Exchange Assets Tags API
+  description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
+  version: 2017-07-25
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+servers:
+- url: https://dataexchange.amazonaws.com
+  description: AWS Data Exchange API
+security:
+- awsSignatureV4: []
+tags:
+- name: Tags
+  description: Operations for managing resource tags
+paths:
+  /tags/{resourceArn}:
+    get:
+      operationId: listTagsForResource
+      summary: List Tags for Resource
+      description: Returns the list of tags associated with a Data Exchange resource.
+      tags:
+      - Tags
+      parameters:
+      - name: resourceArn
+        in: path
+        required: true
+        description: The ARN of the Data Exchange resource. This ARN uniquely identifies the resource.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tags returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTagsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    Tags:
+                      Environment: Production
+                      Team: Analytics
+                      Project: MarketData2024
+    post:
+      operationId: tagResource
+      summary: Tag Resource
+      description: Adds tags to a Data Exchange resource.
+      tags:
+      - Tags
+      parameters:
+      - name: resourceArn
+        in: path
+        required: true
+        description: The ARN of the Data Exchange resource. This ARN uniquely identifies the resource.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagResourceRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  Tags:
+                    Department: Engineering
+                    CostCenter: CC-2024
+      responses:
+        '204':
+          description: Tags added successfully
+    delete:
+      operationId: untagResource
+      summary: Untag Resource
+      description: Removes tags from a Data Exchange resource.
+      tags:
+      - Tags
+      parameters:
+      - name: resourceArn
+        in: path
+        required: true
+        description: The ARN of the Data Exchange resource. This ARN uniquely identifies the resource.
+        schema:
+          type: string
+      - name: tagKeys
+        in: query
+        required: true
+        description: The tag keys to remove
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '204':
+          description: Tags removed successfully
+components:
+  schemas:
+    TagResourceRequest:
+      description: Request body for adding tags to a resource.
+      type: object
+      required:
+      - Tags
+      properties:
+        Tags:
+          type: object
+          description: The tags to add to the resource
+          additionalProperties:
+            type: string
+    ListTagsResponse:
+      description: Response containing tags for a resource.
+      type: object
+      properties:
+        Tags:
+          type: object
+          description: The tags associated with the resource
+          additionalProperties:
+            type: string
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication
