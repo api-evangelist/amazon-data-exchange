@@ -1,0 +1,24 @@
+{
+  "provider": "amazon-data-exchange",
+  "sources": [
+    "amazon-data-exchange-assets-api-openapi.yml",
+    "amazon-data-exchange-data-sets-api-openapi.yml",
+    "amazon-data-exchange-event-actions-api-openapi.yml",
+    "amazon-data-exchange-jobs-api-openapi.yml",
+    "amazon-data-exchange-revisions-api-openapi.yml",
+    "amazon-data-exchange-tags-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-data-exchange-assets-api-openapi.yml",
+    "amazon-data-exchange-data-sets-api-openapi.yml",
+    "amazon-data-exchange-event-actions-api-openapi.yml",
+    "amazon-data-exchange-jobs-api-openapi.yml",
+    "amazon-data-exchange-revisions-api-openapi.yml",
+    "amazon-data-exchange-tags-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
