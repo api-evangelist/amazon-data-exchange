@@ -1,0 +1,721 @@
+{
+  "item": [
+    {
+      "id": "840a7768-76bc-40f0-8e75-1c778418b4a5",
+      "name": "Jobs",
+      "description": {
+        "content": "Operations for import/export jobs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1b162fbe-9d64-48c8-a635-0fe582ccc7d3",
+          "name": "List Jobs",
+          "request": {
+            "name": "List Jobs",
+            "description": {
+              "content": "Returns a list of jobs created for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dataSetId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "revisionId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03dc1e4d-fa08-4274-b203-976414cb055e",
+              "name": "List of jobs returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataSetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "revisionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Jobs\": [\n    {\n      \"Id\": \"job-001abc\",\n      \"Arn\": \"arn:aws:dataexchange:us-east-1:123456789012:jobs/job-001abc\",\n      \"Type\": \"EXPORT_ASSETS_TO_S3\",\n      \"State\": \"COMPLETED\",\n      \"Details\": {\n        \"ExportAssetsToS3\": {\n          \"DataSetId\": \"ds-abc123\",\n          \"RevisionId\": \"rev-001abc\"\n        }\n      },\n      \"CreatedAt\": \"2024-01-20T11:00:00Z\",\n      \"UpdatedAt\": \"2024-01-20T11:05:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b57f8fe8-0fb3-4ec2-a597-717a3013d161",
+          "name": "Create Job",
+          "request": {
+            "name": "Create Job",
+            "description": {
+              "content": "Creates a new import or export job for transferring assets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Type\": \"<string>\",\n  \"Details\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0670128a-9d60-4da0-89fb-a5473302d3cd",
+              "name": "Job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Type\": \"EXPORT_ASSETS_TO_S3\",\n  \"Details\": {\n    \"ExportAssetsToS3\": {\n      \"DataSetId\": \"ds-abc123\",\n      \"RevisionId\": \"rev-001abc\",\n      \"AssetDestinations\": [\n        {\n          \"AssetId\": \"asset-001\",\n          \"Bucket\": \"my-data-bucket\",\n          \"Key\": \"exports/market-data-q1.csv\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"job-002xyz\",\n  \"Arn\": \"arn:aws:dataexchange:us-east-1:123456789012:jobs/job-002xyz\",\n  \"Type\": \"EXPORT_ASSETS_TO_S3\",\n  \"State\": \"WAITING\",\n  \"Details\": {\n    \"ExportAssetsToS3\": {\n      \"DataSetId\": \"ds-abc123\",\n      \"RevisionId\": \"rev-001abc\"\n    }\n  },\n  \"CreatedAt\": \"2024-04-15T12:00:00Z\",\n  \"UpdatedAt\": \"2024-04-15T12:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8f3066e-dbf1-463b-b381-d400aaeed32c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Type\": \"EXPORT_ASSETS_TO_S3\",\n  \"Details\": {\n    \"ExportAssetsToS3\": {\n      \"DataSetId\": \"ds-abc123\",\n      \"RevisionId\": \"rev-001abc\",\n      \"AssetDestinations\": [\n        {\n          \"AssetId\": \"asset-001\",\n          \"Bucket\": \"my-data-bucket\",\n          \"Key\": \"exports/market-data-q1.csv\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b97ae411-6143-4ff9-aafb-b2a4153a99e3",
+          "name": "Get Job",
+          "request": {
+            "name": "Get Job",
+            "description": {
+              "content": "Returns the details and current state of a specific job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs",
+                ":JobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "JobId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2b570a3-1d4b-4ffd-9dc0-e0c181a4faee",
+              "name": "Job details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":JobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "JobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"job-001abc\",\n  \"Arn\": \"arn:aws:dataexchange:us-east-1:123456789012:jobs/job-001abc\",\n  \"Type\": \"EXPORT_ASSETS_TO_S3\",\n  \"State\": \"COMPLETED\",\n  \"Details\": {\n    \"ExportAssetsToS3\": {\n      \"DataSetId\": \"ds-abc123\",\n      \"RevisionId\": \"rev-001abc\"\n    }\n  },\n  \"CreatedAt\": \"2024-01-20T11:00:00Z\",\n  \"UpdatedAt\": \"2024-01-20T11:05:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01d82bcf-5eda-496f-a3c2-e76d0c8ca66a",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":JobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "JobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "748e4e00-6b59-4cab-bebe-c2367b03b540",
+          "name": "Start Job",
+          "request": {
+            "name": "Start Job",
+            "description": {
+              "content": "Starts a job that has been created but is in the WAITING state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs",
+                ":JobId",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "JobId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4f2d89b-df94-4630-8642-8456fb043eae",
+              "name": "Job started successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":JobId",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "JobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"JobId\": \"job-002xyz\",\n  \"State\": \"IN_PROGRESS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5435eb4-61b9-4fa4-a395-d9a68c3228d5",
+          "name": "Cancel Job",
+          "request": {
+            "name": "Cancel Job",
+            "description": {
+              "content": "Cancels a job that is in the WAITING or IN_PROGRESS state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs",
+                ":JobId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "JobId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e37fdc4-891a-43b2-9355-e3b2a6520486",
+              "name": "Job cancelled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":JobId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "JobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bef89274-fa06-41df-bff4-24a1bf09d6e0",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":JobId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "JobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dataexchange.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "30d138a2-708f-4f37-a2bf-44e8491e778a",
+    "name": "AWS Data Exchange Assets Jobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

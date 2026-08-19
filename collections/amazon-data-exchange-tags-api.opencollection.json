@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Data Exchange Assets Tags API",
+    "version": "2017-07-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tags for Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path",
+                "description": "The ARN of the Data Exchange resource. This ARN uniquely identifies the resource."
+              }
+            ]
+          },
+          "docs": "Returns the list of tags associated with a Data Exchange resource."
+        },
+        {
+          "info": {
+            "name": "Tag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dataexchange.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path",
+                "description": "The ARN of the Data Exchange resource. This ARN uniquely identifies the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds tags to a Data Exchange resource."
+        },
+        {
+          "info": {
+            "name": "Untag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dataexchange.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path",
+                "description": "The ARN of the Data Exchange resource. This ARN uniquely identifies the resource."
+              },
+              {
+                "name": "tagKeys",
+                "value": "",
+                "type": "query",
+                "description": "The tag keys to remove"
+              }
+            ]
+          },
+          "docs": "Removes tags from a Data Exchange resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

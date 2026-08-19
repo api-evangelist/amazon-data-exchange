@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Data Exchange Assets Jobs API",
+    "version": "2017-07-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of jobs created for the account."
+        },
+        {
+          "info": {
+            "name": "Create Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new import or export job for transferring assets."
+        },
+        {
+          "info": {
+            "name": "Get Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs/:JobId",
+            "params": [
+              {
+                "name": "JobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the details and current state of a specific job."
+        },
+        {
+          "info": {
+            "name": "Start Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs/:JobId/start",
+            "params": [
+              {
+                "name": "JobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Starts a job that has been created but is in the WAITING state."
+        },
+        {
+          "info": {
+            "name": "Cancel Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dataexchange.amazonaws.com/v1/jobs/:JobId/cancel",
+            "params": [
+              {
+                "name": "JobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels a job that is in the WAITING or IN_PROGRESS state."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

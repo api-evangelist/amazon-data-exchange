@@ -1,0 +1,737 @@
+{
+  "item": [
+    {
+      "id": "d5bff8ac-e21c-497f-9a7a-0eaea9f4bb05",
+      "name": "Event Actions",
+      "description": {
+        "content": "Operations for managing event-driven actions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac99c1b4-4763-4e6e-9873-6ea2d7a95917",
+          "name": "List Event Actions",
+          "request": {
+            "name": "List Event Actions",
+            "description": {
+              "content": "Returns a list of event actions configured for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "eventSourceToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7779543-564a-4cca-bd19-6c9bd30450e7",
+              "name": "List of event actions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventSourceToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"EventActions\": [\n    {\n      \"Id\": \"ea-001abc\",\n      \"Arn\": \"arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc\",\n      \"Event\": {\n        \"RevisionPublished\": {\n          \"DataSetId\": \"ds-abc123\"\n        }\n      },\n      \"Action\": {\n        \"ExportRevisionToS3\": {\n          \"Encryption\": {\n            \"Type\": \"aws:kms\"\n          },\n          \"RevisionDestination\": {\n            \"Bucket\": \"auto-export-bucket\",\n            \"KeyPattern\": \"${Revision.CreatedAt}/${Asset.Name}\"\n          }\n        }\n      },\n      \"CreatedAt\": \"2024-01-10T08:00:00Z\",\n      \"UpdatedAt\": \"2024-01-10T08:00:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a413666e-cc7e-4a8e-8777-49e763ee2c5c",
+          "name": "Create Event Action",
+          "request": {
+            "name": "Create Event Action",
+            "description": {
+              "content": "Creates a new event action for automating responses to data exchange events.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Event\": \"<object>\",\n  \"Action\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "194828c0-90af-46f0-887d-50dad205bc03",
+              "name": "Event action created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Event\": {\n    \"RevisionPublished\": {\n      \"DataSetId\": \"ds-abc123\"\n    }\n  },\n  \"Action\": {\n    \"ExportRevisionToS3\": {\n      \"RevisionDestination\": {\n        \"Bucket\": \"my-auto-export-bucket\",\n        \"KeyPattern\": \"${Revision.CreatedAt}/${Asset.Name}\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"ea-002xyz\",\n  \"Arn\": \"arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-002xyz\",\n  \"Event\": {\n    \"RevisionPublished\": {\n      \"DataSetId\": \"ds-abc123\"\n    }\n  },\n  \"Action\": {\n    \"ExportRevisionToS3\": {\n      \"RevisionDestination\": {\n        \"Bucket\": \"my-auto-export-bucket\",\n        \"KeyPattern\": \"${Revision.CreatedAt}/${Asset.Name}\"\n      }\n    }\n  },\n  \"CreatedAt\": \"2024-04-15T13:00:00Z\",\n  \"UpdatedAt\": \"2024-04-15T13:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62009256-14a7-4d79-95fc-db0c2101619f",
+          "name": "Get Event Action",
+          "request": {
+            "name": "Get Event Action",
+            "description": {
+              "content": "Returns the details of a specific event action.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-actions",
+                ":EventActionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "EventActionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6e9ead9-2f8a-48e4-bd07-93d0f28b9770",
+              "name": "Event action details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-actions",
+                    ":EventActionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EventActionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"ea-001abc\",\n  \"Arn\": \"arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc\",\n  \"Event\": {\n    \"RevisionPublished\": {\n      \"DataSetId\": \"ds-abc123\"\n    }\n  },\n  \"Action\": {\n    \"ExportRevisionToS3\": {\n      \"RevisionDestination\": {\n        \"Bucket\": \"auto-export-bucket\",\n        \"KeyPattern\": \"${Revision.CreatedAt}/${Asset.Name}\"\n      }\n    }\n  },\n  \"CreatedAt\": \"2024-01-10T08:00:00Z\",\n  \"UpdatedAt\": \"2024-01-10T08:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3949a250-69ee-43c5-94c7-14485ff737ec",
+              "name": "Event action not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-actions",
+                    ":EventActionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EventActionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c33d6c3-5731-45a1-836f-c23962e056bf",
+          "name": "Update Event Action",
+          "request": {
+            "name": "Update Event Action",
+            "description": {
+              "content": "Updates the action associated with an event action.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-actions",
+                ":EventActionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "EventActionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Action\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce6b88f1-dd73-4af3-80fc-d497afffcf92",
+              "name": "Event action updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-actions",
+                    ":EventActionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EventActionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Action\": {\n    \"ExportRevisionToS3\": {\n      \"RevisionDestination\": {\n        \"Bucket\": \"updated-export-bucket\",\n        \"KeyPattern\": \"${Revision.CreatedAt}/${Asset.Name}\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"ea-001abc\",\n  \"Arn\": \"arn:aws:dataexchange:us-east-1:123456789012:event-actions/ea-001abc\",\n  \"Event\": {\n    \"RevisionPublished\": {\n      \"DataSetId\": \"ds-abc123\"\n    }\n  },\n  \"Action\": {\n    \"ExportRevisionToS3\": {\n      \"RevisionDestination\": {\n        \"Bucket\": \"updated-export-bucket\",\n        \"KeyPattern\": \"${Revision.CreatedAt}/${Asset.Name}\"\n      }\n    }\n  },\n  \"CreatedAt\": \"2024-01-10T08:00:00Z\",\n  \"UpdatedAt\": \"2024-04-15T14:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cd2ac83-c8f1-4732-82b3-4585cce99111",
+              "name": "Event action not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-actions",
+                    ":EventActionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EventActionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Action\": {\n    \"ExportRevisionToS3\": {\n      \"RevisionDestination\": {\n        \"Bucket\": \"updated-export-bucket\",\n        \"KeyPattern\": \"${Revision.CreatedAt}/${Asset.Name}\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d95f5f1f-5bda-4694-a09b-1ec48f09e24c",
+          "name": "Delete Event Action",
+          "request": {
+            "name": "Delete Event Action",
+            "description": {
+              "content": "Deletes an event action.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-actions",
+                ":EventActionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "EventActionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36f5f543-c740-4865-bb1c-81bba0eff046",
+              "name": "Event action deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-actions",
+                    ":EventActionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EventActionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aa282404-17f8-437c-91e8-b7b38d28be99",
+              "name": "Event action not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-actions",
+                    ":EventActionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EventActionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dataexchange.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0c8968f9-7951-4ecc-a4cd-6dfc7a8d5a40",
+    "name": "AWS Data Exchange Assets Event Actions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Data Exchange Assets Data Sets API",
+    "version": "2017-07-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Sets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Data Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token for the next page of results"
+              },
+              {
+                "name": "origin",
+                "value": "",
+                "type": "query",
+                "description": "Filter data sets by origin (OWNED or ENTITLED)"
+              }
+            ]
+          },
+          "docs": "Returns a list of data sets owned by the account or available to the account through subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create Data Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new data set in AWS Data Exchange."
+        },
+        {
+          "info": {
+            "name": "Get Data Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data set"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific data set."
+        },
+        {
+          "info": {
+            "name": "Update Data Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data set to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the details of a data set."
+        },
+        {
+          "info": {
+            "name": "Delete Data Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dataexchange.amazonaws.com/v1/data-sets/:DataSetId",
+            "params": [
+              {
+                "name": "DataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data set to delete"
+              }
+            ]
+          },
+          "docs": "Deletes a data set. A data set can be deleted if it has no active revisions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
