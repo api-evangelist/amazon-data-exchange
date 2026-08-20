@@ -27,6 +27,13 @@ tags:
   - Data Marketplace
   - Third-Party Data
   - Analytics
+  - Subscription
+tags_raw:
+  - AWS
+  - Data Exchange
+  - Data Marketplace
+  - Third-Party Data
+  - Analytics
   - Subscriptions
 url: https://raw.githubusercontent.com/api-evangelist/amazon-data-exchange/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -71,6 +78,8 @@ apis:
   humanURL: https://aws.amazon.com/data-exchange/
   baseURL: https://dataexchange.amazonaws.com
   tags:
+  - Datasets
+  tags_raw:
   - Data Sets
   properties:
   - type: OpenAPI
@@ -135,6 +144,8 @@ apis:
   humanURL: https://aws.amazon.com/data-exchange/
   baseURL: https://dataexchange.amazonaws.com
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
