@@ -11,8 +11,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataExchangeApi
-  url: ../openapi/amazon-data-exchange-openapi.yml
+- name: jobsApi
+  url: ../openapi/amazon-data-exchange-jobs-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: cancel-running-job

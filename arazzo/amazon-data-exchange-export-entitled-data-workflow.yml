@@ -12,8 +12,14 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataExchangeApi
-  url: ../openapi/amazon-data-exchange-openapi.yml
+- name: dataSetsApi
+  url: ../openapi/amazon-data-exchange-data-sets-api-openapi.yml
+  type: openapi
+- name: jobsApi
+  url: ../openapi/amazon-data-exchange-jobs-api-openapi.yml
+  type: openapi
+- name: revisionsApi
+  url: ../openapi/amazon-data-exchange-revisions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: export-entitled-data

@@ -10,8 +10,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataExchangeApi
-  url: ../openapi/amazon-data-exchange-openapi.yml
+- name: tagsApi
+  url: ../openapi/amazon-data-exchange-tags-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: untag-resource

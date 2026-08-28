@@ -10,8 +10,8 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataExchangeApi
-  url: ../openapi/amazon-data-exchange-openapi.yml
+- name: eventActionsApi
+  url: ../openapi/amazon-data-exchange-event-actions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: update-event-action-destination
