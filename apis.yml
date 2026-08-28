@@ -7,6 +7,18 @@ description: >-
   directly in the AWS Management Console and use the Data Exchange API to load data into Amazon S3 for analysis with AWS
   analytics and machine learning services.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
