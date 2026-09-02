@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AWS Data Exchange Assets Data Sets API
   description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
@@ -230,66 +230,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    DataSet:
-      description: An AWS Data Exchange data set containing a collection of data available for subscription.
-      type: object
-      properties:
-        Id:
-          type: string
-          description: The unique identifier of the data set
-        Arn:
-          type: string
-          description: The ARN of the data set. This ARN uniquely identifies the data set.
-        Name:
-          type: string
-          description: The name of the data set
-        Description:
-          type: string
-          description: The description of the data set
-        AssetType:
-          type: string
-          description: The type of asset contained in the data set
-          enum:
-          - S3_SNAPSHOT
-          - REDSHIFT_DATA_SHARE
-          - API_GATEWAY_API
-          - LAKE_FORMATION_DATA_PERMISSION
-          - S3_DATA_ACCESS
-        Origin:
-          type: string
-          description: Whether the data set is owned or entitled
-          enum:
-          - OWNED
-          - ENTITLED
-        OriginDetails:
-          type: object
-          description: Details about the origin of the data set
-          properties:
-            ProductId:
-              type: string
-        Tags:
-          type: object
-          description: Tags associated with the data set
-          additionalProperties:
-            type: string
-        CreatedAt:
-          type: string
-          format: date-time
-          description: When the data set was created
-        UpdatedAt:
-          type: string
-          format: date-time
-          description: When the data set was last updated
-    UpdateDataSetRequest:
-      description: Request body for updating a data set.
-      type: object
-      properties:
-        Name:
-          type: string
-          description: The new name for the data set
-        Description:
-          type: string
-          description: The new description for the data set
     ListDataSetsResponse:
       description: Response containing a list of data sets.
       type: object
@@ -342,6 +282,66 @@ components:
         requestId:
           type: string
           description: The unique ID of the request that resulted in this error
+    UpdateDataSetRequest:
+      description: Request body for updating a data set.
+      type: object
+      properties:
+        Name:
+          type: string
+          description: The new name for the data set
+        Description:
+          type: string
+          description: The new description for the data set
+    DataSet:
+      description: An AWS Data Exchange data set containing a collection of data available for subscription.
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the data set
+        Arn:
+          type: string
+          description: The ARN of the data set. This ARN uniquely identifies the data set.
+        Name:
+          type: string
+          description: The name of the data set
+        Description:
+          type: string
+          description: The description of the data set
+        AssetType:
+          type: string
+          description: The type of asset contained in the data set
+          enum:
+          - S3_SNAPSHOT
+          - REDSHIFT_DATA_SHARE
+          - API_GATEWAY_API
+          - LAKE_FORMATION_DATA_PERMISSION
+          - S3_DATA_ACCESS
+        Origin:
+          type: string
+          description: Whether the data set is owned or entitled
+          enum:
+          - OWNED
+          - ENTITLED
+        OriginDetails:
+          type: object
+          description: Details about the origin of the data set
+          properties:
+            ProductId:
+              type: string
+        Tags:
+          type: object
+          description: Tags associated with the data set
+          additionalProperties:
+            type: string
+        CreatedAt:
+          type: string
+          format: date-time
+          description: When the data set was created
+        UpdatedAt:
+          type: string
+          format: date-time
+          description: When the data set was last updated
   securitySchemes:
     awsSignatureV4:
       type: apiKey

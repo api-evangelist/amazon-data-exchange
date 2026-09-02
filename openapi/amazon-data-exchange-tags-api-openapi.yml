@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AWS Data Exchange Assets Tags API
   description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
@@ -99,6 +99,15 @@ paths:
           description: Tags removed successfully
 components:
   schemas:
+    ListTagsResponse:
+      description: Response containing tags for a resource.
+      type: object
+      properties:
+        Tags:
+          type: object
+          description: The tags associated with the resource
+          additionalProperties:
+            type: string
     TagResourceRequest:
       description: Request body for adding tags to a resource.
       type: object
@@ -108,15 +117,6 @@ components:
         Tags:
           type: object
           description: The tags to add to the resource
-          additionalProperties:
-            type: string
-    ListTagsResponse:
-      description: Response containing tags for a resource.
-      type: object
-      properties:
-        Tags:
-          type: object
-          description: The tags associated with the resource
           additionalProperties:
             type: string
   securitySchemes:

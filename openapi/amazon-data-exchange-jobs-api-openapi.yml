@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AWS Data Exchange Assets Jobs API
   description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
@@ -203,6 +203,27 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    StartJobResponse:
+      description: Response after starting a job.
+      type: object
+      properties:
+        JobId:
+          type: string
+        State:
+          type: string
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
     Job:
       description: A Data Exchange job for importing or exporting assets.
       type: object
@@ -249,13 +270,15 @@ components:
         UpdatedAt:
           type: string
           format: date-time
-    StartJobResponse:
-      description: Response after starting a job.
+    ListJobsResponse:
+      description: Response containing a list of jobs.
       type: object
       properties:
-        JobId:
-          type: string
-        State:
+        Jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        NextToken:
           type: string
     CreateJobRequest:
       description: Request body for creating a new job.
@@ -280,29 +303,6 @@ components:
         Details:
           type: object
           description: Job-type-specific configuration
-    Error:
-      description: Standard error response from the Data Exchange API.
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human-readable error message
-        code:
-          type: string
-          description: An error code identifying the type of error
-        requestId:
-          type: string
-          description: The unique ID of the request that resulted in this error
-    ListJobsResponse:
-      description: Response containing a list of jobs.
-      type: object
-      properties:
-        Jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        NextToken:
-          type: string
   securitySchemes:
     awsSignatureV4:
       type: apiKey
