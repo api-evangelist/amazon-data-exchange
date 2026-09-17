@@ -84,40 +84,6 @@ apis:
     url: json-schema/event-action-schema.json
   - type: JSONLD
     url: json-ld/amazon-data-exchange-context.jsonld
-- aid: amazon-data-exchange:amazon-data-exchange-data-sets-api
-  name: Amazon Data Exchange Data Sets API
-  description: Operations for managing data sets
-  humanURL: https://aws.amazon.com/data-exchange/
-  baseURL: https://dataexchange.amazonaws.com
-  tags:
-  - Datasets
-  tags_raw:
-  - Data Sets
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-exchange-data-sets-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: GettingStarted
-    url: https://aws.amazon.com/data-exchange/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/data-exchange/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/data-exchange/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: JSONSchema
-    url: json-schema/data-set-schema.json
-  - type: JSONSchema
-    url: json-schema/revision-schema.json
-  - type: JSONSchema
-    url: json-schema/asset-schema.json
-  - type: JSONSchema
-    url: json-schema/job-schema.json
-  - type: JSONSchema
-    url: json-schema/event-action-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-exchange-context.jsonld
 - aid: amazon-data-exchange:amazon-data-exchange-event-actions-api
   name: Amazon Data Exchange Event Actions API
   description: Operations for managing event-driven actions
@@ -226,6 +192,38 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-data-exchange-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: GettingStarted
+    url: https://aws.amazon.com/data-exchange/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/data-exchange/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/data-exchange/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: JSONSchema
+    url: json-schema/data-set-schema.json
+  - type: JSONSchema
+    url: json-schema/revision-schema.json
+  - type: JSONSchema
+    url: json-schema/asset-schema.json
+  - type: JSONSchema
+    url: json-schema/job-schema.json
+  - type: JSONSchema
+    url: json-schema/event-action-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-exchange-context.jsonld
+- aid: amazon-data-exchange:amazon-data-exchange-datasets-api
+  name: Amazon Data Exchange Datasets API
+  description: Operations for managing data sets
+  humanURL: https://aws.amazon.com/data-exchange/
+  baseURL: https://dataexchange.amazonaws.com
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-exchange-datasets-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
   - type: GettingStarted
