@@ -1,12 +1,7 @@
 {
   "provider": "amazon-data-exchange",
   "sources": [
-    "amazon-data-exchange-assets-api-openapi.yml",
-    "amazon-data-exchange-data-sets-api-openapi.yml",
-    "amazon-data-exchange-event-actions-api-openapi.yml",
-    "amazon-data-exchange-jobs-api-openapi.yml",
-    "amazon-data-exchange-revisions-api-openapi.yml",
-    "amazon-data-exchange-tags-api-openapi.yml"
+    "_original/amazon-data-exchange-openapi.yml"
   ],
   "outputs": [
     "amazon-data-exchange-assets-api-openapi.yml",
@@ -16,11 +11,23 @@
     "amazon-data-exchange-revisions-api-openapi.yml",
     "amazon-data-exchange-tags-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amazon-data-exchange-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: amazon-data-exchange-datasets-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 6 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "amazon-data-exchange-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-data-exchange-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-data-exchange-event-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-data-exchange-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-data-exchange-revisions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-data-exchange-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

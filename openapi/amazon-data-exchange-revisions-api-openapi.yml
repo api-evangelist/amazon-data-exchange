@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: AWS Data Exchange Assets Revisions API
+  title: AWS Data Exchange Revisions API
   description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
   version: 2017-07-25
   contact:
@@ -236,29 +236,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ListDataSetRevisionsResponse:
-      description: Response containing a list of revisions.
-      type: object
-      properties:
-        Revisions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Revision'
-        NextToken:
-          type: string
-    Error:
-      description: Standard error response from the Data Exchange API.
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human-readable error message
-        code:
-          type: string
-          description: An error code identifying the type of error
-        requestId:
-          type: string
-          description: The unique ID of the request that resulted in this error
     CreateRevisionRequest:
       description: Request body for creating a new revision.
       type: object
@@ -301,6 +278,16 @@ components:
         UpdatedAt:
           type: string
           format: date-time
+    ListDataSetRevisionsResponse:
+      description: Response containing a list of revisions.
+      type: object
+      properties:
+        Revisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        NextToken:
+          type: string
     UpdateRevisionRequest:
       description: Request body for updating a revision.
       type: object
@@ -311,6 +298,19 @@ components:
         Finalized:
           type: boolean
           description: Set to true to finalize the revision for publishing
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
   securitySchemes:
     awsSignatureV4:
       type: apiKey

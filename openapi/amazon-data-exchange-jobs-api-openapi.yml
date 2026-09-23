@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: AWS Data Exchange Assets Jobs API
+  title: AWS Data Exchange Jobs API
   description: The AWS Data Exchange API enables programmatic access to find, subscribe to, and use third-party data products. It supports managing data sets, revisions, assets, jobs, and subscriptions for cloud-based data exchange workflows.
   version: 2017-07-25
   contact:
@@ -203,27 +203,29 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    StartJobResponse:
-      description: Response after starting a job.
+    CreateJobRequest:
+      description: Request body for creating a new job.
       type: object
+      required:
+      - Type
+      - Details
       properties:
-        JobId:
+        Type:
           type: string
-        State:
-          type: string
-    Error:
-      description: Standard error response from the Data Exchange API.
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human-readable error message
-        code:
-          type: string
-          description: An error code identifying the type of error
-        requestId:
-          type: string
-          description: The unique ID of the request that resulted in this error
+          description: The type of job to create
+          enum:
+          - IMPORT_ASSETS_FROM_S3
+          - IMPORT_ASSET_FROM_SIGNED_URL
+          - EXPORT_ASSETS_TO_S3
+          - EXPORT_ASSET_TO_SIGNED_URL
+          - IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES
+          - EXPORT_REVISIONS_TO_S3
+          - IMPORT_ASSET_FROM_API_GATEWAY_API
+          - CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET
+          - IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY
+        Details:
+          type: object
+          description: Job-type-specific configuration
     Job:
       description: A Data Exchange job for importing or exporting assets.
       type: object
@@ -280,29 +282,27 @@ components:
             $ref: '#/components/schemas/Job'
         NextToken:
           type: string
-    CreateJobRequest:
-      description: Request body for creating a new job.
+    StartJobResponse:
+      description: Response after starting a job.
       type: object
-      required:
-      - Type
-      - Details
       properties:
-        Type:
+        JobId:
           type: string
-          description: The type of job to create
-          enum:
-          - IMPORT_ASSETS_FROM_S3
-          - IMPORT_ASSET_FROM_SIGNED_URL
-          - EXPORT_ASSETS_TO_S3
-          - EXPORT_ASSET_TO_SIGNED_URL
-          - IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES
-          - EXPORT_REVISIONS_TO_S3
-          - IMPORT_ASSET_FROM_API_GATEWAY_API
-          - CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET
-          - IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY
-        Details:
-          type: object
-          description: Job-type-specific configuration
+        State:
+          type: string
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
   securitySchemes:
     awsSignatureV4:
       type: apiKey

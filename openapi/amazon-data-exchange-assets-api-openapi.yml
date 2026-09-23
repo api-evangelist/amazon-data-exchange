@@ -215,6 +215,38 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    UpdateAssetRequest:
+      description: Request body for updating an asset.
+      type: object
+      required:
+      - Name
+      properties:
+        Name:
+          type: string
+          description: The new name for the asset
+    ListRevisionAssetsResponse:
+      description: Response containing a list of assets.
+      type: object
+      properties:
+        Assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        NextToken:
+          type: string
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
     Asset:
       description: An asset within a data set revision, representing an individual piece of data.
       type: object
@@ -249,38 +281,6 @@ components:
         UpdatedAt:
           type: string
           format: date-time
-    UpdateAssetRequest:
-      description: Request body for updating an asset.
-      type: object
-      required:
-      - Name
-      properties:
-        Name:
-          type: string
-          description: The new name for the asset
-    Error:
-      description: Standard error response from the Data Exchange API.
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human-readable error message
-        code:
-          type: string
-          description: An error code identifying the type of error
-        requestId:
-          type: string
-          description: The unique ID of the request that resulted in this error
-    ListRevisionAssetsResponse:
-      description: Response containing a list of assets.
-      type: object
-      properties:
-        Assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Asset'
-        NextToken:
-          type: string
   securitySchemes:
     awsSignatureV4:
       type: apiKey
