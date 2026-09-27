@@ -229,6 +229,15 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    UpdateEventActionRequest:
+      description: Request body for updating an event action.
+      type: object
+      required:
+      - Action
+      properties:
+        Action:
+          type: object
+          description: The updated action configuration
     ListEventActionsResponse:
       description: Response containing a list of event actions.
       type: object
@@ -239,15 +248,32 @@ components:
             $ref: '#/components/schemas/EventAction'
         NextToken:
           type: string
-    UpdateEventActionRequest:
-      description: Request body for updating an event action.
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
+    CreateEventActionRequest:
+      description: Request body for creating a new event action.
       type: object
       required:
+      - Event
       - Action
       properties:
+        Event:
+          type: object
+          description: The event that triggers the action
         Action:
           type: object
-          description: The updated action configuration
+          description: The action to perform when the event occurs
     EventAction:
       description: An event action that automates responses to Data Exchange events.
       type: object
@@ -270,32 +296,6 @@ components:
         UpdatedAt:
           type: string
           format: date-time
-    CreateEventActionRequest:
-      description: Request body for creating a new event action.
-      type: object
-      required:
-      - Event
-      - Action
-      properties:
-        Event:
-          type: object
-          description: The event that triggers the action
-        Action:
-          type: object
-          description: The action to perform when the event occurs
-    Error:
-      description: Standard error response from the Data Exchange API.
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human-readable error message
-        code:
-          type: string
-          description: An error code identifying the type of error
-        requestId:
-          type: string
-          description: The unique ID of the request that resulted in this error
   securitySchemes:
     awsSignatureV4:
       type: apiKey

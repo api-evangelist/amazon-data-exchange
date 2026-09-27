@@ -248,7 +248,7 @@ apis:
     url: json-ld/amazon-data-exchange-context.jsonld
 common:
 - type: Website
-  url: https://amazon.com
+  url: https://aws.amazon.com/data-exchange/
 - type: AgenticAccess
   url: agentic-access/amazon-data-exchange-agentic-access.yml
 - type: TrustCenter
@@ -411,5 +411,5 @@ integrations:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-x-parent: aws
+x-parent: amazon-web-services
 x-relationship: product

@@ -280,16 +280,6 @@ components:
           type: string
           format: date-time
           description: When the data set was last updated
-    UpdateDataSetRequest:
-      description: Request body for updating a data set.
-      type: object
-      properties:
-        Name:
-          type: string
-          description: The new name for the data set
-        Description:
-          type: string
-          description: The new description for the data set
     CreateDataSetRequest:
       description: Request body for creating a new data set.
       type: object
@@ -318,17 +308,16 @@ components:
           description: Tags to add to the data set
           additionalProperties:
             type: string
-    ListDataSetsResponse:
-      description: Response containing a list of data sets.
+    UpdateDataSetRequest:
+      description: Request body for updating a data set.
       type: object
       properties:
-        DataSets:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSet'
-        NextToken:
+        Name:
           type: string
-          description: Pagination token for the next page
+          description: The new name for the data set
+        Description:
+          type: string
+          description: The new description for the data set
     Error:
       description: Standard error response from the Data Exchange API.
       type: object
@@ -342,6 +331,17 @@ components:
         requestId:
           type: string
           description: The unique ID of the request that resulted in this error
+    ListDataSetsResponse:
+      description: Response containing a list of data sets.
+      type: object
+      properties:
+        DataSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSet'
+        NextToken:
+          type: string
+          description: Pagination token for the next page
   securitySchemes:
     awsSignatureV4:
       type: apiKey
