@@ -236,26 +236,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    UpdateRevisionRequest:
-      description: Request body for updating a revision.
-      type: object
-      properties:
-        Comment:
-          type: string
-          description: An updated comment for the revision
-        Finalized:
-          type: boolean
-          description: Set to true to finalize the revision for publishing
-    ListDataSetRevisionsResponse:
-      description: Response containing a list of revisions.
-      type: object
-      properties:
-        Revisions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Revision'
-        NextToken:
-          type: string
     Error:
       description: Standard error response from the Data Exchange API.
       type: object
@@ -269,6 +249,28 @@ components:
         requestId:
           type: string
           description: The unique ID of the request that resulted in this error
+    ListDataSetRevisionsResponse:
+      description: Response containing a list of revisions.
+      type: object
+      properties:
+        Revisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        NextToken:
+          type: string
+    CreateRevisionRequest:
+      description: Request body for creating a new revision.
+      type: object
+      properties:
+        Comment:
+          type: string
+          description: A comment describing the revision
+          maxLength: 16384
+        Tags:
+          type: object
+          additionalProperties:
+            type: string
     Revision:
       description: A revision of a data set, representing a snapshot of data at a point in time.
       type: object
@@ -299,18 +301,16 @@ components:
         UpdatedAt:
           type: string
           format: date-time
-    CreateRevisionRequest:
-      description: Request body for creating a new revision.
+    UpdateRevisionRequest:
+      description: Request body for updating a revision.
       type: object
       properties:
         Comment:
           type: string
-          description: A comment describing the revision
-          maxLength: 16384
-        Tags:
-          type: object
-          additionalProperties:
-            type: string
+          description: An updated comment for the revision
+        Finalized:
+          type: boolean
+          description: Set to true to finalize the revision for publishing
   securitySchemes:
     awsSignatureV4:
       type: apiKey
