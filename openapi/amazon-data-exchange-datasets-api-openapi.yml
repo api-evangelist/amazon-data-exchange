@@ -230,6 +230,57 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
+    UpdateDataSetRequest:
+      description: Request body for updating a data set.
+      type: object
+      properties:
+        Name:
+          type: string
+          description: The new name for the data set
+        Description:
+          type: string
+          description: The new description for the data set
+    CreateDataSetRequest:
+      description: Request body for creating a new data set.
+      type: object
+      required:
+      - Name
+      - Description
+      - AssetType
+      properties:
+        Name:
+          type: string
+          description: The name of the data set
+        Description:
+          type: string
+          description: The description of the data set
+        AssetType:
+          type: string
+          description: The type of asset for this data set
+          enum:
+          - S3_SNAPSHOT
+          - REDSHIFT_DATA_SHARE
+          - API_GATEWAY_API
+          - LAKE_FORMATION_DATA_PERMISSION
+          - S3_DATA_ACCESS
+        Tags:
+          type: object
+          description: Tags to add to the data set
+          additionalProperties:
+            type: string
     DataSet:
       description: An AWS Data Exchange data set containing a collection of data available for subscription.
       type: object
@@ -280,29 +331,6 @@ components:
           type: string
           format: date-time
           description: When the data set was last updated
-    Error:
-      description: Standard error response from the Data Exchange API.
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human-readable error message
-        code:
-          type: string
-          description: An error code identifying the type of error
-        requestId:
-          type: string
-          description: The unique ID of the request that resulted in this error
-    UpdateDataSetRequest:
-      description: Request body for updating a data set.
-      type: object
-      properties:
-        Name:
-          type: string
-          description: The new name for the data set
-        Description:
-          type: string
-          description: The new description for the data set
     ListDataSetsResponse:
       description: Response containing a list of data sets.
       type: object
@@ -314,34 +342,6 @@ components:
         NextToken:
           type: string
           description: Pagination token for the next page
-    CreateDataSetRequest:
-      description: Request body for creating a new data set.
-      type: object
-      required:
-      - Name
-      - Description
-      - AssetType
-      properties:
-        Name:
-          type: string
-          description: The name of the data set
-        Description:
-          type: string
-          description: The description of the data set
-        AssetType:
-          type: string
-          description: The type of asset for this data set
-          enum:
-          - S3_SNAPSHOT
-          - REDSHIFT_DATA_SHARE
-          - API_GATEWAY_API
-          - LAKE_FORMATION_DATA_PERMISSION
-          - S3_DATA_ACCESS
-        Tags:
-          type: object
-          description: Tags to add to the data set
-          additionalProperties:
-            type: string
   securitySchemes:
     awsSignatureV4:
       type: apiKey

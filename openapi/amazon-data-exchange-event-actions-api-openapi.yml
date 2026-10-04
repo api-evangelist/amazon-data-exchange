@@ -229,16 +229,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ListEventActionsResponse:
-      description: Response containing a list of event actions.
-      type: object
-      properties:
-        EventActions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventAction'
-        NextToken:
-          type: string
     Error:
       description: Standard error response from the Data Exchange API.
       type: object
@@ -252,15 +242,16 @@ components:
         requestId:
           type: string
           description: The unique ID of the request that resulted in this error
-    UpdateEventActionRequest:
-      description: Request body for updating an event action.
+    ListEventActionsResponse:
+      description: Response containing a list of event actions.
       type: object
-      required:
-      - Action
       properties:
-        Action:
-          type: object
-          description: The updated action configuration
+        EventActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventAction'
+        NextToken:
+          type: string
     CreateEventActionRequest:
       description: Request body for creating a new event action.
       type: object
@@ -274,6 +265,15 @@ components:
         Action:
           type: object
           description: The action to perform when the event occurs
+    UpdateEventActionRequest:
+      description: Request body for updating an event action.
+      type: object
+      required:
+      - Action
+      properties:
+        Action:
+          type: object
+          description: The updated action configuration
     EventAction:
       description: An event action that automates responses to Data Exchange events.
       type: object

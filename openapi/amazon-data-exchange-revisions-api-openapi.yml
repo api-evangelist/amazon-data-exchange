@@ -236,41 +236,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      description: Standard error response from the Data Exchange API.
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human-readable error message
-        code:
-          type: string
-          description: An error code identifying the type of error
-        requestId:
-          type: string
-          description: The unique ID of the request that resulted in this error
-    ListDataSetRevisionsResponse:
-      description: Response containing a list of revisions.
-      type: object
-      properties:
-        Revisions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Revision'
-        NextToken:
-          type: string
-    CreateRevisionRequest:
-      description: Request body for creating a new revision.
-      type: object
-      properties:
-        Comment:
-          type: string
-          description: A comment describing the revision
-          maxLength: 16384
-        Tags:
-          type: object
-          additionalProperties:
-            type: string
     Revision:
       description: A revision of a data set, representing a snapshot of data at a point in time.
       type: object
@@ -301,6 +266,41 @@ components:
         UpdatedAt:
           type: string
           format: date-time
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
+    CreateRevisionRequest:
+      description: Request body for creating a new revision.
+      type: object
+      properties:
+        Comment:
+          type: string
+          description: A comment describing the revision
+          maxLength: 16384
+        Tags:
+          type: object
+          additionalProperties:
+            type: string
+    ListDataSetRevisionsResponse:
+      description: Response containing a list of revisions.
+      type: object
+      properties:
+        Revisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        NextToken:
+          type: string
     UpdateRevisionRequest:
       description: Request body for updating a revision.
       type: object

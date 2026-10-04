@@ -259,15 +259,6 @@ components:
         UpdatedAt:
           type: string
           format: date-time
-    UpdateAssetRequest:
-      description: Request body for updating an asset.
-      type: object
-      required:
-      - Name
-      properties:
-        Name:
-          type: string
-          description: The new name for the asset
     Error:
       description: Standard error response from the Data Exchange API.
       type: object
@@ -281,6 +272,15 @@ components:
         requestId:
           type: string
           description: The unique ID of the request that resulted in this error
+    UpdateAssetRequest:
+      description: Request body for updating an asset.
+      type: object
+      required:
+      - Name
+      properties:
+        Name:
+          type: string
+          description: The new name for the asset
   securitySchemes:
     awsSignatureV4:
       type: apiKey
