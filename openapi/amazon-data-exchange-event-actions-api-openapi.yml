@@ -242,38 +242,6 @@ components:
         requestId:
           type: string
           description: The unique ID of the request that resulted in this error
-    ListEventActionsResponse:
-      description: Response containing a list of event actions.
-      type: object
-      properties:
-        EventActions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventAction'
-        NextToken:
-          type: string
-    CreateEventActionRequest:
-      description: Request body for creating a new event action.
-      type: object
-      required:
-      - Event
-      - Action
-      properties:
-        Event:
-          type: object
-          description: The event that triggers the action
-        Action:
-          type: object
-          description: The action to perform when the event occurs
-    UpdateEventActionRequest:
-      description: Request body for updating an event action.
-      type: object
-      required:
-      - Action
-      properties:
-        Action:
-          type: object
-          description: The updated action configuration
     EventAction:
       description: An event action that automates responses to Data Exchange events.
       type: object
@@ -296,6 +264,38 @@ components:
         UpdatedAt:
           type: string
           format: date-time
+    CreateEventActionRequest:
+      description: Request body for creating a new event action.
+      type: object
+      required:
+      - Event
+      - Action
+      properties:
+        Event:
+          type: object
+          description: The event that triggers the action
+        Action:
+          type: object
+          description: The action to perform when the event occurs
+    UpdateEventActionRequest:
+      description: Request body for updating an event action.
+      type: object
+      required:
+      - Action
+      properties:
+        Action:
+          type: object
+          description: The updated action configuration
+    ListEventActionsResponse:
+      description: Response containing a list of event actions.
+      type: object
+      properties:
+        EventActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventAction'
+        NextToken:
+          type: string
   securitySchemes:
     awsSignatureV4:
       type: apiKey

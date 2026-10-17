@@ -203,27 +203,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      description: Standard error response from the Data Exchange API.
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human-readable error message
-        code:
-          type: string
-          description: An error code identifying the type of error
-        requestId:
-          type: string
-          description: The unique ID of the request that resulted in this error
-    StartJobResponse:
-      description: Response after starting a job.
-      type: object
-      properties:
-        JobId:
-          type: string
-        State:
-          type: string
     CreateJobRequest:
       description: Request body for creating a new job.
       type: object
@@ -247,6 +226,14 @@ components:
         Details:
           type: object
           description: Job-type-specific configuration
+    StartJobResponse:
+      description: Response after starting a job.
+      type: object
+      properties:
+        JobId:
+          type: string
+        State:
+          type: string
     ListJobsResponse:
       description: Response containing a list of jobs.
       type: object
@@ -257,6 +244,19 @@ components:
             $ref: '#/components/schemas/Job'
         NextToken:
           type: string
+    Error:
+      description: Standard error response from the Data Exchange API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error
+        requestId:
+          type: string
+          description: The unique ID of the request that resulted in this error
     Job:
       description: A Data Exchange job for importing or exporting assets.
       type: object
