@@ -1,0 +1,2294 @@
+edges:
+- partner_name: PredictHQ
+  partner: predicthq
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=b82dc088-06e8-4b0c-9068-42e35f9a099b
+  partner_url: https://www.predicthq.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: PredictHQ
+    matched_domain: predicthq.com
+    matched_by: domain
+    listings: 7
+    sample_listings:
+    - Demand Intelligence - Live TV event broadcasts
+    - Intelligent Event data sample - Attended events, Seattle
+    - Intelligent Event data sample - Non attended events, Seattle
+    - Intelligent Event data sample, Unscheduled events, California
+    - PredictHQ x AWS Workshop on AWS Quicksight - EMEA (Lisbon)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - AWS Specializations
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Equifax
+  partner: equifax
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=df8eb6dc-ca0e-43d8-90fa-ea1c87e24243
+  partner_url: https://www.equifax.com/business/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Equifax
+    matched_domain: equifax.com
+    matched_by: domain
+    listings: 25
+    sample_listings:
+    - Affluence Index™ (Demo/Sample)
+    - Analytic Dataset
+    - Analytic Dataset (Demo/Sample)
+    - B2bConnect™ - Business Firmographics (Demo/Sample)
+    - Commercial Real Estate - AMP Insights (Demo/Sample)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Tableau
+  partner: tableau
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=0ef849c5-c2fa-4699-9f67-c47555e148a5
+  partner_url: http://www.tableau.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Tableau
+    matched_domain: tableau.com
+    matched_by: domain+name-among-holders
+    listings: 3
+    sample_listings:
+    - Coronavirus (COVID-19) Data Hub
+    - Tableau Racial Equity Data Hub Starter Data & Workbooks Updates
+    - Tableau Racial Equity Data Hub Starter Data and Workbooks
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: LiveRamp
+  partner: liveramp
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=3204d632-3f67-4e90-87af-03f6913eaced
+  partner_url: https://www.liveramp.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: LiveRamp
+    matched_domain: liveramp.com
+    matched_by: domain
+    listings: 3
+    sample_listings:
+    - LiveRamp Identity Resolution
+    - LiveRamp Identity Translation
+    - LiveRamp for AWS Entity Resolution
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - AWS Specializations
+  - Deployed on AWS
+- partner_name: FactSet Research Systems, Inc.
+  partner: factset
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=3f6b03b8-b535-4285-b730-f25007139828
+  partner_url: http://www.factset.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: FactSet Research Systems, Inc.
+    matched_domain: factset.com
+    matched_by: domain
+    listings: 40
+    sample_listings:
+    - ETF - SEC 6c-11
+    - FactSet Core Financials Bundle
+    - FactSet Corporate Governance
+    - FactSet Data Management Solutions
+    - FactSet Debt Capital Structure
+    other_registrations:
+    - FactSet
+    - FactSet Research Systems
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Weatherbit
+  partner: weatherbit
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=3d5df754-4ff3-4f9c-9c63-725c0546c181
+  partner_url: https://www.weatherbit.io
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Weatherbit
+    matched_domain: weatherbit.io
+    matched_by: domain
+    listings: 5
+    sample_listings:
+    - Weatherbit - 60 Minute Rainfall / Snow Forecast
+    - Weatherbit - Current Weather API
+    - Weatherbit - Daily Weather Forecast API (16 Days)
+    - Weatherbit - Hourly Weather Forecast API (10 Days)
+    - Weatherbit - Weather API Bundle (forecasts, and current weather)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: COMSPOC
+  partner: comspoc
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=aeec2838-6d18-4975-abe2-09cbae34cc77
+  partner_url: https://comspoc.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: COMSPOC
+    matched_domain: comspoc.com
+    matched_by: domain
+    listings: 10
+    sample_listings:
+    - ARGUS Conjunction Screening
+    - ARGUS Curated Observations
+    - ARGUS High Definition Ephemeris (HiDEph)
+    - ARGUS Launch Collision Avoidance (LCOLA)
+    - ARGUS Launch and Early Operations (LEOPS)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Orbital Insight
+  partner: orbital-insight
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=a482748d-bd71-4cb0-a60e-1d8e7736baf2
+  partner_url: http://orbitalinsight.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Orbital Insight
+    matched_domain: orbitalinsight.com
+    matched_by: domain
+    listings: 2
+    sample_listings:
+    - Activity Monitoring - US and International Auto Manufacturing
+    - Multi-Class Aircraft Detections
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: algoseek
+  partner: algoseek
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=4c1271ed-ae75-4ffd-9ddb-dd5ab02445e7
+  partner_url: https://algoseek.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: algoseek
+    matched_domain: algoseek.com
+    matched_by: domain
+    listings: 29
+    sample_listings:
+    - US Equity Basic Adjustment Factors | 2020 Month (CSV) Free
+    - US Equity Cumulative Adjustment Factors | 2020 Month (CSV) Free
+    - US Equity Detailed Adjustment Factors | 2020 Month (CSV) Free
+    - US Equity Intraday Data | 2020 FAANG Free Sample
+    - US Equity Options Trade Only Minute Bar | 2020 Month (CSV) Free
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Saildrone, Inc.
+  partner: saildrone
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=b1f47008-b4d7-42d6-9db2-eec209858029
+  partner_url: https://www.saildrone.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Saildrone, Inc.
+    matched_domain: saildrone.com
+    matched_by: domain
+    listings: 2
+    sample_listings:
+    - 2018 Baja California Mission
+    - 2019 Antarctica Circumnavigation - SD-1022 Complete Data Set
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: ADP
+  partner: adp
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=3ed68f3a-a048-4910-86b2-b30bbe5ac10a
+  partner_url: https://datacloud.adp.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: ADP
+    matched_domain: adp.com
+    matched_by: domain+name-among-holders
+    listings: 3
+    sample_listings:
+    - ADP Real Demographics Data (Sample)
+    - ADP Real Movement Data (Sample)
+    - ADP Real Pay Data (Sample)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Veradigm
+  partner: veradigm
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=9807936f-27d3-46cc-84eb-527c3a67f515
+  partner_url: http://www.veradigm.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Veradigm
+    matched_domain: veradigm.com
+    matched_by: domain
+    listings: 5
+    sample_listings:
+    - Diabetes Collaborative Registry (DCR)
+    - Medical Claims (837-p)
+    - PINNACLE Registry
+    - Remittances (835-p)
+    - Veradigm Network EHR Sample Dataset
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: TransUnion
+  partner: transunion
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=63ef1166-4b03-463a-acc6-0fc00bc19c9f
+  partner_url: https://www.transunion.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: TransUnion
+    matched_domain: transunion.com
+    matched_by: domain
+    listings: 11
+    sample_listings:
+    - AdAdvisor by TransUnion -  US - Propensity & Interests
+    - AdAdvisor by TransUnion - US - Automotive
+    - AdAdvisor by TransUnion - US - Business
+    - AdAdvisor by TransUnion - US - Consumer Finance
+    - AdAdvisor by TransUnion - US - Demographics
+    other_registrations:
+    - TransUnion
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Yelp
+  partner: yelp
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=c971368f-6e0a-47bb-bc0f-113e5f0f5870
+  partner_url: https://www.yelp.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Yelp
+    matched_domain: yelp.com
+    matched_by: domain
+    listings: 13
+    sample_listings:
+    - 100 Miami Restaurants Scores and Review Sample - Sales and Risk Intel
+    - Chicago Financial Services Points of Interest (POI) Sample
+    - Local Business Attributes, Intel and Full Review Text Sample - 100 POIs
+    - Local Business Trend Analysis - 5 Years Sample of 100 Miami Restaurants
+    - Location Intelligence - Sales Intel Mid Market Restaurant Sample
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: S&P Global Energy
+  partner: sp-global
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-e5k6hl5klhzwq
+  partner_url: https://www.spglobal.com/energy
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: S&P Global Energy
+    matched_domain: spglobal.com
+    matched_by: domain+name-among-holders
+    listings: 35
+    sample_listings:
+    - AI Ready Data
+    - Chemicals Enhanced Analysis and Forecasts
+    - Energy Price Forecast
+    - European Gas Analytics
+    - Global Oil Demand
+    other_registrations:
+    - S&P Global Market Intelligence
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Sentinel Hub by Sinergise
+  partner: sentinel-hub
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=c282a573-bd1c-4c3e-9ba1-52b010e5093b
+  partner_url: https://www.sentinel-hub.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Sentinel Hub by Sinergise
+    matched_domain: sentinel-hub.com
+    matched_by: domain
+    listings: 6
+    sample_listings:
+    - Agriculture parcels - GSAA (Flanders/Belgium/Europe)
+    - Agriculture parcels - GSAA (France/Europe)
+    - Cloudless mosaic (GBR and Ireland/Europe) - 2018
+    - Cloudless mosaic (Jamaica/Caribbean) - 2019
+    - Land Cover data (Slovenia/Europe)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Bright Data
+  partner: bright-data
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=bf9b4324-6ee3-4eb3-9ca4-083e558d04c4
+  partner_url: https://brightdata.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Bright Data
+    matched_domain: brightdata.com
+    matched_by: domain
+    listings: 26
+    sample_listings:
+    - Airbnb Properties Information (Public Dataset)
+    - Amazon Listings
+    - Business Data - B2B Contacts Dataset
+    - Business Information Datasets
+    - Company Information Eastern Europe
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: ShareThis Inc
+  partner: sharethis
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=5ee6f5af-2453-41a2-ac06-add1d6988454
+  partner_url: https://www.sharethis.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: ShareThis Inc
+    matched_domain: sharethis.com
+    matched_by: domain
+    listings: 23
+    sample_listings:
+    - Auto Trends & Consumer Behavior Data by ShareThis
+    - Beauty Shoppers Currently Engaging With Cosmetics Product Line
+    - Breakfast Eaters With High-Interest in Cereal Products
+    - COVID-19 Online Behavioral Trends (Free)
+    - Care Takers Highly Engaged With Baby Products Online
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Precisely
+  partner: precisely-apis
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=75a7e002-c13e-48fb-94b3-a05331a41ade
+  partner_url: https://www.precisely.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Precisely
+    matched_domain: precisely.com
+    matched_by: domain
+    listings: 26
+    sample_listings:
+    - Address Fabric Canada Sample
+    - Address Fabric USA Sample
+    - Base Immeubles France Sample
+    - Buildings Canada Sample
+    - Buildings USA Sample
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: CARTO
+  partner: carto
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=64781f9c-84bc-4ed6-8ee4-45bed1a97b2d
+  partner_url: https://carto.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: CARTO
+    matched_domain: carto.com
+    matched_by: domain
+    listings: 23
+    sample_listings:
+    - ACS - Sociodemographics (USA, Census Block Groups, 2018)
+    - ACS - Sociodemographics (USA, Census Block Groups, 2019)
+    - AGS - Consumer Spending - Census Divisions
+    - AGS - Sociodemographics (Canada,  Census Divisions)
+    - AGS - Sociodemographics (USA, Census Block Groups)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Benzinga
+  partner: benzinga
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=68bc877f-def1-4cc4-abf5-5baf1371384d
+  partner_url: https://www.benzinga.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Benzinga
+    matched_domain: benzinga.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Benzinga Basic Financial News API (free tier)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: FinThrive Healthcare Inc
+  partner: finthrive
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-t4hypmrpytjs6
+  partner_url: https://finthrive.com/markets/life-sciences
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: FinThrive Healthcare Inc
+    matched_domain: finthrive.com
+    matched_by: domain
+    listings: 2
+    sample_listings:
+    - FinThrive Hospital Chargemaster Data
+    - FinThrive Hospital Claims & Remits Data
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Payerset
+  partner: payerset
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-2g3zl36xc33lu
+  partner_url: https://payerset.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Payerset
+    matched_domain: payerset.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Cigna Price Transparency - Machine Readable Files - Parquet Format
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: SafeGraph
+  partner: safegraph
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=7d5ff8ca-105f-4856-9d99-5f2f1d83223c
+  partner_url: https://www.safegraph.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: SafeGraph
+    matched_domain: safegraph.com
+    matched_by: domain
+    listings: 15
+    sample_listings:
+    - Building Footprint Data for Entire US - SafeGraph Places
+    - 'Free Data: SafeGraph Open Census Data'
+    - Geospatial Data for Entire US - Building Footprints
+    - Geospatial Data for Entire US - SafeGraph Places
+    - POI (Point of Interest) Data for Entire US - SafeGraph Places
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Adentro
+  partner: adentro
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=2565071d-5dd7-417a-827a-53305a38482b
+  partner_url: https://adentro.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Adentro
+    matched_domain: adentro.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Adentro National Foot-Traffic Index
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Shutterstock
+  partner: shutterstock
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=fb34254c-c7cf-47b8-806c-24045a0a2807
+  partner_url: https://www.shutterstock.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Shutterstock
+    matched_domain: shutterstock.com
+    matched_by: domain
+    listings: 5
+    sample_listings:
+    - Free Sample Dataset - 1000 High Resolution Images & Metadata
+    - Free Sample Dataset - 50 High Resolution Videos & Metadata
+    - Free Sample Dataset - Facial Detection (100 High-Res Images & Metadata)
+    - Free Sample Dataset - Object Detection (200 High-Res Images & Metadata)
+    - Free Sample Dataset - People Detection (200 High-Res Images & Metadata)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Tomorrow.io ®
+  partner: tomorrow-io
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=b130a96b-d84c-4738-8528-1a652cc1a710
+  partner_url: https://www.tomorrow.io/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Tomorrow.io ®
+    matched_domain: tomorrow.io
+    matched_by: domain
+    listings: 2
+    sample_listings:
+    - Customizable Historical Weather & Air Quality Data
+    - Fire Index and Air Quality Data for the Top 20 Cities in California
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Listen Notes, Inc.
+  partner: listennotes
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=f51c44b8-a72c-425a-a963-6d6b0de2b347
+  partner_url: https://www.listennotes.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Listen Notes, Inc.
+    matched_domain: listennotes.com
+    matched_by: domain
+    listings: 10
+    sample_listings:
+    - All Podcast Audio - Metadata for 3.5m podcasts & 176m episodes worldwide
+    - Chinese Podcast Database - Complete Podcast Metadata
+    - Dutch Podcast Database - Complete Podcast Metadata
+    - French Podcast Database - Complete Podcast Metadata
+    - German Podcast Database - Complete Podcast Metadata
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Visier
+  partner: visier
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=b9765945-035d-4ec8-adcc-d742cd7b1c9a
+  partner_url: http://www.visier.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Visier
+    matched_domain: visier.com
+    matched_by: domain
+    listings: 4
+    sample_listings:
+    - Free Career Benchmarks - Labor/Economic/Workforce Data
+    - Free Demographic Benchmarks - All Industry 2018-2020
+    - Free Exit Benchmarks - Select and All Industry 2018-2020
+    - Free Manager Benchmarks - Labor/Economic Data - 2018-2020
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Experian Marketing Services
+  partner: experian
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=020cbbd1-ebcc-4199-9906-1b37f98d7541
+  partner_url: https://www.experian.com/marketing-services/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Experian Marketing Services
+    matched_domain: experian.com
+    matched_by: domain+name-among-holders
+    listings: 2
+    sample_listings:
+    - Experian US CAPE Census Ratios and Percentages
+    - Experian US CAPE Census Ratios and Percentages Sample
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: PitchBook Data
+  partner: pitchbook
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=aebddeb3-4d2a-4c49-9283-f31b2fc1c325
+  partner_url: https://www.pitchbook.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: PitchBook Data
+    matched_domain: pitchbook.com
+    matched_by: domain
+    listings: 4
+    sample_listings:
+    - PitchBook Benchmarking Data
+    - PitchBook Companies & Deals Data Sample
+    - PitchBook Fund Data
+    - PitchBook Investor Profiles Data
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Mapbox
+  partner: mapbox
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=3813b124-2c2a-4467-9d6d-4034e07b37d9
+  partner_url: https://mapbox.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Mapbox
+    matched_domain: mapbox.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Mapbox Movement US Daily Activity Index - Sample
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: ANCHORE INC
+  partner: anchore
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-zb3a2rpf5ozek
+  partner_url: http://www.anchore.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: ANCHORE INC
+    matched_domain: anchore.com
+    matched_by: domain+name-among-holders
+    listings: 3
+    sample_listings:
+    - Anchore Policy Packs - DOD
+    - Anchore Policy Packs - FedRAMP
+    - Anchore Policy Packs - Federal
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - AWS Specializations
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Peaxy
+  partner: peaxy
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=324624a1-d4c5-44ef-a3cd-352708e76215
+  partner_url: https://peaxy.net/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Peaxy
+    matched_domain: peaxy.net
+    matched_by: domain
+    listings: 2
+    sample_listings:
+    - Peaxy BlueSky Wind Data
+    - Peaxy BlueSky Wind Data - FREE sample of wind farm ranking data
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Similarweb
+  partner: similarweb
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=b01b7b68-954d-4c9d-a5bd-4630025c3be6
+  partner_url: https://www.similarweb.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Similarweb
+    matched_domain: similarweb.com
+    matched_by: domain
+    listings: 20
+    sample_listings:
+    - Estimated On Site Search Keywords
+    - Estimated On Site Search Keywords with Conversion
+    - Estimated Retail Top Product Views and Purchases
+    - Estimated Site Channel Conversion
+    - Estimated Site Conversion
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: HouseCanary
+  partner: housecanary
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-3kgvmof3vhbxg
+  partner_url: https://www.housecanary.com/?utm_source=aws-marketplace&utm_medium=company-profile&utm_campaign=bpd
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: HouseCanary
+    matched_domain: housecanary.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Bulk Property Data - Residential Real Estate (United States Nationwide)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Clarivate
+  partner: clarivate
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=5287aa89-5274-4119-a793-54be9d68b175
+  partner_url: https://clarivate.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Clarivate
+    matched_domain: clarivate.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_listings:
+    - Clarivate Real World Data Product
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Revelio Labs
+  partner: revelio-labs
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=a906d983-b8ad-4536-82b4-441b3e99bb28
+  partner_url: https://www.reveliolabs.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Revelio Labs
+    matched_domain: reveliolabs.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Revelio Labs Workforce Composition and Trends Data (New Trial data)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Quodd Financial Information Services
+  partner: quodd
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=c84f2529-9a85-4fdf-bb90-e73142d6a861
+  partner_url: https://www.quodd.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Quodd Financial Information Services
+    matched_domain: quodd.com
+    matched_by: domain+name-among-holders
+    listings: 2
+    sample_listings:
+    - Daily Bond Fund and Money Market Interest Rates
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Freddie Mac SF Lab
+  partner: freddie-mac
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=488ef01f-319d-4fe1-83f1-0b0a5702f0d4
+  partner_url: http://www.freddiemac.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Freddie Mac SF Lab
+    matched_domain: freddiemac.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Quarterly Refinance Statistics
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Mastercard
+  partner: mastercard
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=13af1c03-e79b-4f6e-8142-9b5623a952ad
+  partner_url: https://mastercard.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Mastercard
+    matched_domain: mastercard.com
+    matched_by: domain+name-among-holders
+    listings: 3
+    sample_listings:
+    - Audiences
+    - Places
+    - SpendingPulse
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - AWS Specializations
+  - Deployed on AWS
+- partner_name: Descartes Labs
+  partner: descartes-labs
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=aed4dd0c-2f24-49fb-b291-0e7562f0f704
+  partner_url: https://descarteslabs.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Descartes Labs
+    matched_domain: descarteslabs.com
+    matched_by: domain
+    listings: 2
+    sample_listings:
+    - Commodity Price Forecasts for Soybean Meal
+    - Forest Cover Classification Map for Sumatra
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: OneWeb
+  partner: oneweb
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-2bpkbpkhhmzym
+  partner_url: https://oneweb.net
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: OneWeb
+    matched_domain: oneweb.net
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Satellite Constellation Flight Data by Eutelsat OneWeb
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Bitquery
+  partner: bitquery
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=37e27fc1-885c-4603-8ede-fa351f4c00c8
+  partner_url: https://bitquery.io
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Bitquery
+    matched_domain: bitquery.io
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Ethereum Full On-Chain Data
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: OM1
+  partner: om1
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=01301d3c-479e-44d9-82d0-30b58c64dc36
+  partner_url: https://www.om1.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: OM1
+    matched_domain: om1.com
+    matched_by: domain
+    listings: 2
+    sample_listings:
+    - 'Drug Switching Patterns: Rheumatoid Arthritis'
+    - 'EHR-Claims: 2018'
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: LSEG
+  partner: lseg
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=32c6e5ae-eb02-4678-88ec-3a7a81c3f980
+  partner_url: https://www.lseg.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: LSEG
+    matched_domain: lseg.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_listings:
+    - ESG LSEG
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Brain Corp
+  partner: brain-corp
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=27e9cecd-1da3-4839-b889-cd03f8a659d9
+  partner_url: https://www.braincorp.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Brain Corp
+    matched_domain: braincorp.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - LTE Signal Strength at San Diego International Airport
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: HERE Technologies
+  partner: here
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=cc033bc0-fe05-4d79-ba58-9a132b1fe9d3
+  partner_url: https://www.here.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: HERE Technologies
+    matched_domain: here.com
+    matched_by: domain+name-among-holders
+    listings: 3
+    sample_listings:
+    - HERE GIS Data Suite
+    - HERE Premier 3D Cities - European Evaluation Samples
+    - HERE Premier 3D Cities - North American Evaluation Samples
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - AWS Specializations
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Verana Health
+  partner: verana-health
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=f559eb07-fa51-4f3c-8d2b-306c9b5af46d
+  partner_url: https://veranahealth.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Verana Health
+    matched_domain: veranahealth.com
+    matched_by: domain
+    listings: 3
+    sample_listings:
+    - Qdata Geographic Atrophy
+    - Qdata MS
+    - Qdata NMIBC
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Epsilon
+  partner: epsilon
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=ed1c7518-9b7e-44e8-be50-960b3a710858
+  partner_url: https://us.epsilon.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Epsilon
+    matched_domain: epsilon.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Consumer Data Insights - Premium
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Freepik Company S.L
+  partner: freepik
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-7j4qvaw5pwkfy
+  partner_url: https://www.freepik.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Freepik Company S.L
+    matched_domain: freepik.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Free Sample Dataset - 200 High Resolution Images & Metadata
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: DTN, LLC
+  partner: dtn
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=f10477dc-2f4c-4435-a3a0-e006853bf0c9
+  partner_url: http://dtn.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: DTN, LLC
+    matched_domain: dtn.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Gridded Meteorological Surface Analysis
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: LexisNexis Risk Solutions
+  partner: lexisnexis-risk-solutions
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=ec9242c2-8e10-4706-851e-9c49097f9b6a
+  partner_url: https://risk.lexisnexis.com/healthcare
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: LexisNexis Risk Solutions
+    matched_domain: lexisnexis.com
+    matched_by: domain+name-among-holders
+    listings: 2
+    sample_listings:
+    - LexisNexis® Provider Data Management
+    - LexisNexis® Risk Solutions Healthcare Market Data & Insights
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Datavant
+  partner: datavant
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=164deeac-3a88-423a-b57e-0fcf65338ae4
+  partner_url: https://datavant.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Datavant
+    matched_domain: datavant.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_listings:
+    - Sample Tokenization Input
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Intrinio
+  partner: intrinio
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=a8764798-dd61-47aa-8534-190046c9592d
+  partner_url: https://intrinio.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Intrinio
+    matched_domain: intrinio.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - US Standardized Financial Statement Data | 1 Yr History (Dow 30 Trial)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Global Database
+  partner: globaldatabase-com
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=0a97c951-a724-44c0-994f-27152a89fc45
+  partner_url: https://www.globaldatabase.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Global Database
+    matched_domain: globaldatabase.com
+    matched_by: domain
+    listings: 2
+    sample_listings:
+    - All UK Registered Companies With Official Turnover Data
+    - UK Companies growing +100% YOY by revenue in 2020 vs PY
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Proscia
+  partner: proscia
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=4425cc0d-d067-4c50-887a-bb137f79c195
+  partner_url: https://proscia.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Proscia
+    matched_domain: proscia.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Non-Small Cell Lung Cancer (NSCLC)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: BlackSky
+  partner: blacksky
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=44101d99-56f4-40dc-8395-2054c0d6b2c2
+  partner_url: https://www.blacksky.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: BlackSky
+    matched_domain: blacksky.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - ARGUS BlackSky Tasking Overview
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: DefinedCrowd, Corp.
+  partner: definedcrowd
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=4da6b8c8-4219-4abe-9534-fe2747a87f88
+  partner_url: https://www.definedcrowd.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: DefinedCrowd, Corp.
+    matched_domain: definedcrowd.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - English Speech Data - Scripted Monologue
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Alpha Vantage
+  partner: alpha-vantage
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=c3d0a604-a811-4af5-bdba-7a9976bc0d0b
+  partner_url: https://www.alphavantage.co/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Alpha Vantage
+    matched_domain: alphavantage.co
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - 20 Years of End-of-Day Stock Data for Top 10 US Companies by Market Cap
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Credit Benchmark Ltd
+  partner: creditbenchmark
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=d4fbae72-cb97-461d-bcb0-865d9e3c5fff
+  partner_url: https://www.creditbenchmark.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Credit Benchmark Ltd
+    matched_domain: creditbenchmark.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Credit Benchmark Credit Consensus Ratings
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Grips
+  partner: grips-intelligence
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-e53nwjmokbmc6
+  partner_url: https://gripsintelligence.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Grips
+    matched_domain: gripsintelligence.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Grips Domain Performance
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Verisk Analytics
+  partner: verisk
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=f9c590c8-b1f6-4079-b707-237d57755e02
+  partner_url: https://www.verisk.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Verisk Analytics
+    matched_domain: verisk.com
+    matched_by: domain
+    listings: 3
+    sample_listings:
+    - Verisk’s Distance to Coast — FREE sample of LOCATION® Distance to Coast
+    - Verisk’s Fire Protection Data — FREE sample of PPC® data
+    - Verisk’s Wildfire Risk Data — FREE sample of FireLine® data
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Thomson Reuters Corporation
+  partner: thomson-reuters
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=14aa4071-a059-43f9-a854-968597951447
+  partner_url: https://www.thomsonreuters.com/en/products-services/corporate-solutions.html
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Thomson Reuters Corporation
+    matched_domain: thomsonreuters.com
+    matched_by: domain+name-among-holders
+    listings: 2
+    sample_listings:
+    - ONESOURCE Fast Sales Tax Rate File - Complete Plan
+    - ONESOURCE Fast Sales Tax Rate File - Premium Plan
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: EquipmentWatch
+  partner: equipmentwatch
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=b79b505c-1374-4195-b1ee-fc0bfc405bd5
+  partner_url: https://equipmentwatch.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: EquipmentWatch
+    matched_domain: equipmentwatch.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - EquipmentWatch Taxonomy and Specifications
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Enigma
+  partner: enigma-public
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=46c64acb-20c1-41fe-a495-a364f64d0083
+  partner_url: https://www.enigma.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Enigma
+    matched_domain: enigma.com
+    matched_by: domain+name-among-holders
+    listings: 2
+    sample_listings:
+    - Small Business Administration (SBA) Loans (7a and 504)
+    - Workplace Inspections and Violations (OSHA) 1970-2020
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+- partner_name: Clarify Health Solutions, Inc.
+  partner: clarify-health
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=1ee23a28-3c42-4064-afec-f7793b1ab434
+  partner_url: https://clarifyhealth.com/
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Clarify Health Solutions, Inc.
+    matched_domain: clarifyhealth.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Clarify Navigate - Provider Performance Scores
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: Samba TV
+  partner: sambatv
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=78cab292-a528-492f-9177-4c35cfca571d
+  partner_url: https://www.samba.tv
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Samba TV
+    matched_domain: samba.tv
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Samba TV Viewership Data
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: INRIX
+  partner: inrix
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=9141a235-dd63-447c-b56f-67cdb11ed66b
+  partner_url: https://inrix.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: INRIX
+    matched_domain: inrix.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - INRIX Volume Profiles (Trial)
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - AWS Specializations
+  - Deployed on AWS
+  - Standard Data Agreement
+- partner_name: BuiltWith Pty Ltd
+  partner: builtwith
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: distribution
+  relationship: distribution-channel
+  direction: partner-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=3cb5b1f6-f328-4e3f-92a5-edc11aa47e41
+  partner_url: https://builtwith.com
+  category: data product listing
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: BuiltWith Pty Ltd
+    matched_domain: builtwith.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - BuiltWith Technology Data Sample
+    signal_note: one edge per (seller, marketplace); listing counts and badges are context, never counted
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    badge_weight: 0
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+  publisher_verified:
+  - Deployed on AWS
+  - Standard Data Agreement
+marketplace_apps:
+- marketplace: own
+  channel: distribution
+  app: amazon-data-exchange
+  url: https://aws.amazon.com/marketplace/search/results?FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE
+  adapter: sweep-data-marketplaces.py:amazon-data-exchange
+  listed: 70
+  register_meta:
+    data_products: 5317
+    read: 5317
+    sellers: 312
+    with_website: 312
+    linked: 70
+    platform_built: 2
+    in_market: 70
+  note: 'AWS Data Exchange: one edge per linked seller; the platform''s own listings and unlinked sellers are counted,
+    not written'
+generated: '2026-10-20'
+method: searched
+source:
+- https://aws.amazon.com/marketplace/search/results?FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE
+checked:
+- https://aws.amazon.com/marketplace/search/results?FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE
