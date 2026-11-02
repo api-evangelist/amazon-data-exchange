@@ -1,0 +1,62 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://aws.amazon.com/data-exchange/pricing/
+sources:
+- https://aws.amazon.com/data-exchange/pricing/
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T161713
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+published: true
+note: Live pricing tables render via dynamic tokens (Data Grant Fee per active data grant hour, Storage
+  Fee per GB/month) and show no static numbers; the only numeric prices on the page appear in worked pricing
+  examples ($.04167 per hour, $0.023/GB/month). Receiver-side product prices are set by data providers
+  on each product detail page; also mentions tiered fulfillment fees without numbers and 'Request a pricing
+  quote'.
+plan_count: 2
+currency: USD
+plans:
+- name: Data Grant Fee (active data grant hour)
+  price_text: $.04167 per hour
+  price: 0.04167
+  currency: USD
+  period: per-use
+  unit: active data grant hour
+- name: Storage fee for products containing Files
+  price_text: $0.023/GB/month
+  price: 0.023
+  currency: USD
+  period: month
+  unit: GB
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  units:
+  - compute
+  - data
+  plans:
+  - name: Data Grant Fee (active data grant hour)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Storage fee for products containing Files
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - month
