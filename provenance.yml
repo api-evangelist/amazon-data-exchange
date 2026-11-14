@@ -50,6 +50,18 @@ artifacts:
   authentication/amazon-data-exchange-authentication.yml:
     method: derived
     evidence: declared in the artifact
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
+  changelog/amazon-data-exchange-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/amazon-data-exchange-cli.yml:
+    method: searched
+    evidence: declared in the artifact
   collections/amazon-data-exchange-assets-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-data-exchange-assets-api
@@ -92,6 +104,15 @@ artifacts:
   collections/amazon-data-exchange.postman_collection.json:
     method: derived
     evidence: openapi/amazon-data-exchange
+  conformance/amazon-data-exchange-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/amazon-data-exchange-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/amazon-data-exchange-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/asset-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -164,13 +185,70 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/amazon-data-exchange-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
   integrations/amazon-data-exchange-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
+  json-ld/amazon-data-exchange-context.jsonld:
     method: unknown
     evidence: no authorship recorded
-  json-ld/amazon-data-exchange-context.jsonld:
+  json-schema/amazon-data-exchange-accept-data-grant-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-create-data-grant-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-create-data-grant-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-create-data-set-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-create-data-set-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-delete-data-grant-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-get-data-grant-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-get-data-set-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-get-received-data-grant-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-list-data-grants-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-list-data-grants-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-list-data-sets-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-list-data-sets-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-revoke-revision-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-revoke-revision-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-send-api-asset-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-send-data-set-notification-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-exchange-update-data-set-response-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/asset-schema.json:
@@ -308,7 +386,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -377,44 +455,67 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  openapi/_original/amazon-data-exchange-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/amazon-data-exchange-assets-api-openapi.yml:
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/amazon-data-exchange-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/amazon-data-exchange-llms-provenance.yml:
+    method: unknown
+    evidence: no authorship recorded
+  llms/amazon-data-exchange-llms.txt:
+    method: unknown
+    evidence: no authorship recorded
+  mcp/amazon-data-exchange-mcp.yml:
     method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    evidence: declared in the artifact
+  openapi/amazon-data-exchange-assets-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-data-exchange-data-grants-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
   openapi/amazon-data-exchange-datasets-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-data-exchange-event-actions-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-data-exchange-jobs-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-data-exchange-operations-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
   openapi/amazon-data-exchange-revisions-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/amazon-data-exchange-tags-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
+  openapi/amazon-data-exchange-tags-api-openapi.yml:
+    method: harvested
+    evidence: declared in the artifact
+  packages/amazon-data-exchange-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  patterns/amazon-data-exchange-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/amazon-data-exchange-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
   postman/amazon-data-exchange.postman_collection.json:
     method: derived
     evidence: openapi/amazon-data-exchange
+  privacy/amazon-data-exchange-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/amazon-data-exchange-rate-limits.yml:
-    method: generated
+    method: searched
     evidence: declared in the artifact
   rules/amazon-data-exchange-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/amazon-data-exchange-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-data-exchange-spectral-rules.yml:
@@ -433,8 +534,27 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   smithy/dataexchange-2017-07-25.json:
+    method: harvested
+    evidence: byte-identical to https://raw.githubusercontent.com/aws/api-models-aws/3cd98287b471c106254abd89279cc87308d38bfd/models/dataexchange/service/2017-07-25/dataexchange-2017-07-25.json
+      (sha256 0891c22c6bd7, fetched 2026-11-11T21:08:03+00:00)
+  terms/amazon-data-exchange-terms-of-service.yml:
+    method: harvested
+    evidence: declared in the artifact
+  vendors/amazon-data-exchange-vendors.yml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/amazon-data-exchange-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/amazon-data-exchange-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  well-known/amazon-data-exchange-midway-auth-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-data-exchange-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-data-exchange-well-known.yml:
     method: unknown
     evidence: no authorship recorded

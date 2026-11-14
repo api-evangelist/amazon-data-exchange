@@ -1,10 +1,9 @@
 aid: amazon-data-exchange
 name: Amazon Data Exchange
-description: AWS Data Exchange makes it easy to find, subscribe to, and use third-party data in the cloud.
-  Qualified data providers can publish data products consisting of data sets with versioned revisions
-  and assets including S3 snapshots, Redshift data shares, API Gateway APIs, and Lake Formation permissions.
-  Subscribers can find and subscribe to data products directly in the AWS Management Console and use the
-  Data Exchange API to load data into Amazon S3 for analysis with AWS analytics and machine learning services.
+description: AWS Data Exchange makes it easy to find, subscribe to, and use third-party data in the cloud. Qualified data providers can publish
+  data products consisting of data sets with versioned revisions and assets including S3 snapshots, Redshift data shares, API Gateway APIs, and
+  Lake Formation permissions. Subscribers can find and subscribe to data products directly in the AWS Management Console and use the Data Exchange
+  API to load data into Amazon S3 for analysis with AWS analytics and machine learning services.
 type: Index
 deliveryModel:
   model: saas
@@ -25,12 +24,13 @@ accessModel:
   try_now: false
   public: false
   label: Paid
-  confidence: medium
+  confidence: high
   source:
   - plans
   - authentication
+  - rate-limits
   - security
-  generated: '2026-11-06'
+  generated: '2026-11-13'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-data-exchange.png
 tags:
@@ -49,227 +49,56 @@ tags_raw:
 - Subscriptions
 url: https://raw.githubusercontent.com/api-evangelist/amazon-data-exchange/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-09-16'
+modified: '2026-11-11'
 specificationVersion: '0.23'
-apis:
-- aid: amazon-data-exchange:amazon-data-exchange-assets-api
-  name: Amazon Data Exchange Assets API
-  description: Operations for managing data assets within revisions
-  humanURL: https://aws.amazon.com/data-exchange/
-  baseURL: https://dataexchange.amazonaws.com
-  tags:
-  - Assets
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-exchange-assets-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: GettingStarted
-    url: https://aws.amazon.com/data-exchange/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/data-exchange/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/data-exchange/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: JSONSchema
-    url: json-schema/data-set-schema.json
-  - type: JSONSchema
-    url: json-schema/revision-schema.json
-  - type: JSONSchema
-    url: json-schema/asset-schema.json
-  - type: JSONSchema
-    url: json-schema/job-schema.json
-  - type: JSONSchema
-    url: json-schema/event-action-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-exchange-context.jsonld
-- aid: amazon-data-exchange:amazon-data-exchange-event-actions-api
-  name: Amazon Data Exchange Event Actions API
-  description: Operations for managing event-driven actions
-  humanURL: https://aws.amazon.com/data-exchange/
-  baseURL: https://dataexchange.amazonaws.com
-  tags:
-  - Event Actions
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-exchange-event-actions-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: GettingStarted
-    url: https://aws.amazon.com/data-exchange/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/data-exchange/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/data-exchange/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: JSONSchema
-    url: json-schema/data-set-schema.json
-  - type: JSONSchema
-    url: json-schema/revision-schema.json
-  - type: JSONSchema
-    url: json-schema/asset-schema.json
-  - type: JSONSchema
-    url: json-schema/job-schema.json
-  - type: JSONSchema
-    url: json-schema/event-action-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-exchange-context.jsonld
-- aid: amazon-data-exchange:amazon-data-exchange-jobs-api
-  name: Amazon Data Exchange Jobs API
-  description: Operations for import/export jobs
-  humanURL: https://aws.amazon.com/data-exchange/
-  baseURL: https://dataexchange.amazonaws.com
-  tags:
-  - Job
-  tags_raw:
-  - Jobs
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-exchange-jobs-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: GettingStarted
-    url: https://aws.amazon.com/data-exchange/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/data-exchange/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/data-exchange/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: JSONSchema
-    url: json-schema/data-set-schema.json
-  - type: JSONSchema
-    url: json-schema/revision-schema.json
-  - type: JSONSchema
-    url: json-schema/asset-schema.json
-  - type: JSONSchema
-    url: json-schema/job-schema.json
-  - type: JSONSchema
-    url: json-schema/event-action-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-exchange-context.jsonld
-- aid: amazon-data-exchange:amazon-data-exchange-revisions-api
-  name: Amazon Data Exchange Revisions API
-  description: Operations for managing data set revisions
-  humanURL: https://aws.amazon.com/data-exchange/
-  baseURL: https://dataexchange.amazonaws.com
-  tags:
-  - Revisions
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-exchange-revisions-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: GettingStarted
-    url: https://aws.amazon.com/data-exchange/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/data-exchange/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/data-exchange/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: JSONSchema
-    url: json-schema/data-set-schema.json
-  - type: JSONSchema
-    url: json-schema/revision-schema.json
-  - type: JSONSchema
-    url: json-schema/asset-schema.json
-  - type: JSONSchema
-    url: json-schema/job-schema.json
-  - type: JSONSchema
-    url: json-schema/event-action-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-exchange-context.jsonld
-- aid: amazon-data-exchange:amazon-data-exchange-tags-api
-  name: Amazon Data Exchange Tags API
-  description: Operations for managing resource tags
-  humanURL: https://aws.amazon.com/data-exchange/
-  baseURL: https://dataexchange.amazonaws.com
-  tags:
-  - Tags
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-exchange-tags-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: GettingStarted
-    url: https://aws.amazon.com/data-exchange/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/data-exchange/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/data-exchange/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: JSONSchema
-    url: json-schema/data-set-schema.json
-  - type: JSONSchema
-    url: json-schema/revision-schema.json
-  - type: JSONSchema
-    url: json-schema/asset-schema.json
-  - type: JSONSchema
-    url: json-schema/job-schema.json
-  - type: JSONSchema
-    url: json-schema/event-action-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-exchange-context.jsonld
-- aid: amazon-data-exchange:amazon-data-exchange-data-grants-api
-  name: Amazon Data Exchange Data Exchange Data Grants API
-  description: >-
-    The Data Exchange Data Grants API from Amazon Data Exchange — 2 operation(s) for data exchange data
-    grants.
-  humanURL: https://aws.amazon.com/data-exchange/
-  baseURL: https://dataexchange.amazonaws.com
-  tags:
-  - Data Exchange Data Grants
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-exchange-data-grants-api-openapi.yml
-- aid: amazon-data-exchange:amazon-data-exchange-operations-api
-  name: Amazon Data Exchange Data Exchange Operations API
-  description: >-
-    The Data Exchange Operations API from Amazon Data Exchange — 6 operation(s) for data exchange operations.
-  humanURL: https://aws.amazon.com/data-exchange/
-  baseURL: https://dataexchange.amazonaws.com
-  tags:
-  - Data Exchange Operations
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-exchange-operations-api-openapi.yml
-- aid: amazon-data-exchange:amazon-data-exchange-datasets-api
-  name: Amazon Data Exchange Datasets API
-  description: Operations for managing data sets
-  humanURL: https://aws.amazon.com/data-exchange/
-  baseURL: https://dataexchange.amazonaws.com
-  tags:
-  - Datasets
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-exchange-datasets-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: GettingStarted
-    url: https://aws.amazon.com/data-exchange/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/data-exchange/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/data-exchange/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
-  - type: JSONSchema
-    url: json-schema/data-set-schema.json
-  - type: JSONSchema
-    url: json-schema/revision-schema.json
-  - type: JSONSchema
-    url: json-schema/asset-schema.json
-  - type: JSONSchema
-    url: json-schema/job-schema.json
-  - type: JSONSchema
-    url: json-schema/event-action-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-exchange-context.jsonld
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
 common:
+- type: Spectral
+  url: rules/amazon-data-exchange-spectral-rules.yml
+- type: Spectral
+  url: rules/amazon-data-exchange-rules.yml
+- type: Spectral
+  url: rules/amazon-data-exchange-jsonschema-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/amazon-data-exchange-vocabulary.yml
+- type: DataModel
+  url: data-model/amazon-data-exchange-data-model.yml
+- type: CLI
+  url: cli/amazon-data-exchange-cli.yml
+- type: ChangeLog
+  url: changelog/amazon-data-exchange-changelog.yml
+- type: Compliance
+  url: https://aws.amazon.com/compliance/
+- type: Lifecycle
+  url: lifecycle/amazon-data-exchange-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/amazon-data-exchange-problem-types.yml
+- type: Conformance
+  url: conformance/amazon-data-exchange-conformance.yml
+- type: LLMsTxt
+  url: llms/amazon-data-exchange-llms.txt
+- type: SecurityTxt
+  url: well-known/amazon-data-exchange-security.txt
+- type: WellKnown
+  url: well-known/amazon-data-exchange-well-known.yml
+- type: Hosts
+  url: hosts/amazon-data-exchange-hosts.yml
+- type: IntegrationEdges
+  url: integrations/amazon-data-exchange-integration-edges.yml
+- type: Vendors
+  url: vendors/amazon-data-exchange-vendors.yml
+- type: SDKs
+  url: packages/amazon-data-exchange-packages.yml
+- type: Packages
+  url: packages/amazon-data-exchange-packages.yml
+- type: Security
+  url: https://aws.amazon.com/security/?nc2=h_dsc_aa_sec
+- type: Newsroom
+  url: https://aws.amazon.com/media/?nc2=h_sol_ind_med
+- type: GettingStarted
+  url: https://developer.amazon.com/frustration-free-setup
 - type: Plans
   url: plans/amazon-data-exchange-plans-pricing.yml
 - type: RateLimits
@@ -365,68 +194,288 @@ common:
 - type: Features
   data:
   - name: Data Set Management
-    description: Create, update, and manage data sets containing versioned collections of data available
-      for subscription and distribution in the marketplace.
+    description: Create, update, and manage data sets containing versioned collections of data available for subscription and distribution in
+      the marketplace.
   - name: Revision Publishing
-    description: Organize data into versioned revisions with comments, then finalize and publish them
-      to make data available to subscribers automatically.
+    description: Organize data into versioned revisions with comments, then finalize and publish them to make data available to subscribers automatically.
   - name: Multi-Format Asset Support
-    description: Support for S3 snapshots, Redshift data shares, API Gateway APIs, Lake Formation permissions,
-      and S3 data access as asset types.
+    description: Support for S3 snapshots, Redshift data shares, API Gateway APIs, Lake Formation permissions, and S3 data access as asset types.
   - name: Import and Export Jobs
-    description: Asynchronous import/export jobs for transferring data between external sources (S3, Redshift)
-      and Data Exchange revisions at scale.
+    description: Asynchronous import/export jobs for transferring data between external sources (S3, Redshift) and Data Exchange revisions at
+      scale.
   - name: Event-Driven Delivery
-    description: Configurable event actions that automatically export revision data to S3 when a new revision
-      is published, eliminating manual downloads.
+    description: Configurable event actions that automatically export revision data to S3 when a new revision is published, eliminating manual
+      downloads.
   - name: AWS Marketplace Integration
-    description: Seamlessly list and sell data products in AWS Marketplace with built-in billing, subscription
-      management, and entitlement enforcement.
+    description: Seamlessly list and sell data products in AWS Marketplace with built-in billing, subscription management, and entitlement enforcement.
   - name: Fine-Grained Access Control
-    description: Control access to data products using AWS IAM policies and resource- level permissions
-      with ARN-based resource identification.
+    description: Control access to data products using AWS IAM policies and resource- level permissions with ARN-based resource identification.
 - type: UseCases
   data:
   - name: Third-Party Data Acquisition
-    description: Subscribe to curated third-party datasets from financial data providers, healthcare data
-      aggregators, weather services, and market research firms.
+    description: Subscribe to curated third-party datasets from financial data providers, healthcare data aggregators, weather services, and market
+      research firms.
   - name: Data Product Monetization
-    description: Publish and sell proprietary datasets to other AWS customers via the marketplace with
-      automated billing and subscription management.
+    description: Publish and sell proprietary datasets to other AWS customers via the marketplace with automated billing and subscription management.
   - name: Automated Data Pipelines
-    description: Configure event actions to automatically deliver new data revisions to S3, enabling downstream
-      analytics pipelines to process fresh data.
+    description: Configure event actions to automatically deliver new data revisions to S3, enabling downstream analytics pipelines to process
+      fresh data.
   - name: ML Training Data
-    description: Access high-quality labeled datasets and specialized data products from Data Exchange
-      to train and improve machine learning models.
+    description: Access high-quality labeled datasets and specialized data products from Data Exchange to train and improve machine learning models.
   - name: Regulatory Compliance Data
-    description: Subscribe to compliance reference data including sanctions lists, legal entity identifiers,
-      and regulatory taxonomies via Data Exchange.
+    description: Subscribe to compliance reference data including sanctions lists, legal entity identifiers, and regulatory taxonomies via Data
+      Exchange.
 - type: Integrations
   data:
   - name: Amazon S3
-    description: Primary storage integration for Data Exchange assets — used as both source for imports
-      and destination for exports via job operations.
+    description: Primary storage integration for Data Exchange assets — used as both source for imports and destination for exports via job operations.
   - name: Amazon Redshift
-    description: Share Redshift tables and views directly through Data Exchange without copying data,
-      enabling live query access for subscribers.
+    description: Share Redshift tables and views directly through Data Exchange without copying data, enabling live query access for subscribers.
   - name: AWS Lake Formation
-    description: Distribute Lake Formation data permissions through Data Exchange, giving subscribers
-      governed access to data lake resources.
+    description: Distribute Lake Formation data permissions through Data Exchange, giving subscribers governed access to data lake resources.
   - name: Amazon API Gateway
-    description: Expose API-based data products through Data Exchange, allowing subscribers to call APIs
-      for real-time data access.
+    description: Expose API-based data products through Data Exchange, allowing subscribers to call APIs for real-time data access.
   - name: AWS Glue
-    description: Catalog and transform Data Exchange S3 datasets using AWS Glue for ETL and data lake
-      integration workflows.
+    description: Catalog and transform Data Exchange S3 datasets using AWS Glue for ETL and data lake integration workflows.
   - name: Amazon Athena
-    description: Query Data Exchange S3 snapshot data directly with SQL using Athena for serverless analytics
-      on subscribed datasets.
+    description: Query Data Exchange S3 snapshot data directly with SQL using Athena for serverless analytics on subscribed datasets.
   - name: Amazon SageMaker
-    description: Use third-party datasets from Data Exchange as training data for machine learning models
-      in Amazon SageMaker.
+    description: Use third-party datasets from Data Exchange as training data for machine learning models in Amazon SageMaker.
 - type: Integrations
   url: https://aws.amazon.com/marketplace
+- type: UsageTerms
+  url: terms/amazon-data-exchange-terms-of-service.yml
+- type: DataProcessing
+  url: privacy/amazon-data-exchange-privacy-policy.yml
+apis:
+- aid: amazon-data-exchange:amazon-data-exchange-assets-api
+  name: Amazon Data Exchange Assets API
+  description: Operations for managing data assets within revisions
+  humanURL: https://aws.amazon.com/data-exchange/
+  baseURL: https://dataexchange.amazonaws.com
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-exchange-assets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: Pricing
+    url: https://aws.amazon.com/data-exchange/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/data-exchange/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: JSONSchema
+    url: json-schema/data-set-schema.json
+  - type: JSONSchema
+    url: json-schema/revision-schema.json
+  - type: JSONSchema
+    url: json-schema/asset-schema.json
+  - type: JSONSchema
+    url: json-schema/job-schema.json
+  - type: JSONSchema
+    url: json-schema/event-action-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-exchange-context.jsonld
+- aid: amazon-data-exchange:amazon-data-exchange-event-actions-api
+  name: Amazon Data Exchange Event Actions API
+  description: Operations for managing event-driven actions
+  humanURL: https://aws.amazon.com/data-exchange/
+  baseURL: https://dataexchange.amazonaws.com
+  tags:
+  - Event Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-exchange-event-actions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: Pricing
+    url: https://aws.amazon.com/data-exchange/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/data-exchange/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: JSONSchema
+    url: json-schema/data-set-schema.json
+  - type: JSONSchema
+    url: json-schema/revision-schema.json
+  - type: JSONSchema
+    url: json-schema/asset-schema.json
+  - type: JSONSchema
+    url: json-schema/job-schema.json
+  - type: JSONSchema
+    url: json-schema/event-action-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-exchange-context.jsonld
+- aid: amazon-data-exchange:amazon-data-exchange-jobs-api
+  name: Amazon Data Exchange Jobs API
+  description: Operations for import/export jobs
+  humanURL: https://aws.amazon.com/data-exchange/
+  baseURL: https://dataexchange.amazonaws.com
+  tags:
+  - Job
+  tags_raw:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-exchange-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: Pricing
+    url: https://aws.amazon.com/data-exchange/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/data-exchange/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: JSONSchema
+    url: json-schema/data-set-schema.json
+  - type: JSONSchema
+    url: json-schema/revision-schema.json
+  - type: JSONSchema
+    url: json-schema/asset-schema.json
+  - type: JSONSchema
+    url: json-schema/job-schema.json
+  - type: JSONSchema
+    url: json-schema/event-action-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-exchange-context.jsonld
+- aid: amazon-data-exchange:amazon-data-exchange-revisions-api
+  name: Amazon Data Exchange Revisions API
+  description: Operations for managing data set revisions
+  humanURL: https://aws.amazon.com/data-exchange/
+  baseURL: https://dataexchange.amazonaws.com
+  tags:
+  - Revisions
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-exchange-revisions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: Pricing
+    url: https://aws.amazon.com/data-exchange/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/data-exchange/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: JSONSchema
+    url: json-schema/data-set-schema.json
+  - type: JSONSchema
+    url: json-schema/revision-schema.json
+  - type: JSONSchema
+    url: json-schema/asset-schema.json
+  - type: JSONSchema
+    url: json-schema/job-schema.json
+  - type: JSONSchema
+    url: json-schema/event-action-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-exchange-context.jsonld
+- aid: amazon-data-exchange:amazon-data-exchange-tags-api
+  name: Amazon Data Exchange Tags API
+  description: Operations for managing resource tags
+  humanURL: https://aws.amazon.com/data-exchange/
+  baseURL: https://dataexchange.amazonaws.com
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-exchange-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: Pricing
+    url: https://aws.amazon.com/data-exchange/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/data-exchange/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: JSONSchema
+    url: json-schema/data-set-schema.json
+  - type: JSONSchema
+    url: json-schema/revision-schema.json
+  - type: JSONSchema
+    url: json-schema/asset-schema.json
+  - type: JSONSchema
+    url: json-schema/job-schema.json
+  - type: JSONSchema
+    url: json-schema/event-action-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-exchange-context.jsonld
+- aid: amazon-data-exchange:amazon-data-exchange-data-grants-api
+  name: Amazon Data Exchange Data Exchange Data Grants API
+  description: The Data Exchange Data Grants API from Amazon Data Exchange — 2 operation(s) for data exchange data grants.
+  humanURL: https://aws.amazon.com/data-exchange/
+  baseURL: https://dataexchange.amazonaws.com
+  tags:
+  - Data Exchange Data Grants
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-exchange-data-grants-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-create-data-grant-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-get-data-grant-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-create-data-grant-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-list-data-grants-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-list-data-grants-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-delete-data-grant-request-schema.json
+- aid: amazon-data-exchange:amazon-data-exchange-operations-api
+  name: Amazon Data Exchange Data Exchange Operations API
+  description: The Data Exchange Operations API from Amazon Data Exchange — 6 operation(s) for data exchange operations.
+  humanURL: https://aws.amazon.com/data-exchange/
+  baseURL: https://dataexchange.amazonaws.com
+  tags:
+  - Data Exchange Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-exchange-operations-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-revoke-revision-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-accept-data-grant-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-get-received-data-grant-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-send-api-asset-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-send-data-set-notification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-revoke-revision-request-schema.json
+- aid: amazon-data-exchange:amazon-data-exchange-datasets-api
+  name: Amazon Data Exchange Datasets API
+  description: Operations for managing data sets
+  humanURL: https://aws.amazon.com/data-exchange/
+  baseURL: https://dataexchange.amazonaws.com
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-exchange-datasets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: Pricing
+    url: https://aws.amazon.com/data-exchange/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/data-exchange/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/data-exchange/latest/apireference/
+  - type: JSONLD
+    url: json-ld/amazon-data-exchange-context.jsonld
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-create-data-set-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-get-data-set-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-update-data-set-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-create-data-set-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-list-data-sets-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-exchange-list-data-sets-response-schema.json
 integrations:
 - name: Sign in
 - name: Agent Mode
@@ -437,8 +486,10 @@ integrations:
 - name: Become a Channel Partner
 - name: Sell in AWS Marketplace
 - name: Manage Your Account
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
 x-parent: amazon-web-services
 x-relationship: product
+x-enrichment:
+  date: '2026-11-11'
+  status: enriched
+  artifacts_added: 5
+  pass: local-v6
